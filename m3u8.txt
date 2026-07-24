@@ -1,0 +1,133 @@
+#EXTM3U
+
+#EXTINF:-1 tvg-id="" group-title="4K",TF1 4K HDR UHD
+http://teslaking.net:80/live/Dylan4k/aFHr5N1/37744.ts
+
+#EXTINF:-1 tvg-id="" group-title="4K",FRANCE 2 4K UHD
+http://teslaking.net:80/live/Dylan4k/aFHr5N1/112613.ts
+
+#EXTINF:-1 tvg-id="" group-title="4K",M6 4K HDR
+http://teslaking.net:80/live/Dylan4k/aFHr5N1/37745.ts
+
+#EXTINF:-1 tvg-id="" group-title="4K",CANAL+ 4K
+http://teslaking.net:80/live/Dylan4k/aFHr5N1/4075.ts
+
+#EXTINF:-1 tvg-id="" group-title="4K",FRANCE 3 4K
+http://teslaking.net:80/live/Dylan4k/aFHr5N1/112612.ts
+
+#EXTINF:-1 tvg-id="" group-title="4K",Canal 4K - 24083
+http://teslaking.net:80/live/Dylan4k/aFHr5N1/24083.ts
+
+#EXTINF:-1 tvg-id="" group-title="4K",beIN SPORTS 4K
+http://teslaking.net:80/live/Dylan4k/aFHr5N1/37303.ts
+
+#EXTINF:-1 tvg-id="" group-title="4K",CANAL+ SPORT 4K
+http://teslaking.net:80/live/Dylan4k/aFHr5N1/19566.ts
+
+#EXTINF:-1 tvg-id="" group-title="4K",RMC Sport 4K
+http://teslaking.net:80/live/Dylan4k/aFHr5N1/960.ts
+
+#EXTINF:-1 tvg-id="" group-title="4K",Eurosport 4K
+http://teslaking.net:80/live/Dylan4k/aFHr5N1/35267.ts
+
+#EXTINF:-1 tvg-id="" group-title="4K",Canal 4K - 112078
+http://teslaking.net:80/live/Dylan4k/aFHr5N1/112078.ts
+
+#EXTINF:-1 tvg-id="" group-title="4K",Canal 4K - 3644
+http://teslaking.net:80/live/Dylan4k/aFHr5N1/3644.ts
+
+#EXTINF:-1 tvg-id="" group-title="4K",Canal 4K - 104974
+http://teslaking.net:80/live/Dylan4k/aFHr5N1/104974.ts
+
+#EXTINF:-1 tvg-id="" group-title="4K",Canal 4K - 112127
+http://teslaking.net:80/live/Dylan4k/aFHr5N1/112127.ts
+
+#EXTINF:-1 tvg-id="" group-title="4K",Canal 4K - 111990
+http://teslaking.net:80/live/Dylan4k/aFHr5N1/111990.ts
+
+#EXTINF:-1 tvg-id="" group-title="4K",Canal 4K - 112571
+http://teslaking.net:80/live/Dylan4k/aFHr5N1/112571.ts
+
+#EXTINF:-1 tvg-id="" group-title="4K",Canal 4K - 112417
+http://teslaking.net:80/live/Dylan4k/aFHr5N1/112417.ts
+
+#EXTINF:-1 tvg-id="" group-title="4K",Canal 4K - 2289
+http://teslaking.net:80/live/Dylan4k/aFHr5N1/2289.ts
+
+#EXTINF:-1 tvg-id="" group-title="4K",Canal 4K - 88281
+http://teslaking.net:80/live/Dylan4k/aFHr5N1/88281.ts
+
+#EXTINF:-1 tvg-id="" group-title="4K",Canal 4K - 88280
+http://teslaking.net:80/live/Dylan4k/aFHr5N1/88280.ts
+
+#EXTINF:-1 tvg-id="" group-title="4K",Canal 4K - 112493
+http://teslaking.net:80/live/Dylan4k/aFHr5N1/112493.ts
+
+#EXTINF:-1 tvg-id="" group-title="4K",Canal 4K - 74068
+http://teslaking.net:80/live/Dylan4k/aFHr5N1/74068.ts
+
+#EXTINF:-1 tvg-id="" group-title="4K",Canal 4K - 1892
+http://teslaking.net:80/live/Dylan4k/aFHr5N1/1892.ts
+
+#EXTINF:-1 tvg-id="" group-title="4K",Canal 4K - 18181
+http://teslaking.net:80/live/Dylan4k/aFHr5N1/18181.ts
+
+#EXTINF:-1 tvg-id="" group-title="4K",Canal 4K - 100895
+http://teslaking.net:80/live/Dylan4k/aFHr5N1/100895.ts
+
+#EXTINF:-1 tvg-id="" group-title="4K",Canal 4K - 111883
+http://teslaking.net:80/live/Dylan4k/aFHr5N1/111883.ts
+
+#EXTINF:-1 tvg-id="" group-title="4K",Canal 4K - 112020
+http://teslaking.net:80/live/Dylan4k/aFHr5N1/112020.ts
+
+#EXTINF:-1 tvg-id="" group-title="4K",Canal 4K - 112081
+http://teslaking.net:80/live/Dylan4k/aFHr5N1/112081.ts
+
+#EXTINF:-1 tvg-id="" group-title="4K",Canal 4K - 2215
+http://teslaking.net:80/live/Dylan4k/aFHr5N1/2215.ts
+
+#EXTINF:-1 tvg-id="" group-title="4K",Canal 4K - 40845
+http://teslaking.net:80/live/Dylan4k/aFHr5N1/40845.ts
+
+#EXTINF:-1 tvg-id="" group-title="4K",Canal 4K - 148
+http://teslaking.net:80/live/Dylan4k/aFHr5N1/148.ts
+
+#EXTINF:-1 tvg-id="" group-title="4K",Canal 4K - 111871
+http://teslaking.net:80/live/Dylan4k/aFHr5N1/111871.ts
+
+#EXTINF:-1 tvg-id="" group-title="4K",Canal 4K - 4439
+http://teslaking.net:80/live/Dylan4k/aFHr5N1/4439.ts
+
+#EXTINF:-1 tvg-id="" group-title="4K",Canal 4K - 112244
+http://teslaking.net:80/live/Dylan4k/aFHr5N1/112244.ts
+
+#EXTINF:-1 tvg-id="" group-title="4K",Canal 4K - 112192
+http://teslaking.net:80/live/Dylan4k/aFHr5N1/112192.ts
+
+#EXTINF:-1 tvg-id="" group-title="4K",Canal 4K - 112190
+http://teslaking.net:80/live/Dylan4k/aFHr5N1/112190.ts
+
+#EXTINF:-1 tvg-id="" group-title="4K",Canal 4K - 112189
+http://teslaking.net:80/live/Dylan4k/aFHr5N1/112189.ts
+
+#EXTINF:-1 tvg-id="" group-title="4K",Canal 4K - 2899
+http://teslaking.net:80/live/Dylan4k/aFHr5N1/2899.ts
+
+#EXTINF:-1 tvg-id="" group-title="4K",Canal 4K - 2919
+http://teslaking.net:80/live/Dylan4k/aFHr5N1/2919.ts
+
+#EXTINF:-1 tvg-id="" group-title="4K",Canal 4K - 2908
+http://teslaking.net:80/live/Dylan4k/aFHr5N1/2908.ts
+
+#EXTINF:-1 tvg-id="" group-title="4K",Canal 4K - 112229
+http://teslaking.net:80/live/Dylan4k/aFHr5N1/112229.ts
+
+#EXTINF:-1 tvg-id="" group-title="4K",Canal 4K - 112418
+http://teslaking.net:80/live/Dylan4k/aFHr5N1/112418.ts
+
+#EXTINF:-1 tvg-id="" group-title="4K",Canal 4K - 112452
+http://teslaking.net:80/live/Dylan4k/aFHr5N1/112452.ts
+
+#EXTINF:-1 tvg-id="" group-title="4K",Canal 4K - 32146
+http://teslaking.net:80/live/Dylan4k/aFHr5N1/32146.ts
