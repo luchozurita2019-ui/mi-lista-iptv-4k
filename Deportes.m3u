@@ -1,0 +1,40 @@
+#EXTM3U
+
+#EXTINF:-1 tvg-id="dsports" tvg-name="DSPORTS" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/5/5b/DirecTV_Sports_logo.svg" group-title="⚽ Deportes",DSPORTS
+https://cxm7.futbolonlinehd.com/dsports/mono.m3u8?token=5efbee83e4663ae108f7742e2d42e093885777f5-c0-1785146658-1785128658
+
+#EXTINF:-1 tvg-id="dsports2" tvg-name="DSPORTS 2" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/0/0d/DSports2.png" group-title="⚽ Deportes",DSPORTS 2
+https://cxm1.futbolonlinehd.com/dsports2/mono.m3u8?token=aadf8a6bbee20f41ef90dcd68f65452a7a1c39b1-82-1785147124-1785129124
+
+#EXTINF:-1 tvg-id="dsportsplus" tvg-name="DSPORTS+" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/8/8d/DSportsM%C3%A1s.png" group-title="⚽ Deportes",DSPORTS+
+https://cxm4.futbolonlinehd.com/dsportsplus/mono.m3u8?token=5892b0c14fed49ce617f4dd23f92a4f88878b152-6d-1785147155-1785129155
+
+#EXTINF:-1 tvg-id="espn" tvg-name="ESPN" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg" group-title="⚽ Deportes",ESPN
+https://cxm6.futbolonlinehd.com/espn/mono.m3u8?token=afa7c4818c91c0dff1b5f0da69c27dcdb01162fc-96-1785146823-1785128823
+
+#EXTINF:-1 tvg-id="espn2" tvg-name="ESPN 2" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/7/71/ESPN2_logo.svg" group-title="⚽ Deportes",ESPN 2
+https://cxm7.futbolonlinehd.com/espn2/mono.m3u8?token=48c40b7067a5509f18d7428568c92806826b03e6-5b-1785146890-1785128890
+
+#EXTINF:-1 tvg-id="espn3" tvg-name="ESPN 3" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/6/6c/ESPN3_logo.svg" group-title="⚽ Deportes",ESPN 3
+https://cxm5.futbolonlinehd.com/espn3/mono.m3u8?token=2602c004e0d20d54a6ae3151c52ad62dea56fdd4-b-1785146961-1785128961
+
+#EXTINF:-1 tvg-id="espnpremium.ar" tvg-name="ESPN Premium" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/5/5f/ESPN_Premium_logo.svg" group-title="⚽ Deportes",ESPN Premium
+https://cxm10.futbolonlinehd.com/espnpremium/mono.m3u8?token=51348a20daeb6d7e7f1e01036b96506715f0b701-e8-1785147268-1785129268
+
+#EXTINF:-1 tvg-id="foxsports" tvg-name="FOX Sports" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/0/0c/Fox_Sports_wordmark_logo.svg" group-title="⚽ Deportes",FOX Sports
+https://cxm3.futbolonlinehd.com/foxsports/mono.m3u8?token=974f7974514f0b482dc080b0a3d33763e9533f0d-b5-1785147010-1785129010
+
+#EXTINF:-1 tvg-id="foxsports2" tvg-name="FOX Sports 2" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/6/69/Fox_sports_2_logo.svg" group-title="⚽ Deportes",FOX Sports 2
+https://cxm5.futbolonlinehd.com/foxsports2/mono.m3u8?token=7d3ae4f11eb324ba97408a35a7dca34f6257b75c-10-1785147043-1785129043
+
+#EXTINF:-1 tvg-id="foxsports3" tvg-name="FOX Sports 3" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/2/2f/Fox_sports_3_logo.svg" group-title="⚽ Deportes",FOX Sports 3
+https://cxm5.futbolonlinehd.com/foxsports3/mono.m3u8?token=8df48ea9702048205a4c66153b8efece9484d471-e6-1785147079-1785129079
+
+#EXTINF:-1 tvg-id="tycsports" tvg-name="TyC Sports" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/0/08/TyC_Sports_Logo.svg" group-title="⚽ Deportes",TyC Sports
+https://cxm1.futbolonlinehd.com/tycsports/mono.m3u8?token=c93a73ec912d1de2d279f947d3a472bfb5a1fee2-74-1785147197-1785129197
+
+#EXTINF:-1 tvg-id="tntsports.ar" tvg-name="TNT Sports" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/7/76/TNT_Sports_2021_logo.svg" group-title="⚽ Deportes",TNT Sports
+https://cxm4.futbolonlinehd.com/tntsports/mono.m3u8?token=52d25e634ffcce84d1115e4c1627047ee5268115-66-1785147230-1785129230
+
+#EXTINF:-1 tvg-id="l1max" tvg-name="L1 MAX" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/5/5b/L1MAX-LOGO.svg" group-title="⚽ Deportes",L1 MAX
+https://cxm10.futbolonlinehd.com/liga1max/mono.m3u8?token=178698caa8948525d44b21e1e8bafb6424666bdb-6b-1785147303-1785129303
