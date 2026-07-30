@@ -132,17 +132,24 @@ http://teslaking.net:80/live/Dylan4k/aFHr5N1/112452.ts
 #EXTINF:-1 tvg-id="" group-title="4K",Canal 4K - 32146
 http://teslaking.net:80/live/Dylan4k/aFHr5N1/32146.ts
 
-#EXTINF:-1 tvg-id="" group-title="NASA 4K",Canal 4K - 32146
+#EXTINF:-1 tvg-id="" group-title="4K",Canal 4K - NASA 4K
 http://teslaking.net:80/ndPkNKBR/eZcdgqy/3089
 
-#EXTINF:-1 tvg-id="" group-title="TNT SPORTS 4K",Canal 4K - 32146
+#EXTINF:-1 tvg-id="" group-title="4K",Canal 4K - TNT 4K
 http://teslaking.net:80/ndPkNKBR/eZcdgqy/111893
 
-#EXTINF:-1 tvg-id="" group-title="Love Nature 4K ",Canal 4K - 32146
+#EXTINF:-1 tvg-id="" group-title="4K ",Canal 4K - Love Nature 4K
 http://teslaking.net:80/ndPkNKBR/eZcdgqy/112192
 
-#EXTINF:-1 tvg-id="" group-title="Museum TV 4K ",Canal 4K - 32146
+#EXTINF:-1 tvg-id="" group-title="4K ",Canal 4K - Museum TV 4K 
 http://teslaking.net:80/ndPkNKBR/eZcdgqy/112190
 
-#EXTINF:-1 tvg-id="" group-title="ELEVEN SPORT 4K ",Canal 4K - 32146
+#EXTINF:-1 tvg-id="" group-title="4K ",Canal 4K - ELEVEN SPORT 4K
 http://teslaking.net:80/ndPkNKBR/eZcdgqy/2919
+
+#EXTINF:-1 tvg-id="" group-title="4K",canal 4K - ODISEA 4K
+http://nqpanesp1.top:8080/live/ES0139177205256870/weyevx83zgfr/77150.ts
+
+#EXTINF:-1 tvg-id="" group-title="4K",canal 4K - RAI 4K
+http://hnsefpop.top:8080/live/2141758975468911/9461de745c3d/61949.ts
+
