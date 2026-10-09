@@ -56,7 +56,7 @@ CINEMA_CHANNEL_RE = re.compile(
     re.I,
 )
 # Categorías normalizadas para que la lista quede ordenada y prolija.
-ADULT_RE = re.compile(r"\\b(adultos?|adult|xxx|18\\+|er[oó]tic[oa]s?|erotica|playboy|venus|hustler|penthouse|private\\s*tv|brazzers|dorcel|redlight|sexy\\s*hot)\\b", re.I)
+ADULT_RE = re.compile(r"\b(adultos?|adult|xxx|18\+|er[oó]tic[oa]s?|erotica|playboy|venus|hustler|penthouse|private\s*tv|brazzers|dorcel|redlight|sexy\s*hot)\b", re.I)
 NEWS_RE = re.compile(r"\b(noticias?|news|informativo|informativos|noticiero|noticieros|24\s*hs|24\s*horas|cnn|c5n|tn\b|a24|ln\+|teleSUR|breaking)\b", re.I)
 SPORTS_RE = re.compile(r"\b(deportes?|sports?|f[uú]tbol|football|soccer|tyc|espn|fox\s*sports?|directv\s*sports?|tnt\s*sports?|gol\s*tv|bein\s*sports?|formula\s*1|f1|nba|tenis|boxeo|rugby|b[aá]squet)\b", re.I)
 KIDS_RE = re.compile(r"\b(infantil|infantiles|ni[nñ]os|kids|disney\s*junior|cartoon\s*network|nick(elodeon)?|baby\s*tv|dreamworks)\b", re.I)
