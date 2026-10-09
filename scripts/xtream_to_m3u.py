@@ -19,10 +19,10 @@ from pathlib import Path
 
 OUT = Path("dist/lista_clasica.m3u")
 TIMEOUT = 20
-PROBE_TIMEOUT = 6
+PROBE_TIMEOUT = 4
 PROBE_BYTES = 4096
-PROBE_WORKERS = 12
-MAX_PROBES = 1500
+PROBE_WORKERS = 24
+MAX_PROBES = 600
 MAX_BYTES = 80 * 1024 * 1024
 
 # M3U metadata is inconsistent across providers, so filtering uses group/title
