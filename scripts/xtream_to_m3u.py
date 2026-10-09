@@ -47,10 +47,13 @@ EVENT_RE = re.compile(
 )
 # Explicit VOD/individual-title groups are not live TV channels.
 VOD_RE = re.compile(
+    # Xtream suele mezclar TV en vivo, películas y series en el mismo get.php.
+    # Los nombres de grupo de VOD deben bloquearse antes de normalizar categorías.
     r"\b(vod|video\s*on\s*demand|on\s*demand|a\s*la\s*carta|"
-    r"peliculas?\s*vod|movies?\s*vod|series?\s*vod|"
+    r"peliculas?|films?|movies?|series|tv\s*shows?|shows?\s*tv|anime|"
     r"catalogo|cat[aá]logo|descargas?|temporadas?|episodios?|"
-    r"full\s*movies?|all\s*movies?|all\s*series?)\b",
+    r"full\s*movies?|all\s*movies?|all\s*series?|"
+    r"contenido\s*a\s*pedido|estrenos\s*vod)\b",
     re.I,
 )
 # Linear TV channels dedicated to films/series; these are sorted first.
@@ -177,7 +180,14 @@ def keep_entry(entry):
     country_name = country.casefold()
     lang = language.casefold()
 
-    # Exclude VOD catalogs and individual films/episodes: the target is live TV.
+    # Excluir por tipo de URL Xtream cuando el proveedor lo identifica explícitamente.
+    # /live/ se conserva; /movie/ y /series/ nunca deben entrar en TV en vivo.
+    stream_path = urllib.parse.urlparse(entry[-1]).path.casefold() if entry else ""
+    if re.search(r"/(?:movie|movies|series|vod)(?:/|$)", stream_path):
+        return False
+
+    # Excluir grupos de catálogo VOD, aunque el proveedor los llame "Películas",
+    # "Series", "Movies", "Anime", etc. antes de normalizar categorías.
     if VOD_RE.search(group_name):
         return False
     if re.search(r"\b(S\d{1,2}E\d{1,2}|temporada\s+\d+|episodio\s+\d+)\b", name, re.I):
