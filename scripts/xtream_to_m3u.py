@@ -202,7 +202,7 @@ def keep_entry(entry):
 
     # Retain Argentine content and Spanish-language events/channels; events
     # need not be permanent channel names to qualify.
-    return is_argentina or is_spanish
+    return is_argentina or is_spanish or is_adult
 
 
 def category_for(entry):
