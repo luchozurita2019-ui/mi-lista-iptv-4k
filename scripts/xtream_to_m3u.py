@@ -414,9 +414,9 @@ def set_display_name(entry):
         return entry
     extinf = entry[0]
     # Mantener coherentes tvg-name y el nombre que ve el usuario.
-    if re.search(r'\\btvg-name="[^"]*"', extinf, re.I):
+    if re.search(r'\btvg-name="[^"]*"', extinf, re.I):
         extinf = re.sub(
-            r'\\btvg-name="[^"]*"',
+            r'\btvg-name="[^"]*"',
             lambda _: f'tvg-name="{known[1]}"',
             extinf, count=1, flags=re.I
         )
