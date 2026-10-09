@@ -711,7 +711,7 @@ def main():
     winners.sort(key=lambda item: item[0])
     playlist_lines = [line for _, entry in winners for line in entry]
     # Validación final: impedir publicar una lista vacía, adulta o con entradas VOD.
-    final_entries = parse_entries("\\n".join(playlist_lines))
+    final_entries = parse_entries("\n".join(playlist_lines))
     if not final_entries:
         print("ERROR: la lista final quedó vacía; se cancela la publicación.", file=sys.stderr)
         return 1
