@@ -203,13 +203,14 @@ def keep_entry(entry):
 def category_for(entry):
     name, attrs, group, country, language, extra = metadata(entry)
     text = f"{name} {group}"
-    # Cine/series en señales lineales primero; VOD ya se filtra antes.
-    if CINEMA_CHANNEL_RE.search(name) or re.search(r"\b(cine|cinema|pel[ií]culas|series|films?|movies?)\b", group, re.I):
-        return "Cine y Series"
+    # Primero noticias/deportes para no clasificar, por ejemplo, TNT Sports como cine.
     if NEWS_RE.search(text):
         return "Noticias"
     if SPORTS_RE.search(text):
         return "Eventos" if re.search(r"\b(eventos?|ppv|partidos?\s*en\s*vivo)\b", text, re.I) else "Deportes"
+    # Cine/series en señales lineales; VOD ya se filtra antes.
+    if CINEMA_CHANNEL_RE.search(name) or re.search(r"\b(cine|cinema|pel[ií]culas|series|films?|movies?)\b", group, re.I):
+        return "Cine y Series"
     if KIDS_RE.search(text):
         return "Infantiles"
     if DOCU_RE.search(text):
