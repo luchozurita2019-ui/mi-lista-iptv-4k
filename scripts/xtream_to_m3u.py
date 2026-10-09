@@ -354,10 +354,10 @@ def keep_entry(entry):
     # metadata above says otherwise. Unknown-language entries are excluded.
     # Adult channels are retained in their own category even when the provider
     # omits language metadata; explicit non-Spanish metadata is still rejected.
-    # Solo canales argentinos identificados por nombre/categoría o metadatos del proveedor.
-    # No incorporar canales internacionales solo por estar en español.
-    argentina_known = bool(known and known[0].startswith("Argentina ·"))
-    if not argentina_known and not is_argentina:
+    # Aceptar los canales del catálogo reconocido (incluidos los lineales de cine,
+    # deportes, infantiles y documentales), además de canales identificados como argentinos.
+    # Nunca incluir VOD ni adultos: esos filtros se aplican arriba.
+    if not known and not is_argentina:
         return False
     return True
 
@@ -403,6 +403,26 @@ def set_group_title(entry, category):
         comma = extinf.rfind(",")
         if comma >= 0:
             extinf = extinf[:comma] + f' group-title="{category}"' + extinf[comma:]
+    return [extinf, *entry[1:]]
+
+
+def set_display_name(entry):
+    """Fija el nombre visible del canal al nombre canónico del catálogo."""
+    name, attrs, group, country, language, extra = metadata(entry)
+    known = catalog_match(name, group)
+    if not known:
+        return entry
+    extinf = entry[0]
+    # Mantener coherentes tvg-name y el nombre que ve el usuario.
+    if re.search(r'\\btvg-name="[^"]*"', extinf, re.I):
+        extinf = re.sub(
+            r'\\btvg-name="[^"]*"',
+            lambda _: f'tvg-name="{known[1]}"',
+            extinf, count=1, flags=re.I
+        )
+    comma = extinf.rfind(",")
+    if comma >= 0:
+        extinf = extinf[:comma + 1] + known[1]
     return [extinf, *entry[1:]]
 
 
@@ -526,7 +546,7 @@ def main():
                 if not keep_entry(entry):
                     continue
                 kept += 1
-                normalized = set_group_title(entry, category_for(entry))
+                normalized = set_display_name(set_group_title(entry, category_for(entry)))
                 candidates.append({
                     "provider": provider_id,
                     "entry": normalized,
