@@ -88,6 +88,14 @@ class ProbeTests(unittest.TestCase):
         self.assertEqual(result["state"], "pass")
         self.assertGreater(result["duration"], .06)
 
+    def test_sample_memory_cap_does_not_truncate_transport_observation(self):
+        # The server continues sending after the retained sample is full.
+        with patch.object(stability, "MAX_SAMPLE", 8192):
+            result = self.probe("/ts")
+        self.assertEqual(result["state"], "pass")
+        self.assertGreater(result["bytes"], 8192)
+        self.assertGreaterEqual(result["duration"], .064)
+
     def test_hls_requires_segments_and_progress(self):
         self.assertEqual(self.probe("/live.m3u8")["state"], "pass")
         self.assertEqual(self.probe("/stalled")["state"], "partial")
@@ -289,3 +297,4 @@ class GeneratorTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+

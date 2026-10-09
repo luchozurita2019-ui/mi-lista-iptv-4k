@@ -1,7 +1,7 @@
 name: Validar selector de estabilidad
 on:
   pull_request:
-    paths: ["scripts/**", "tests/**", ".github/workflows/**"]
+    paths: ["scripts/**", "data/**", "tests/**", ".github/workflows/**"]
   workflow_dispatch:
 permissions:
   contents: read
@@ -11,4 +11,5 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: python3 -m unittest discover -s tests -v
-      - run: python3 -m py_compile scripts/xtream_to_m3u.py scripts/stream_stability.py
+      - run: python3 -m py_compile scripts/*.py
+
