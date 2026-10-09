@@ -14,6 +14,7 @@ import json
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import urllib.parse
 import urllib.request
+import unicodedata
 from pathlib import Path
 
 OUT = Path("dist/lista_clasica.m3u")
@@ -51,7 +52,6 @@ VOD_RE = re.compile(
     # lineales de cine. El VOD se identifica por su ruta, marcadores explícitos
     # de catálogo/a pedido o episodios individuales.
     r"\b(vod|video\s*on\s*demand|on\s*demand|a\s*la\s*carta|"
-    r"series|tv\s*shows?|shows?\s*tv|anime|"
     r"catalogo|cat[aá]logo|descargas?|temporadas?|episodios?|"
     r"full\s*movies?|all\s*movies?|all\s*series?|"
     r"contenido\s*a\s*pedido|estrenos\s*vod)\b",
@@ -150,21 +150,24 @@ CHANNEL_CATALOG = [
 ]
 
 def _fold_name(value: str) -> str:
-    value = value.casefold().replace("&", " and ")
-    value = re.sub(r"\\b(hd|fhd|uhd|4k|sd|1080p|720p|hevc|h265|h264|latino|argentina|arg)\\b", " ", value)
+    value = unicodedata.normalize("NFKD", value.casefold())
+    value = "".join(ch for ch in value if not unicodedata.combining(ch))
+    value = value.replace("&", " and ")
+    value = re.sub(r"\b(hd|fhd|uhd|4k|sd|1080p|720p|hevc|h265|h264|latino|argentina|arg)\b", " ", value)
     return re.sub(r"[^a-z0-9]+", " ", value).strip()
 
 def catalog_match(name: str, group: str = ""):
     # Match a known channel by its actual name, not only by group-title.
     folded = " " + _fold_name(name) + " "
-    for category, canonical, aliases in CHANNEL_CATALOG:
-        for alias in aliases:
+    catalog = sorted(CHANNEL_CATALOG, key=lambda row: max(len(_fold_name(a)) for a in row[2]), reverse=True)
+    for category, canonical, aliases in catalog:
+        for alias in sorted(aliases, key=lambda a: len(_fold_name(a)), reverse=True):
             needle = " " + _fold_name(alias) + " "
             if needle.strip() and needle in folded:
                 # Avoid classifying TNT Sports as the movie channel TNT.
                 if canonical == "TNT" and " sports " in folded:
                     continue
-                if canonical == "HBO" and re.search(r"\\bhbo\\s*(2|plus|family|signature|mundi|xtreme)\\b", name, re.I):
+                if canonical == "HBO" and re.search(r"\bhbo\s*(2|plus|family|signature|mundi|xtreme)\b", name, re.I):
                     continue
                 return category, canonical
     return None
@@ -378,10 +381,10 @@ def set_logo_if_missing(entry, logo_url):
     if not logo_url:
         return entry
     extinf = entry[0]
-    if re.search(r'\\btvg-logo="[^"]+"', extinf, re.I):
+    if re.search(r'\btvg-logo="[^"]+"', extinf, re.I):
         return entry
-    if re.search(r'\\btvg-logo=""', extinf, re.I):
-        extinf = re.sub(r'\\btvg-logo=""', f'tvg-logo="{logo_url}"', extinf, count=1, flags=re.I)
+    if re.search(r'\btvg-logo=""', extinf, re.I):
+        extinf = re.sub(r'\btvg-logo=""', f'tvg-logo="{logo_url}"', extinf, count=1, flags=re.I)
     else:
         comma = extinf.rfind(",")
         if comma >= 0:
@@ -392,7 +395,7 @@ def fetch_logo_manifest():
     # Usa nombres reales de archivos de un repositorio público de logos; no inventa URLs.
     manifest = []
     for directory in ("argentina", "international", "world-latin-america"):
-        url = f"https://api.github.com/repos/tv-logo/tv-logos/contents/countries/{directory}"
+        url = f"https://api.github.com/repos/tv-logo/tv-logos/contents/countries/{directory}?per_page=1000"
         request = urllib.request.Request(url, headers={"User-Agent": "TVFULL-Logo-Finder/1.0", "Accept": "application/vnd.github+json"})
         try:
             with urllib.request.urlopen(request, timeout=8) as response:
