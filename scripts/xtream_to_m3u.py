@@ -10,12 +10,18 @@ import os
 import re
 import sys
 import time
+import json
+from concurrent.futures import ThreadPoolExecutor, as_completed
 import urllib.parse
 import urllib.request
 from pathlib import Path
 
 OUT = Path("dist/lista_clasica.m3u")
 TIMEOUT = 20
+PROBE_TIMEOUT = 6
+PROBE_BYTES = 4096
+PROBE_WORKERS = 12
+MAX_PROBES = 1500
 MAX_BYTES = 80 * 1024 * 1024
 
 # M3U metadata is inconsistent across providers, so filtering uses group/title
@@ -253,6 +259,42 @@ def entry_name(entry):
     return metadata(entry)[0].casefold()
 
 
+def probe_stream(url: str):
+    """Prueba breve de una URL sin descargar la transmisión completa ni registrar la URL."""
+    started = time.monotonic()
+    request = urllib.request.Request(
+        url,
+        headers={
+            "User-Agent": "TVFULL-Stability-Check/1.0",
+            "Accept": "*/*",
+            "Range": f"bytes=0-{PROBE_BYTES - 1}",
+            "Connection": "close",
+        },
+    )
+    try:
+        with urllib.request.urlopen(request, timeout=PROBE_TIMEOUT) as response:
+            status = response.status
+            data = response.read(PROBE_BYTES)
+            elapsed = time.monotonic() - started
+            # Algunos servidores ignoran Range y devuelven 200; se acepta si entregan datos.
+            ok = status in (200, 206) and bool(data)
+            return {
+                "ok": ok,
+                "elapsed": elapsed,
+                "bytes": len(data),
+                "status": status,
+                "score": (1 if ok else 0, -elapsed, len(data)),
+            }
+    except Exception:
+        return {
+            "ok": False,
+            "elapsed": time.monotonic() - started,
+            "bytes": 0,
+            "status": 0,
+            "score": (0, -9999.0, 0),
+        }
+
+
 def main():
     providers = [p for i in range(1, 11) if (p := env_provider(i))]
     if not providers:
@@ -260,7 +302,7 @@ def main():
         return 2
 
     OUT.parent.mkdir(parents=True, exist_ok=True)
-    merged, seen = [], {}
+    candidates = []
     total_input = total_kept = 0
     for provider_id, url in providers:
         started = time.monotonic()
@@ -269,52 +311,101 @@ def main():
             entries = parse_entries(content)
             if not entries:
                 raise RuntimeError("la lista no contiene canales HTTP(S) válidos")
-            kept = added = 0
+            kept = 0
             for entry in entries:
                 total_input += 1
                 if not keep_entry(entry):
                     continue
                 kept += 1
-                key = entry_name(entry)
-                if not key:
-                    key = entry[-1].casefold()
-                category = category_for(entry)
-                normalized = set_group_title(entry, category)
-                if key in seen:
-                    # Si otro proveedor trae el mismo canal con logo y el elegido no,
-                    # preferimos el que tiene tvg-logo sin duplicar la señal.
-                    old_index = seen[key]
-                    old_entry = merged[old_index][1]
-                    old_has_logo = bool(metadata(old_entry)[1].get("tvg-logo"))
-                    new_has_logo = bool(metadata(normalized)[1].get("tvg-logo"))
-                    if new_has_logo and not old_has_logo:
-                        merged[old_index] = (priority(normalized), normalized)
-                    continue
-                seen[key] = len(merged)
-                merged.append((priority(normalized), normalized))
-                added += 1
+                normalized = set_group_title(entry, category_for(entry))
+                candidates.append({
+                    "provider": provider_id,
+                    "entry": normalized,
+                    "name": entry_name(normalized),
+                    "has_logo": bool(metadata(normalized)[1].get("tvg-logo")),
+                })
             total_kept += kept
-            print(f"Proveedor {provider_id}: {len(entries)} entradas; {kept} Argentina/español/eventos coincidentes; {added} nuevas; {time.monotonic()-started:.1f}s")
+            print(f"Proveedor {provider_id}: {len(entries)} entradas; {kept} coinciden con los filtros; {time.monotonic()-started:.1f}s")
         except Exception as exc:
             # Never print source URLs or exception strings that may expose credentials.
             print(f"[WARN] Proveedor {provider_id}: no se pudo importar ({type(exc).__name__}).", file=sys.stderr)
 
-    if not merged:
+    if not candidates:
         print("ERROR: ningún proveedor entregó entradas que coincidan con los filtros; no se genera una lista vacía.", file=sys.stderr)
         return 1
 
+    # Probar primero los canales duplicados, donde elegir la mejor fuente aporta más.
+    group_counts = {}
+    for candidate in candidates:
+        group_counts[candidate["name"]] = group_counts.get(candidate["name"], 0) + 1
+    probe_order = sorted(
+        range(len(candidates)),
+        key=lambda i: (group_counts[candidates[i]["name"]] > 1, group_counts[candidates[i]["name"]]),
+        reverse=True,
+    )
+    selected_indices = probe_order[:MAX_PROBES]
+    results = {}
+    with ThreadPoolExecutor(max_workers=PROBE_WORKERS) as pool:
+        futures = {
+            pool.submit(probe_stream, candidates[i]["entry"][-1]): i
+            for i in selected_indices
+        }
+        for future in as_completed(futures):
+            i = futures[future]
+            try:
+                results[i] = future.result()
+            except Exception:
+                results[i] = {"ok": False, "elapsed": 9999.0, "bytes": 0, "status": 0, "score": (0, -9999.0, 0)}
+
+    # Elegir una sola URL por canal: primero las que entregan datos, luego las más rápidas.
+    # Si todas fallan o quedaron sin probar, mantener una alternativa como respaldo.
+    grouped = {}
+    for i, candidate in enumerate(candidates):
+        grouped.setdefault(candidate["name"], []).append((i, candidate))
+    winners = []
+    tested = passed = 0
+    for name, options in grouped.items():
+        def rank(item):
+            i, candidate = item
+            result = results.get(i)
+            if result is None:
+                # Sin prueba por el límite de seguridad: neutral, por detrás de una prueba exitosa.
+                return (0, -9998.0, int(candidate["has_logo"]))
+            return (*result["score"], int(candidate["has_logo"]))
+        winner_i, winner = max(options, key=rank)
+        if winner_i in results:
+            tested += 1
+            if results[winner_i]["ok"]:
+                passed += 1
+        winners.append((priority(winner["entry"]), winner["entry"]))
+
+    winners.sort(key=lambda item: item[0])
+    playlist_lines = [line for _, entry in winners for line in entry]
     temp = OUT.with_suffix(".m3u.tmp")
-    merged.sort(key=lambda item: item[0])
-    playlist_lines = [line for _, entry in merged for line in entry]
     temp.write_text("#EXTM3U\n" + "\n".join(playlist_lines) + "\n", encoding="utf-8")
     temp.replace(OUT)
-    print(f"Lista creada: {OUT} — {len(seen)} entradas únicas de {total_input} revisadas ({total_kept} coincidencias antes de deduplicar).")
-    print("Categorías: Adultos, Cine y Series, Noticias, Deportes, Infantiles, Documentales, Música, Entretenimiento, General y Eventos.")
-    print("Logos: se conservan los tvg-logo originales; si hay duplicados, se prefiere la versión que sí trae logo.")
-    print("IMPORTANTE: el archivo generado contiene URLs privadas. No lo publiques en un repositorio público.")
-    print("Nota: el filtro usa nombres/grupos/metadatos M3U; no puede verificar el idioma real del audio.")
-    return 0
 
+    report = {
+        "canales_unicos": len(winners),
+        "entradas_candidatas": len(candidates),
+        "urls_probadas": len(results),
+        "urls_con_datos": sum(1 for result in results.values() if result["ok"]),
+        "canales_ganadores_probados_y_correctos": passed,
+        "metodo": "prueba HTTP breve con Range; no garantiza reproducción sostenida",
+        "limite_pruebas": MAX_PROBES,
+        "nota": "No se guardan URLs, usuarios ni contraseñas en este informe.",
+    }
+    Path("dist/diagnostico_estabilidad.json").write_text(
+        json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+    )
+    print(f"Lista creada: {OUT} — {len(winners)} canales únicos de {total_input} entradas revisadas.")
+    print(f"Estabilidad: {len(results)} URLs probadas; {sum(1 for result in results.values() if result['ok'])} entregaron datos en la prueba breve.")
+    print("La mejor alternativa por canal se elige por respuesta válida, tiempo de respuesta y disponibilidad de logo.")
+    if len(candidates) > len(results):
+        print(f"Nota: se alcanzó el límite de {MAX_PROBES} pruebas; los canales restantes conservan una alternativa sin medir.")
+    print("IMPORTANTE: el archivo generado contiene URLs privadas. No lo publiques en un repositorio público.")
+    print("Nota: la prueba breve no demuestra estabilidad durante horas ni compatibilidad con todos los reproductores.")
+    return 0
 
 if __name__ == "__main__":
     raise SystemExit(main())
