@@ -180,7 +180,6 @@ CHANNEL_CATALOG = [
     ("Argentina · Regionales", "Canal 7 Mendoza", ("canal 7 mendoza",)),
     ("Argentina · Regionales", "Canal 3 Rosario", ("canal 3 rosario",)),
 ]
-]
 
 def _fold_name(value: str) -> str:
     value = unicodedata.normalize("NFKD", value.casefold())
