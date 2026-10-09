@@ -18,6 +18,7 @@ from pathlib import Path
 VERSION = 1
 TTL = 30 * 86400
 MAX_SAMPLE = 512 * 1024
+MAX_TRANSFER = 4 * 1024 * 1024
 
 
 def identity(url, headers=None):
@@ -148,24 +149,28 @@ class Probe:
                         return result
                     return self._hls(response.geturl(), manifest, headers or {}, end, result)
                 sample_start = time.monotonic()
-                chunks = [first]
+                sample = bytearray(first[:MAX_SAMPLE])
                 reads = 0
-                while time.monotonic() - sample_start < self.window and result["bytes"] < MAX_SAMPLE:
-                    chunk = response.read1(min(8192, MAX_SAMPLE - result["bytes"]))
+                # Bound retained bytes separately from transport observation.
+                # Fast HD feeds otherwise fill 512 KiB before two seconds and
+                # are systematically mislabeled as short/inconclusive samples.
+                while time.monotonic() - sample_start < self.window and result["bytes"] < MAX_TRANSFER:
+                    chunk = response.read1(min(8192, MAX_TRANSFER - result["bytes"]))
                     if not chunk:
                         break
-                    chunks.append(chunk)
+                    if len(sample) < MAX_SAMPLE:
+                        sample.extend(chunk[:MAX_SAMPLE - len(sample)])
                     result["bytes"] += len(chunk)
                     reads += 1
                 result["duration"] = time.monotonic() - sample_start
-                kind = media_signature(b"".join(chunks))
+                kind = media_signature(sample)
                 result["kind"] = kind or "unknown"
                 if kind:
                     sustained = reads >= 2 and result["duration"] >= self.window * .8
                     result.update(state="pass" if sustained and kind == "ts" else "partial",
                                   reason="continuous_ts" if sustained and kind == "ts" else "short_media")
                     if result["state"] == "pass" and self.verify_media:
-                        result["video_identified"] = self._verify_sample(b"".join(chunks))
+                        result["video_identified"] = self._verify_sample(bytes(sample))
                         if not result["video_identified"]:
                             result.update(state="partial", reason="video_not_identified")
                 else:
@@ -301,29 +306,49 @@ def choose(options, results, history, previous_key=None):
         state = result["state"] if result else "unknown"
         tier = {"pass": 3, "partial": 2, "unknown": 1, "fail": 0}[state]
         latency = result.get("latency") if result else None
-        speed = 0 if latency is None else .03 / (1 + latency)
+        # A recently passing incumbent that was not remeasured is stronger
+        # evidence than an inconclusive new sample, but not a current pass.
+        cached = history["streams"].get(candidate["key"], {})
+        observations = cached.get("observations", [])
+        if state == "unknown" and observations and observations[-1]["state"] == "pass" \
+                and time.time() - cached.get("updated", 0) <= 12 * 3600:
+            tier = 2.5
+        speed = 0 if latency is None else .12 / (1 + max(0, latency))
         return tier, reliability(history, candidate["key"]) + speed, int(candidate["has_logo"])
     winner = max(options, key=rank)
     previous = next((c for c in options if c["key"] == previous_key), None)
     # Hysteresis only within the same current evidence tier, never over a failure.
-    if previous and rank(previous)[0] == rank(winner)[0] and rank(winner)[1] - rank(previous)[1] < .08:
+    if previous and rank(previous)[0] == rank(winner)[0] and rank(winner)[1] - rank(previous)[1] < .06:
         return previous
     return winner
 
 
 def probe_order(grouped, history, previous):
-    # One candidate per channel before second alternatives; least recently measured
-    # first makes coverage rotate when the budget cannot measure the whole catalog.
+    # Cover every channel before second alternatives. Recheck the incumbent
+    # first; if it last failed, prefer a healthier alternative. Cold ties are
+    # distributed across accounts so one large provider cannot starve all others.
     rounds = []
-    for name, options in grouped.items():
-        ordered = sorted(options, key=lambda c: (
+    load = {}
+    for name in sorted(grouped):
+        options = grouped[name]
+        def first_rank(candidate):
+            row = history["streams"].get(candidate["key"], {})
+            observations = row.get("observations", [])
+            failed = bool(observations and observations[-1]["state"] == "fail")
+            incumbent = candidate["key"] == previous.get(name) and not failed
+            return (not incumbent, failed, -round(reliability(history, candidate["key"]), 2),
+                    load.get(candidate["provider"], 0), row.get("updated", 0),
+                    candidate["provider"], candidate["key"])
+        first = min(options, key=first_rank)
+        load[first["provider"]] = load.get(first["provider"], 0) + 1
+        remaining = sorted((candidate for candidate in options if candidate is not first), key=lambda c: (
             history["streams"].get(c["key"], {}).get("updated", 0),
-            c["key"] != previous.get(name), c["provider"], c["key"]))
-        rounds.append(ordered)
+            -reliability(history, c["key"]), c["provider"], c["key"]))
+        rounds.append([first, *remaining])
     output = []
     for i in range(max((len(row) for row in rounds), default=0)):
         layer = [row[i] for row in rounds if len(row) > i]
-        layer.sort(key=lambda c: history["streams"].get(c["key"], {}).get("updated", 0))
+        layer.sort(key=lambda c: (c.get("priority", 1), history["streams"].get(c["key"], {}).get("updated", 0)))
         output.extend(layer)
     return output
 
@@ -342,3 +367,4 @@ def atomic_json(path, payload):
     tmp = path.with_suffix(path.suffix + ".tmp")
     tmp.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n")
     tmp.replace(path)
+

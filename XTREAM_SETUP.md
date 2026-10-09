@@ -1,88 +1,84 @@
 # Configuración y selección de señales Xtream
 
-El repositorio combina hasta diez cuentas autorizadas y mantiene la URL que ya consume la aplicación:
+El repositorio combina hasta diez cuentas y conserva la integración existente:
 
 `https://raw.githubusercontent.com/luchozurita2019-ui/mi-lista-iptv-4k/main/lista_clasica.m3u`
 
-## Secretos existentes
+## Secrets
 
-No cambian los nombres. Usá `XTREAM_1_URL` a `XTREAM_10_URL` para el enlace completo de `get.php`; alternativamente `XTREAM_n_SERVER`, `XTREAM_n_USERNAME` y `XTREAM_n_PASSWORD`. La URL completa tiene prioridad. Los proveedores sin configuración se omiten y un fallo de importación se registra sin imprimir direcciones o excepciones sensibles.
+Se mantienen `XTREAM_1_URL` a `XTREAM_10_URL`, o alternativamente `XTREAM_n_SERVER`, `XTREAM_n_USERNAME` y `XTREAM_n_PASSWORD`. La URL completa de get.php tiene prioridad. Un proveedor sin configuración se omite; los errores no imprimen URLs, usuarios, contraseñas ni excepciones sensibles.
 
-**Los Secrets protegen los datos de entrada, pero no vuelven privados los enlaces del M3U publicado.** Este repositorio es público y las URLs pueden incluir credenciales. Esta mejora conserva la integración existente; resolver esa exposición requiere una decisión separada sobre alojamiento o acceso del cliente. El historial y el diagnóstico nuevos nunca incluyen enlaces, cuentas, cookies ni contraseñas.
+**Los Secrets protegen las entradas, pero las URLs de los M3U públicos pueden contener credenciales.** Se conserva el alojamiento ya usado por el cliente; los nuevos M3U tienen el mismo alcance público. Historial, disponibilidad y diagnóstico contienen identificadores opacos o metadatos, nunca cuentas ni streams.
 
-## Cómo selecciona ahora
+## Catálogo argentino de TV paga
 
-1. Filtra adultos y rutas/catalogos VOD antes de comparar fuentes. Conserva el catálogo y metadatos existentes.
-2. Agrupa alternativas por la identidad lógica actual del canal y deduplica URL + headers. Studio Universal y Universal TV tienen identidades separadas.
-3. Distribuye hasta 600 comprobaciones: una alternativa por canal antes de segundas alternativas, priorizando las menos recientemente comprobadas. La cobertura rota entre ejecuciones.
-4. Solo prueba una señal por cuenta a la vez, incluso cuando la misma cuenta aparece en dos números de proveedor. Hasta cuatro cuentas se comprueban simultáneamente, por turnos. Este límite se refiere a este proceso: no puede conocer otras conexiones abiertas en el televisor.
-5. Acumula hasta doce observaciones por URL + headers, con caducidad de treinta días. Favorece resultados recientes y usa suavizado para no tratar una sola observación como una certeza histórica.
-6. Elige primero por evidencia actual y después por fiabilidad histórica. La latencia pesa poco y el logo solo desempata. Conserva la fuente anterior cuando la diferencia entre fuentes del mismo nivel es pequeña; un fallo actual no vence a una alternativa comprobada.
+`data/catalogo_argentina.json` contiene 179 objetivos, aliases, categorías, packs, referencias y 138 logos específicos procedentes de archivos existentes. Incluye HBO Pop, los cinco Universal+, TNT Novelas, AMC Series, USA Network, DreamWorks, Cartoonito, Nick Jr., History 2, Discovery Turbo/World/Theater y otras señales de TV paga comercializadas en Argentina.
 
-### Evidencia y límites
+Las fuentes oficiales enumeradas en [README.md](README.md) son referencias de nombres y packs. **No se descargan M3U gratuitos ni se generan URLs a partir del catálogo.** Solo se elige lo que llega desde las cuentas configuradas. Los canales nuevos, variantes antiguas y regionales quedan condicionados a disponibilidad y mediciones; una grilla comercial no demuestra que un proveedor Xtream tenga la señal.
 
-| Estado | Qué se observó |
+La normalización repara caracteres mal decodificados, decoraciones AR, calidades y opciones duplicadas. Usa coincidencias exactas con aliases revisados, no coincidencias parciales del nombre. Mantiene numeraciones y marcas de packs separadas; DSports+ y HBO+ tienen significado propio. Rutas movie/series/vod, episodios, adultos y nombres desconocidos se filtran antes de elegir.
+
+Metadatos explícitos de otro país o idioma bloquean la entrada aunque coincida con una marca conocida. Sin estos metadatos, una marca del bouquet argentino/latinoamericano puede aceptarse: el contenido, país real y audio de la emisión no se verifican por reconocimiento visual ni auditivo.
+
+## Selección de la señal
+
+1. Agrupa alternativas por nombre canónico y deduplica URL + headers.
+2. Prioriza una fuente por cada canal, con los packs premium primero dentro de cada ronda. Revalida la fuente anterior si su último resultado no fue fallido; en empates sin historial distribuye canales entre proveedores. Los backups menos recientemente medidos siguen rotando.
+3. Programa hasta 600 muestras, una activa por cuenta, incluso cuando la misma cuenta aparece en dos posiciones de Secrets. Hasta cuatro cuentas trabajan en paralelo. El límite solo contempla este proceso y no puede conocer conexiones abiertas en el televisor.
+4. Si una muestra falla o es parcial, adelanta un backup pendiente de ese canal. Cada treinta segundos con actividad imprime cantidades y cuentas activas, sin secretos.
+5. Compara evidencia actual, fiabilidad histórica ponderada y tiempo de arranque. Un éxito histórico reciente, de hasta doce horas, puede superar una nueva muestra inconclusa cuando la fuente anterior no fue medida; no se etiqueta como éxito actual.
+6. Conserva la fuente anterior ante diferencias pequeñas. Una mejora grande de arranque puede cambiar entre fuentes de fiabilidad equivalente. Una URL fallida en la ejecución actual nunca es ganadora.
+7. Si todas las muestras fallan, o se pierde más del 20% de identidades elegibles, rechaza la generación y mantiene lo publicado.
+
+La retención aplica el mismo catálogo y filtros a la lista anterior. Así la retirada intencional de señales extranjeras, radios, eventos y aliases duplicados no se confunde con una caída masiva del proveedor. El diagnóstico informa esa limpieza por separado.
+
+## Evidencia y límites
+
+| Estado | Evidencia |
 |---|---|
-| `pass` | TS con datos durante aproximadamente dos segundos, o HLS con dos segmentos válidos y un segmento nuevo al volver a consultar; en Actions se exige además que ffprobe identifique video en la muestra |
-| `partial` | Medios reconocibles pero muestra corta, avance HLS no observado, cifrado, byte ranges no evaluados o video no identificado en la muestra |
-| `fail` | Error de transporte/HTTP, HTML, JSON de error o bytes sin evidencia de medios |
-| `unknown` | No se comprobó por el límite de cantidad o tiempo; nunca cuenta como éxito |
+| pass | TS con datos durante aproximadamente dos segundos, o HLS con dos segmentos válidos y un segmento nuevo al volver a consultar; en Actions ffprobe identifica video en la muestra |
+| partial | Medios reconocibles, pero muestra corta, avance HLS no observado, cifrado, byte ranges no evaluados o video no identificado |
+| fail | Transporte/HTTP fallido, HTML, JSON de error o bytes sin evidencia de medios |
+| unknown | Alternativa no comprobada por límite de cantidad o tiempo; no cuenta como éxito actual |
 
-La comprobación usa firmas de TS/ISO BMFF, no acepta MIME `text/plain` o `octet-stream` como prueba suficiente. Respeta User-Agent, Referer, Cookie, Authorization y headers de EXTHTTP, EXTVLCOPT, Kodi y URL con sufijo `|headers`.
+El buffer retenido TS/manifiesto sigue limitado a 512 KiB. La observación TS puede transferir hasta 4 MiB sin aumentar ese buffer, evitando penalizar únicamente a las fuentes rápidas. HLS muestrea hasta 32 KiB por segmento y sigue la variante del master con menor ancho de banda declarado para limitar carga, con hasta dos niveles de master.
 
-En HLS se sigue una variante del master (la de menor ancho de banda declarado para limitar carga), se toman muestras de dos segmentos y se vuelve a consultar la media playlist. Una lista con ENDLIST o tipo VOD se excluye. Cifrado y byte ranges se mantienen como evidencia parcial: no se solicita una clave ni se afirma decodificación. La comprobación de una variante no verifica todas las variantes/audio del master.
+Se preservan headers de EXTHTTP, EXTVLCOPT, Kodi y URLs con sufijo. HLS con ENDLIST/tipo VOD se excluye. Cifrado y byte ranges son parciales; no se solicita una clave ni se afirma decodificación. Observar una variante no verifica todas sus variantes o audios.
 
-ffprobe analiza **solo bytes locales mediante stdin**, con protocolos limitados a `pipe`, un timeout de tres segundos y salida silenciosa. No recibe URLs ni hace solicitudes de red. Identificar codec/video no equivale a decodificar y visualizar todos los frames. fMP4 sin su inicialización puede quedar como parcial.
+ffprobe recibe únicamente bytes locales mediante stdin, con protocolos limitados a pipe y timeout de tres segundos. No recibe enlaces, credenciales ni permiso para acceder a medios remotos. Identificar video no equivale a decodificar y mostrar cada frame.
 
-Cada muestra admite hasta 512 KiB para TS/manifiesto y hasta 32 KiB por segmento HLS; hasta dos niveles de master. Socket timeout: cuatro segundos. Presupuesto de muestra nominal: dieciocho segundos (una lectura en curso puede finalizar después). Se observa como máximo cuatro segundos de espera entre consultas HLS; un target duration mayor puede impedir observar progreso y queda parcial. Presupuesto global para programar comprobaciones: quince minutos, dejando terminar las muestras activas. El workflow tiene treinta minutos de límite total.
+Socket timeout: cuatro segundos. Presupuesto nominal por muestra: dieciocho segundos; una lectura activa puede terminar después. Espera HLS: hasta cuatro segundos. Presupuesto global para programar muestras: quince minutos. El workflow tiene treinta minutos de límite. La comprobación breve no demuestra estabilidad durante horas ni compatibilidad con cualquier reproductor o DRM.
 
-Un fallo no introduce una nueva URL fallida. La URL anterior que todavía está en el catálogo puede mantenerse ante un fallo puntual, con estado `fail` explícito. Si no existe alternativa comprobada, una no medida puede conservarse como `unknown`. No se inventan streams.
+## Listas y publicación
 
-## Publicación y recuperación
+Una selección validada genera `dist/lista_clasica.m3u` y once M3U en `dist/listas/`: Argentina premium, packs premium, HBO, Universal+, cine/series, deportes, infantiles, documentales, entretenimiento, música y estables. Todas reutilizan los mismos ganadores y headers, sin duplicar señales dentro de cada lista.
 
-Antes de escribir `dist/lista_clasica.m3u` se valida que haya entradas, URLs HTTP(S), nombres, ausencia de adultos/VOD y correspondencia entre entradas generadas y parseadas. También se exige conservar al menos el **80% de las identidades anteriores**. Es un umbral relativo de revisión, no una cantidad fija de canales; perder más de una quinta parte obliga a revisar el proveedor o el cambio de catálogo antes de publicar.
+`estables.m3u` incluye únicamente ganadores pass **de la ejecución actual**. Las completas también pueden incluir partial/unknown; `disponibilidad.json` distingue canales publicados, ausentes en proveedores y sin alternativas útiles. Una sublista sin disponibilidad tiene solo #EXTM3U.
 
-Si todo lo medido falla o hay pérdida masiva, el proceso sale con error y no reemplaza la lista anterior. Los resultados parciales permiten continuidad, pero no se cuentan como muestras completas. La escritura del candidato es temporal y se reemplaza al finalizar validación.
+Las señales lineales de cine usan group-title **TV · Ficción**: el clasificador actual del cliente interpreta Cine/Series como VOD. Las categorías nacionales, noticias, deportes, infantiles, documentales, entretenimiento, música, cultura y regionales no usan “Otros”.
 
-El workflow publica únicamente desde `main`. Confirma lista e historial juntos cuando la generación es válida. Ante rechazo, conserva únicamente las mediciones nuevas, si existen, y sigue mostrando una ejecución fallida. No fuerza un push ni sobrescribe trabajo concurrente; la concurrencia existente cancela generaciones anteriores y el push falla si la rama cambió.
+Antes de escribir se validan URLs HTTP(S), nombres, categorías permitidas, ausencia de adultos/VOD, recuento y retención. El workflow publica únicamente desde main y confirma lista, sublistas, disponibilidad e historial juntos. Si la generación se rechaza, conserva solo las mediciones nuevas sin sustituir los M3U.
 
-`stability_history.json` guarda SHA-256 opacos, estado, latencia y fecha. Son seudónimos de transporte, no cifrado; no debe añadirse información de las cuentas. Se guardan mediciones de ejecuciones rechazadas para que también influyan en la siguiente selección. `dist/diagnostico_estabilidad.json` contiene cantidades, estados y motivo de rechazo/validación. Solo este diagnóstico se sube como artefacto por un día; ya no se sube otra copia del M3U.
+`stability_history.json` conserva hasta doce observaciones por SHA-256 de URL + headers, con caducidad de treinta días; son seudónimos, no cifrado. `dist/diagnostico_estabilidad.json` registra proveedores importados, exclusiones, ganadores por proveedor/evidencia, catálogo objetivo y cantidades por lista. Solo ese diagnóstico se sube como artefacto de un día.
 
-“validada” en el diagnóstico significa validación del candidato, no confirmación del push ni reproducción en el televisor. Hay que verificar el paso de publicación y la URL final.
-
-## Categorías y compatibilidad
-
-Se mantienen noticias, deportes, cultura, entretenimiento, regionales, infantiles, documentales, música y eventos, además de los nombres canónicos del catálogo. Las señales lineales de cine se etiquetan **TV · Ficción**, porque el clasificador actual de tvplayer interpreta palabras como “Cine” y “Series” en group-title como VOD/episodios. La app no requiere reconstrucción para leer este cambio de metadatos.
-
-Los filtros de país/idioma son heurísticos; el audio y la región no se verifican por reproducción. Persisten posibles coincidencias ambiguas del catálogo. No se modificó masivamente ese catálogo para corregir estabilidad.
+“validada” significa candidato validado; hay que comprobar también publicación, commit y URL final. No se fuerza el push ni se sobrescriben cambios concurrentes.
 
 ## Ejecución y pruebas
 
-Actions → **Generar Lista clásica M3U desde Xtream** → Run workflow. También se ejecuta cada seis horas. En una PR corre **Validar selector de estabilidad**, sin secretos ni proveedores reales.
-
-Pruebas locales:
+Actions → **Generar Lista clásica M3U desde Xtream** → Run workflow. Se ejecuta también cada seis horas y al cambiar scripts, catálogo, tests o workflow en main. Las PR ejecutan pruebas sin Secrets ni proveedores reales.
 
 ```sh
 python3 -m unittest discover -s tests -v
-python3 -m py_compile scripts/xtream_to_m3u.py scripts/stream_stability.py
+python3 -m py_compile scripts/*.py
 ```
 
-Generación local, solo en un entorno donde las credenciales ya estén configuradas de forma segura:
+En un entorno con credenciales ya configuradas de forma segura y FFmpeg instalado:
 
 ```sh
 STABILITY_FFPROBE=1 python3 scripts/xtream_to_m3u.py
 ```
 
-Instalá FFmpeg/ffprobe previamente. Sin `STABILITY_FFPROBE=1` se evalúa transporte y el diagnóstico indica que ffprobe está deshabilitado.
+Las pruebas usan servidores locales y fixtures: incluyen TS después del límite de buffer, HLS/VOD/cifrado, headers, ffprobe real, historial, cobertura, distribución, backup adelantado, países/idiomas, aliases engañosos, packs separados, metadatos con comas, sublistas y protección frente a pérdida de canales.
 
-Las pruebas automatizadas utilizan servidores locales y fixtures sintéticos, sin cuentas reales. Incluyen HTML/HTTP, MIME incorrecto, avance HLS, cifrado/VOD, headers, historial, cambios de fuente, pérdidas masivas, metadatos con comas y serialización de una misma cuenta.
+Referencias técnicas: [ffprobe](https://ffmpeg.org/ffprobe.html), [HLS RFC 8216](https://www.rfc-editor.org/rfc/rfc8216.html).
 
-Referencia técnica: [ffprobe](https://ffmpeg.org/ffprobe.html) y [RFC 8216 HLS](https://www.rfc-editor.org/rfc/rfc8216.html).
-
-## Alcance de esta revisión
-
-Se revisaron los cuatro archivos que componían main en el commit `a0cf9f6ebcb611ca4769bc0c73065cde5f08d757`: generador, workflow, documentación y lista publicada. El workflow anterior medía una sola respuesta de 4 KiB con hasta 24 solicitudes simultáneas, podía conservar fallos como ganadores, no tenía historial ni control relativo de pérdida de canales. La documentación anterior describía parámetros y privacidad distintos del código real.
-
-La última falla examinada, run `37909404093`, rechazó una lista final vacía. Los commits posteriores corrigieron el separador usado en la validación; esta mejora agrega pruebas para que ese flujo no vuelva a pasar inadvertido.
-
-Pendientes: validación contra proveedores reales en Actions tras aprobar los cambios; pruebas desde la red/dispositivo del usuario; revisión de exposición pública de los enlaces; evolución de identidades/región e idioma. Ninguna muestra breve garantiza estabilidad durante horas ni compatibilidad con todo DRM o reproductor.

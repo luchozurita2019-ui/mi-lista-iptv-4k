@@ -4,8 +4,8 @@ on:
   push:
     branches: [main]
     paths:
-      - "scripts/xtream_to_m3u.py"
-      - "scripts/stream_stability.py"
+      - "scripts/**"
+      - "data/**"
       - "tests/**"
       - ".github/workflows/actualizar-lista-xtream.yml"
   workflow_dispatch:
@@ -30,7 +30,7 @@ jobs:
       - name: Validar selector sin credenciales ni proveedores reales
         run: |
           python3 -m unittest discover -s tests -v
-          python3 -m py_compile scripts/xtream_to_m3u.py scripts/stream_stability.py
+          python3 -m py_compile scripts/*.py
 
       - name: Preparar verificación multimedia
         run: |
@@ -90,9 +90,11 @@ jobs:
         if: github.ref == 'refs/heads/main'
         run: |
           cp dist/lista_clasica.m3u lista_clasica.m3u
+          mkdir -p listas
+          cp dist/listas/*.m3u dist/listas/disponibilidad.json listas/
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add lista_clasica.m3u stability_history.json
+          git add lista_clasica.m3u listas stability_history.json
           if git diff --cached --quiet; then
             echo "La lista no tuvo cambios; no hace falta crear un commit."
           else
@@ -120,3 +122,4 @@ jobs:
           path: dist/diagnostico_estabilidad.json
           if-no-files-found: ignore
           retention-days: 1
+

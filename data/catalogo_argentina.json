@@ -1,0 +1,1979 @@
+{
+  "version": 2,
+  "updated": "2026-10-09",
+  "description": "Catálogo objetivo de TV paga y premium comercializada en Argentina. Es metadata, no una lista de streams. Nacionales/regionales conservados del servicio; no se importan listas gratuitas. Los canales solo se publican si aparecen en proveedores Xtream configurados.",
+  "sources": [
+    {
+      "id": "flow",
+      "url": "https://www.personal.com.ar/flow/guia-de-canales",
+      "name": "Flow: guía de canales"
+    },
+    {
+      "id": "hbo",
+      "url": "https://www.personal.com.ar/flow/pack-hbo",
+      "name": "Flow: ocho señales HBO"
+    },
+    {
+      "id": "universal",
+      "url": "https://www.personal.com.ar/flow/plataformas-de-streaming/universal-plus",
+      "name": "Flow: cinco señales Universal+"
+    },
+    {
+      "id": "futbol",
+      "url": "https://www.personal.com.ar/flow/pack-futbol",
+      "name": "Flow: ESPN Premium y TNT Sports"
+    },
+    {
+      "id": "cgd",
+      "url": "https://cgdweb.com.ar/wp-content/uploads/2026/02/GRILLA-CANALES-2026-para-enviar.pdf",
+      "name": "Cooperativa CGD: grilla de TV paga 2026"
+    },
+    {
+      "id": "directv",
+      "url": "https://www.directvla.com/ar/servicios/tv-satelital",
+      "name": "DIRECTV Argentina: TV paga y señales propias"
+    },
+    {
+      "id": "existente",
+      "url": "https://github.com/luchozurita2019-ui/mi-lista-iptv-4k",
+      "name": "Canales regionales y variantes presentes en los proveedores; disponibilidad condicionada"
+    },
+    {
+      "id": "logos",
+      "url": "https://github.com/tv-logo/tv-logos",
+      "name": "Archivos de logos existentes para Argentina y Latinoamérica"
+    }
+  ],
+  "channels": [
+    {
+      "name": "HBO",
+      "category": "TV · Ficción",
+      "pack": "HBO",
+      "scope": "latam",
+      "aliases": [
+        "HBO 1",
+        "HBO1"
+      ],
+      "source": "hbo",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/hbo-ar.png"
+    },
+    {
+      "name": "HBO 2",
+      "category": "TV · Ficción",
+      "pack": "HBO",
+      "scope": "latam",
+      "aliases": [
+        "HBO2"
+      ],
+      "source": "hbo",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/hbo-2-ar.png"
+    },
+    {
+      "name": "HBO Plus",
+      "category": "TV · Ficción",
+      "pack": "HBO",
+      "scope": "latam",
+      "aliases": [
+        "HBOPlus",
+        "HBO+"
+      ],
+      "source": "hbo",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/hbo-plus-ar.png"
+    },
+    {
+      "name": "HBO Family",
+      "category": "TV · Ficción",
+      "pack": "HBO",
+      "scope": "latam",
+      "aliases": [],
+      "source": "hbo",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/hbo-family-ar.png"
+    },
+    {
+      "name": "HBO Signature",
+      "category": "TV · Ficción",
+      "pack": "HBO",
+      "scope": "latam",
+      "aliases": [],
+      "source": "hbo",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/hbo-signature-ar.png"
+    },
+    {
+      "name": "HBO Mundi",
+      "category": "TV · Ficción",
+      "pack": "HBO",
+      "scope": "latam",
+      "aliases": [],
+      "source": "hbo",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/hbo-mundi-ar.png"
+    },
+    {
+      "name": "HBO Pop",
+      "category": "TV · Ficción",
+      "pack": "HBO",
+      "scope": "latam",
+      "aliases": [],
+      "source": "hbo",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/hbo-pop-ar.png"
+    },
+    {
+      "name": "HBO Xtreme",
+      "category": "TV · Ficción",
+      "pack": "HBO",
+      "scope": "latam",
+      "aliases": [
+        "HBO Extreme"
+      ],
+      "source": "hbo",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/hbo-xtreme-ar.png"
+    },
+    {
+      "name": "Universal Premiere",
+      "category": "TV · Ficción",
+      "pack": "Universal+",
+      "scope": "latam",
+      "aliases": [
+        "Universal Premier"
+      ],
+      "source": "universal",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/world-latin-america/universal-premiere-lam.png"
+    },
+    {
+      "name": "Universal Cinema",
+      "category": "TV · Ficción",
+      "pack": "Universal+",
+      "scope": "latam",
+      "aliases": [],
+      "source": "universal",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/world-latin-america/universal-cinema-lam.png"
+    },
+    {
+      "name": "Universal Comedy",
+      "category": "TV · Ficción",
+      "pack": "Universal+",
+      "scope": "latam",
+      "aliases": [],
+      "source": "universal",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/world-latin-america/universal-comedy-lam.png"
+    },
+    {
+      "name": "Universal Crime",
+      "category": "TV · Ficción",
+      "pack": "Universal+",
+      "scope": "latam",
+      "aliases": [],
+      "source": "universal",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/world-latin-america/universal-crime-lam.png"
+    },
+    {
+      "name": "Universal Reality",
+      "category": "TV · Ficción",
+      "pack": "Universal+",
+      "scope": "latam",
+      "aliases": [],
+      "source": "universal",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/world-latin-america/universal-reality-lam.png"
+    },
+    {
+      "name": "ESPN Premium",
+      "category": "Argentina · Deportes",
+      "pack": "Fútbol",
+      "scope": "argentina",
+      "aliases": [
+        "Fox Sports Premium",
+        "Fox Premium Sports"
+      ],
+      "source": "futbol",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/espn-premium-ar.png"
+    },
+    {
+      "name": "TNT Sports Argentina",
+      "category": "Argentina · Deportes",
+      "pack": "Fútbol",
+      "scope": "argentina",
+      "aliases": [
+        "TNT Sports",
+        "TNT Sports Premium"
+      ],
+      "source": "futbol",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/tnt-sports-ar.png"
+    },
+    {
+      "name": "Cinemax",
+      "category": "TV · Ficción",
+      "pack": "Cable",
+      "scope": "latam",
+      "aliases": [],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/cinemax-ar.png"
+    },
+    {
+      "name": "Cinecanal",
+      "category": "TV · Ficción",
+      "pack": "Cable",
+      "scope": "latam",
+      "aliases": [
+        "Cine Canal"
+      ],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/cine-canal-ar.png"
+    },
+    {
+      "name": "Space",
+      "category": "TV · Ficción",
+      "pack": "Cable",
+      "scope": "latam",
+      "aliases": [],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/space-ar.png"
+    },
+    {
+      "name": "TNT",
+      "category": "TV · Ficción",
+      "pack": "Cable",
+      "scope": "latam",
+      "aliases": [
+        "TNT Channel"
+      ],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/tnt-ar.png"
+    },
+    {
+      "name": "TNT Series",
+      "category": "TV · Ficción",
+      "pack": "Cable",
+      "scope": "latam",
+      "aliases": [
+        "TNTSeries"
+      ],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/tnt-series-ar.png"
+    },
+    {
+      "name": "TNT Novelas",
+      "category": "TV · Ficción",
+      "pack": "Cable",
+      "scope": "latam",
+      "aliases": [
+        "TNTNovelas"
+      ],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/world-latin-america/tnt-novelas-lam.png"
+    },
+    {
+      "name": "Warner Channel",
+      "category": "TV · Ficción",
+      "pack": "Cable",
+      "scope": "latam",
+      "aliases": [
+        "Warner",
+        "Warner TV",
+        "WB TV"
+      ],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/warner-channel-ar.png"
+    },
+    {
+      "name": "Universal TV",
+      "category": "TV · Ficción",
+      "pack": "Cable",
+      "scope": "latam",
+      "aliases": [
+        "Universal Channel",
+        "Universal"
+      ],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/universal-tv-ar.png"
+    },
+    {
+      "name": "Studio Universal",
+      "category": "TV · Ficción",
+      "pack": "Cable",
+      "scope": "latam",
+      "aliases": [
+        "StudioUniversal"
+      ],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/studio-universal-ar.png"
+    },
+    {
+      "name": "Sony Channel",
+      "category": "TV · Ficción",
+      "pack": "Cable",
+      "scope": "latam",
+      "aliases": [
+        "Sony",
+        "Sony Entertainment Television"
+      ],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/sony-channel-ar.png"
+    },
+    {
+      "name": "AXN",
+      "category": "TV · Ficción",
+      "pack": "Cable",
+      "scope": "latam",
+      "aliases": [],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/axn-ar.png"
+    },
+    {
+      "name": "Star Channel",
+      "category": "TV · Ficción",
+      "pack": "Cable",
+      "scope": "latam",
+      "aliases": [
+        "Fox Channel"
+      ],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/star-channel-ar.png"
+    },
+    {
+      "name": "FX",
+      "category": "TV · Ficción",
+      "pack": "Cable",
+      "scope": "latam",
+      "aliases": [],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/fx-ar.png"
+    },
+    {
+      "name": "AMC",
+      "category": "TV · Ficción",
+      "pack": "Cable",
+      "scope": "latam",
+      "aliases": [],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/amc-ar.png"
+    },
+    {
+      "name": "AMC Series",
+      "category": "TV · Ficción",
+      "pack": "Cable",
+      "scope": "latam",
+      "aliases": [
+        "AMCSeries"
+      ],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/world-latin-america/amc-series-lam.png"
+    },
+    {
+      "name": "Paramount Network",
+      "category": "TV · Ficción",
+      "pack": "Cable",
+      "scope": "latam",
+      "aliases": [
+        "Paramount Channel",
+        "Paramount"
+      ],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/paramount-network-ar.png"
+    },
+    {
+      "name": "Golden",
+      "category": "TV · Ficción",
+      "pack": "Cable",
+      "scope": "latam",
+      "aliases": [],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/world-latin-america/golden-lam.png"
+    },
+    {
+      "name": "Golden Edge",
+      "category": "TV · Ficción",
+      "pack": "Cable",
+      "scope": "latam",
+      "aliases": [
+        "GoldenEdge"
+      ],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/world-latin-america/golden-edge-lam.png"
+    },
+    {
+      "name": "Golden Plus",
+      "category": "TV · Ficción",
+      "pack": "Cable",
+      "scope": "latam",
+      "aliases": [
+        "GoldenPlus"
+      ],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/world-latin-america/golden-plus-lam.png"
+    },
+    {
+      "name": "Golden Premier",
+      "category": "TV · Ficción",
+      "pack": "Cable",
+      "scope": "latam",
+      "aliases": [
+        "GoldenPremiere"
+      ],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/world-latin-america/golden-premier-lam.png"
+    },
+    {
+      "name": "A&E",
+      "category": "TV · Ficción",
+      "pack": "Cable",
+      "scope": "latam",
+      "aliases": [
+        "A and E",
+        "AE"
+      ],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/a-and-e-ar.png"
+    },
+    {
+      "name": "Film & Arts",
+      "category": "TV · Ficción",
+      "pack": "Cable",
+      "scope": "latam",
+      "aliases": [
+        "Film and Arts",
+        "FilmandArts"
+      ],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/film-and-arts-ar.png"
+    },
+    {
+      "name": "Europa Europa",
+      "category": "TV · Ficción",
+      "pack": "Cable",
+      "scope": "latam",
+      "aliases": [],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/europa-europa-ar.png"
+    },
+    {
+      "name": "Lifetime",
+      "category": "TV · Ficción",
+      "pack": "Cable",
+      "scope": "latam",
+      "aliases": [],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/lifetime-ar.png"
+    },
+    {
+      "name": "TCM",
+      "category": "TV · Ficción",
+      "pack": "Cable",
+      "scope": "latam",
+      "aliases": [
+        "Turner Classic Movies"
+      ],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/tcm-ar.png"
+    },
+    {
+      "name": "Eurochannel",
+      "category": "TV · Ficción",
+      "pack": "Cable",
+      "scope": "latam",
+      "aliases": [
+        "Euro Channel"
+      ],
+      "source": "cgd"
+    },
+    {
+      "name": "USA Network",
+      "category": "TV · Ficción",
+      "pack": "Cable",
+      "scope": "latam",
+      "aliases": [
+        "USA TV"
+      ],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/world-latin-america/usa-network-lam.png"
+    },
+    {
+      "name": "Pasiones",
+      "category": "TV · Ficción",
+      "pack": "Cable",
+      "scope": "latam",
+      "aliases": [],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/pasiones-ar.png"
+    },
+    {
+      "name": "Kanal D Drama",
+      "category": "TV · Ficción",
+      "pack": "Cable",
+      "scope": "latam",
+      "aliases": [
+        "Kanal D"
+      ],
+      "source": "cgd"
+    },
+    {
+      "name": "Atreseries",
+      "category": "TV · Ficción",
+      "pack": "Cable",
+      "scope": "latam",
+      "aliases": [
+        "Atres Series"
+      ],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/atreseries-ar.png"
+    },
+    {
+      "name": "Mórbido TV",
+      "category": "TV · Ficción",
+      "pack": "Cable",
+      "scope": "latam",
+      "aliases": [
+        "Morbido"
+      ],
+      "source": "cgd"
+    },
+    {
+      "name": "Cine Premium",
+      "category": "TV · Ficción",
+      "pack": "Cable",
+      "scope": "latam",
+      "aliases": [],
+      "source": "cgd"
+    },
+    {
+      "name": "Cine Hispano",
+      "category": "TV · Ficción",
+      "pack": "Cable",
+      "scope": "latam",
+      "aliases": [],
+      "source": "cgd"
+    },
+    {
+      "name": "Cine Familiar",
+      "category": "TV · Ficción",
+      "pack": "Cable",
+      "scope": "latam",
+      "aliases": [],
+      "source": "cgd"
+    },
+    {
+      "name": "De Película",
+      "category": "TV · Ficción",
+      "pack": "Cable",
+      "scope": "latam",
+      "aliases": [
+        "De Pelicula"
+      ],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/world-latin-america/de-pelicula-lam.png"
+    },
+    {
+      "name": "OnDIRECTV",
+      "category": "TV · Ficción",
+      "pack": "Cable",
+      "scope": "latam",
+      "aliases": [
+        "On DirecTV",
+        "On Direct TV"
+      ],
+      "source": "directv"
+    },
+    {
+      "name": "Volver",
+      "category": "TV · Ficción",
+      "pack": "Cable",
+      "scope": "argentina",
+      "aliases": [],
+      "source": "flow",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/volver-ar.png"
+    },
+    {
+      "name": "CINE.AR",
+      "category": "TV · Ficción",
+      "pack": "Cable",
+      "scope": "argentina",
+      "aliases": [
+        "Cine Ar",
+        "CineAR",
+        "Cine AR TV"
+      ],
+      "source": "flow",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/cine-ar-ar.png"
+    },
+    {
+      "name": "I-Sat",
+      "category": "TV · Ficción",
+      "pack": "Legado",
+      "scope": "latam",
+      "aliases": [
+        "ISat"
+      ],
+      "source": "existente",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/i-sat-ar.png"
+    },
+    {
+      "name": "Syfy",
+      "category": "TV · Ficción",
+      "pack": "Legado",
+      "scope": "latam",
+      "aliases": [
+        "Sci Fi"
+      ],
+      "source": "existente",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/syfy-ar.png"
+    },
+    {
+      "name": "ESPN Argentina",
+      "category": "Argentina · Deportes",
+      "pack": "Cable",
+      "scope": "latam",
+      "aliases": [
+        "ESPN",
+        "ESPN 1",
+        "ESPN1"
+      ],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/espn-ar.png"
+    },
+    {
+      "name": "ESPN 2",
+      "category": "Argentina · Deportes",
+      "pack": "Cable",
+      "scope": "latam",
+      "aliases": [
+        "ESPN2"
+      ],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/espn-2-ar.png"
+    },
+    {
+      "name": "ESPN 3",
+      "category": "Argentina · Deportes",
+      "pack": "Cable",
+      "scope": "latam",
+      "aliases": [
+        "ESPN3"
+      ],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/espn-3-ar.png"
+    },
+    {
+      "name": "ESPN 4",
+      "category": "Argentina · Deportes",
+      "pack": "Cable",
+      "scope": "latam",
+      "aliases": [
+        "ESPN4"
+      ],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/world-latin-america/espn-4-lam.png"
+    },
+    {
+      "name": "ESPN 5",
+      "category": "Argentina · Deportes",
+      "pack": "Cable",
+      "scope": "latam",
+      "aliases": [
+        "ESPN5"
+      ],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/world-latin-america/espn-5-lam.png"
+    },
+    {
+      "name": "ESPN 6",
+      "category": "Argentina · Deportes",
+      "pack": "Cable",
+      "scope": "latam",
+      "aliases": [
+        "ESPN6"
+      ],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/world-latin-america/espn-6-lam.png"
+    },
+    {
+      "name": "ESPN 7",
+      "category": "Argentina · Deportes",
+      "pack": "Cable",
+      "scope": "latam",
+      "aliases": [
+        "ESPN7"
+      ],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/world-latin-america/espn-7-lam.png"
+    },
+    {
+      "name": "ESPN Extra",
+      "category": "Argentina · Deportes",
+      "pack": "Cable",
+      "scope": "latam",
+      "aliases": [
+        "ESPNExtra"
+      ],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/espn-extra-ar.png"
+    },
+    {
+      "name": "Fox Sports Argentina",
+      "category": "Argentina · Deportes",
+      "pack": "Cable",
+      "scope": "latam",
+      "aliases": [
+        "Fox Sports",
+        "Fox Sports 1",
+        "FoxSports",
+        "FoxSports1"
+      ],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/fox-sports-ar.png"
+    },
+    {
+      "name": "Fox Sports 2",
+      "category": "Argentina · Deportes",
+      "pack": "Cable",
+      "scope": "latam",
+      "aliases": [
+        "FoxSports2"
+      ],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/fox-sports-2-ar.png"
+    },
+    {
+      "name": "Fox Sports 3",
+      "category": "Argentina · Deportes",
+      "pack": "Cable",
+      "scope": "latam",
+      "aliases": [
+        "FoxSports3"
+      ],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/fox-sports-3-ar.png"
+    },
+    {
+      "name": "Golf Channel",
+      "category": "Argentina · Deportes",
+      "pack": "Cable",
+      "scope": "latam",
+      "aliases": [
+        "Golf"
+      ],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/golf-channel-ar.png"
+    },
+    {
+      "name": "NBA TV",
+      "category": "Argentina · Deportes",
+      "pack": "Cable",
+      "scope": "latam",
+      "aliases": [
+        "NBATV"
+      ],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/nba-tv-ar.png"
+    },
+    {
+      "name": "PX Sports",
+      "category": "Argentina · Deportes",
+      "pack": "Cable",
+      "scope": "latam",
+      "aliases": [
+        "PXTV"
+      ],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/px-sports-ar.png"
+    },
+    {
+      "name": "Claro Sports",
+      "category": "Argentina · Deportes",
+      "pack": "Cable",
+      "scope": "latam",
+      "aliases": [
+        "Claro Sports 1",
+        "ClaroSports"
+      ],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/world-latin-america/claro-sports-lam.png"
+    },
+    {
+      "name": "TyC Sports",
+      "category": "Argentina · Deportes",
+      "pack": "Cable",
+      "scope": "argentina",
+      "aliases": [
+        "T y C Sports",
+        "T&C Sports",
+        "TyCSports"
+      ],
+      "source": "flow",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/tyc-sports-ar.png"
+    },
+    {
+      "name": "DSports",
+      "category": "Argentina · Deportes",
+      "pack": "Cable",
+      "scope": "argentina",
+      "aliases": [
+        "D Sports",
+        "DirecTV Sports",
+        "DirecTV Sports 1",
+        "DTV Sports"
+      ],
+      "source": "flow",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/world-latin-america/dsports-lam.png"
+    },
+    {
+      "name": "DSports 2",
+      "category": "Argentina · Deportes",
+      "pack": "Cable",
+      "scope": "argentina",
+      "aliases": [
+        "DSports2",
+        "D Sports 2",
+        "DirecTV Sports 2"
+      ],
+      "source": "flow",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/world-latin-america/dsports2-lam.png"
+    },
+    {
+      "name": "Garage TV",
+      "category": "Argentina · Deportes",
+      "pack": "Cable",
+      "scope": "argentina",
+      "aliases": [
+        "El Garage TV",
+        "El Garage",
+        "Garage"
+      ],
+      "source": "flow",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/el-garage-tv-ar.png"
+    },
+    {
+      "name": "TyC Sports 2",
+      "category": "Argentina · Deportes",
+      "pack": "Cable",
+      "scope": "argentina",
+      "aliases": [
+        "TyCSports2",
+        "TyC Sports Interior"
+      ],
+      "source": "existente",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/tyc-sports-2-ar.png"
+    },
+    {
+      "name": "TyC Sports 3",
+      "category": "Argentina · Deportes",
+      "pack": "Cable",
+      "scope": "argentina",
+      "aliases": [
+        "TyCSports3"
+      ],
+      "source": "existente",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/tyc-sports-3-ar.png"
+    },
+    {
+      "name": "TyC Sports Internacional",
+      "category": "Argentina · Deportes",
+      "pack": "Cable",
+      "scope": "argentina",
+      "aliases": [
+        "TyC Sports International",
+        "T&C Sports Interna"
+      ],
+      "source": "existente"
+    },
+    {
+      "name": "América Sports",
+      "category": "Argentina · Deportes",
+      "pack": "Cable",
+      "scope": "argentina",
+      "aliases": [
+        "America Sports"
+      ],
+      "source": "existente",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/america-sports-ar.png"
+    },
+    {
+      "name": "Canal Showsport",
+      "category": "Argentina · Deportes",
+      "pack": "Cable",
+      "scope": "argentina",
+      "aliases": [
+        "Showsport",
+        "Show Sport",
+        "ShowSports"
+      ],
+      "source": "existente"
+    },
+    {
+      "name": "Motorplay",
+      "category": "Argentina · Deportes",
+      "pack": "Cable",
+      "scope": "argentina",
+      "aliases": [
+        "Motor Play"
+      ],
+      "source": "existente"
+    },
+    {
+      "name": "Polo TV",
+      "category": "Argentina · Deportes",
+      "pack": "Cable",
+      "scope": "argentina",
+      "aliases": [],
+      "source": "existente"
+    },
+    {
+      "name": "Cartoon Network",
+      "category": "Argentina · Infantiles",
+      "pack": "Cable",
+      "scope": "latam",
+      "aliases": [
+        "CartoonNetwork"
+      ],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/cartoon-network-ar.png"
+    },
+    {
+      "name": "Cartoonito",
+      "category": "Argentina · Infantiles",
+      "pack": "Cable",
+      "scope": "latam",
+      "aliases": [],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/world-latin-america/cartoonito-lam.png"
+    },
+    {
+      "name": "Nickelodeon",
+      "category": "Argentina · Infantiles",
+      "pack": "Cable",
+      "scope": "latam",
+      "aliases": [
+        "Nick"
+      ],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/nickelodeon-ar.png"
+    },
+    {
+      "name": "Nick Jr.",
+      "category": "Argentina · Infantiles",
+      "pack": "Cable",
+      "scope": "latam",
+      "aliases": [
+        "Nick Junior",
+        "NickJr"
+      ],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/nick-jr-ar.png"
+    },
+    {
+      "name": "Disney Channel",
+      "category": "Argentina · Infantiles",
+      "pack": "Cable",
+      "scope": "latam",
+      "aliases": [
+        "DisneyChannel"
+      ],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/disney-channel-ar.png"
+    },
+    {
+      "name": "Disney Junior",
+      "category": "Argentina · Infantiles",
+      "pack": "Cable",
+      "scope": "latam",
+      "aliases": [
+        "Disney Jr",
+        "DisneyJr"
+      ],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/disney-jr-ar.png"
+    },
+    {
+      "name": "Discovery Kids",
+      "category": "Argentina · Infantiles",
+      "pack": "Cable",
+      "scope": "latam",
+      "aliases": [
+        "DiscoveryKids"
+      ],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/discovery-kids-ar.png"
+    },
+    {
+      "name": "DreamWorks",
+      "category": "Argentina · Infantiles",
+      "pack": "Cable",
+      "scope": "latam",
+      "aliases": [
+        "Dreamworks Channel",
+        "Dreamworks TV"
+      ],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/world-latin-america/dreamworks-channel-lam.png"
+    },
+    {
+      "name": "Baby TV",
+      "category": "Argentina · Infantiles",
+      "pack": "Cable",
+      "scope": "latam",
+      "aliases": [
+        "BabyTV"
+      ],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/baby-tv-ar.png"
+    },
+    {
+      "name": "Tooncast",
+      "category": "Argentina · Infantiles",
+      "pack": "Cable",
+      "scope": "latam",
+      "aliases": [],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/tooncast-ar.png"
+    },
+    {
+      "name": "Plim Plim",
+      "category": "Argentina · Infantiles",
+      "pack": "Cable",
+      "scope": "latam",
+      "aliases": [
+        "PlimPlim"
+      ],
+      "source": "cgd"
+    },
+    {
+      "name": "Discovery Channel",
+      "category": "Argentina · Documentales",
+      "pack": "Cable",
+      "scope": "latam",
+      "aliases": [
+        "Discovery"
+      ],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/discovery-channel-ar.png"
+    },
+    {
+      "name": "Animal Planet",
+      "category": "Argentina · Documentales",
+      "pack": "Cable",
+      "scope": "latam",
+      "aliases": [
+        "AnimalPlanet"
+      ],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/animal-planet-ar.png"
+    },
+    {
+      "name": "National Geographic",
+      "category": "Argentina · Documentales",
+      "pack": "Cable",
+      "scope": "latam",
+      "aliases": [
+        "Nat Geo",
+        "NatGeo"
+      ],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/national-geographic-ar.png"
+    },
+    {
+      "name": "History",
+      "category": "Argentina · Documentales",
+      "pack": "Cable",
+      "scope": "latam",
+      "aliases": [
+        "History Channel"
+      ],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/history-channel-ar.png"
+    },
+    {
+      "name": "History 2",
+      "category": "Argentina · Documentales",
+      "pack": "Cable",
+      "scope": "latam",
+      "aliases": [
+        "History2",
+        "H2"
+      ],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/history-channel-2-ar.png"
+    },
+    {
+      "name": "Discovery Science",
+      "category": "Argentina · Documentales",
+      "pack": "Cable",
+      "scope": "latam",
+      "aliases": [
+        "DiscoveryScience"
+      ],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/discovery-science-ar.png"
+    },
+    {
+      "name": "Discovery Turbo",
+      "category": "Argentina · Documentales",
+      "pack": "Cable",
+      "scope": "latam",
+      "aliases": [
+        "DiscoveryTurbo"
+      ],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/discovery-turbo-ar.png"
+    },
+    {
+      "name": "Discovery Theater",
+      "category": "Argentina · Documentales",
+      "pack": "Cable",
+      "scope": "latam",
+      "aliases": [
+        "Discovery Theatre"
+      ],
+      "source": "cgd"
+    },
+    {
+      "name": "Discovery World",
+      "category": "Argentina · Documentales",
+      "pack": "Cable",
+      "scope": "latam",
+      "aliases": [
+        "DiscoveryWorld"
+      ],
+      "source": "cgd"
+    },
+    {
+      "name": "Investigation Discovery",
+      "category": "Argentina · Documentales",
+      "pack": "Cable",
+      "scope": "latam",
+      "aliases": [
+        "ID Investigation Discovery",
+        "ID"
+      ],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/id-investigation-discovery-ar.png"
+    },
+    {
+      "name": "Comedy Central",
+      "category": "Argentina · Entretenimiento",
+      "pack": "Cable",
+      "scope": "latam",
+      "aliases": [
+        "ComedyCentral"
+      ],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/comedy-central-ar.png"
+    },
+    {
+      "name": "E! Entertainment",
+      "category": "Argentina · Entretenimiento",
+      "pack": "Cable",
+      "scope": "latam",
+      "aliases": [
+        "E Entertainment",
+        "E!"
+      ],
+      "source": "cgd"
+    },
+    {
+      "name": "Food Network",
+      "category": "Argentina · Entretenimiento",
+      "pack": "Cable",
+      "scope": "latam",
+      "aliases": [
+        "FoodNetwork"
+      ],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/food-network-ar.png"
+    },
+    {
+      "name": "El Gourmet",
+      "category": "Argentina · Entretenimiento",
+      "pack": "Cable",
+      "scope": "latam",
+      "aliases": [
+        "Gourmet"
+      ],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/el-gourmet-ar.png"
+    },
+    {
+      "name": "HGTV",
+      "category": "Argentina · Entretenimiento",
+      "pack": "Cable",
+      "scope": "latam",
+      "aliases": [],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/hgtv-ar.png"
+    },
+    {
+      "name": "Discovery Home & Health",
+      "category": "Argentina · Entretenimiento",
+      "pack": "Cable",
+      "scope": "latam",
+      "aliases": [
+        "Discovery Home and Health",
+        "Discovery HH",
+        "Home and Health"
+      ],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/discovery-home-and-health-ar.png"
+    },
+    {
+      "name": "TLC",
+      "category": "Argentina · Entretenimiento",
+      "pack": "Cable",
+      "scope": "latam",
+      "aliases": [],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/tlc-ar.png"
+    },
+    {
+      "name": "Más Chic",
+      "category": "Argentina · Entretenimiento",
+      "pack": "Cable",
+      "scope": "latam",
+      "aliases": [
+        "MasChic"
+      ],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/mas-chic-ar.png"
+    },
+    {
+      "name": "Hola TV",
+      "category": "Argentina · Entretenimiento",
+      "pack": "Cable",
+      "scope": "latam",
+      "aliases": [
+        "HolaTV"
+      ],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/hola-tv-ar.png"
+    },
+    {
+      "name": "TruTV",
+      "category": "Argentina · Entretenimiento",
+      "pack": "Cable",
+      "scope": "latam",
+      "aliases": [
+        "Tru TV"
+      ],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/tru-tv-ar.png"
+    },
+    {
+      "name": "WOBI",
+      "category": "Argentina · Entretenimiento",
+      "pack": "Cable",
+      "scope": "latam",
+      "aliases": [],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/wobi-ar.png"
+    },
+    {
+      "name": "TNT Reality",
+      "category": "Argentina · Entretenimiento",
+      "pack": "Cable",
+      "scope": "latam",
+      "aliases": [],
+      "source": "cgd"
+    },
+    {
+      "name": "Quiero Música",
+      "category": "Argentina · Música",
+      "pack": "Cable",
+      "scope": "argentina",
+      "aliases": [
+        "Quiero Musica en Mi Idioma",
+        "Quiero",
+        "Q Musica"
+      ],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/quiero-musica-en-mi-idioma-ar.png"
+    },
+    {
+      "name": "MuchMusic",
+      "category": "Argentina · Música",
+      "pack": "Cable",
+      "scope": "argentina",
+      "aliases": [
+        "Much Music",
+        "Much"
+      ],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/much-ar.png"
+    },
+    {
+      "name": "CM",
+      "category": "Argentina · Música",
+      "pack": "Cable",
+      "scope": "argentina",
+      "aliases": [
+        "CM El Canal de la Musica",
+        "Canal de la Musica"
+      ],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/cm-el-canal-de-la-musica-ar.png"
+    },
+    {
+      "name": "Tierra Mía TV",
+      "category": "Argentina · Música",
+      "pack": "Cable",
+      "scope": "argentina",
+      "aliases": [
+        "Tierra Mia",
+        "Tierramia TV"
+      ],
+      "source": "cgd"
+    },
+    {
+      "name": "MTV",
+      "category": "Argentina · Música",
+      "pack": "Cable",
+      "scope": "latam",
+      "aliases": [],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/mtv-ar.png"
+    },
+    {
+      "name": "MTV Hits",
+      "category": "Argentina · Música",
+      "pack": "Cable",
+      "scope": "latam",
+      "aliases": [
+        "MTVHits"
+      ],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/mtv-hits-ar.png"
+    },
+    {
+      "name": "MTV 00s",
+      "category": "Argentina · Música",
+      "pack": "Cable",
+      "scope": "latam",
+      "aliases": [
+        "MTV 00"
+      ],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/mtv-00s-ar.png"
+    },
+    {
+      "name": "HTV",
+      "category": "Argentina · Música",
+      "pack": "Cable",
+      "scope": "latam",
+      "aliases": [],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/htv-ar.png"
+    },
+    {
+      "name": "NickMusic",
+      "category": "Argentina · Música",
+      "pack": "Cable",
+      "scope": "latam",
+      "aliases": [
+        "Nick Music"
+      ],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/nick-music-ar.png"
+    },
+    {
+      "name": "TV Pública",
+      "category": "Argentina · Nacionales",
+      "pack": "Nacional",
+      "scope": "argentina",
+      "aliases": [
+        "Television Publica",
+        "TVP",
+        "TVP Argentina"
+      ],
+      "source": "flow",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/television-publica-ar.png"
+    },
+    {
+      "name": "América TV",
+      "category": "Argentina · Nacionales",
+      "pack": "Nacional",
+      "scope": "argentina",
+      "aliases": [
+        "America"
+      ],
+      "source": "flow",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/america-ar.png"
+    },
+    {
+      "name": "Telefe",
+      "category": "Argentina · Nacionales",
+      "pack": "Nacional",
+      "scope": "argentina",
+      "aliases": [
+        "TelefeHD"
+      ],
+      "source": "flow",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/telefe-ar.png"
+    },
+    {
+      "name": "El Trece",
+      "category": "Argentina · Nacionales",
+      "pack": "Nacional",
+      "scope": "argentina",
+      "aliases": [
+        "ElTrece",
+        "Trece",
+        "Canal 13 Argentina"
+      ],
+      "source": "flow",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/eltrece-ar.png"
+    },
+    {
+      "name": "El Nueve",
+      "category": "Argentina · Nacionales",
+      "pack": "Nacional",
+      "scope": "argentina",
+      "aliases": [
+        "ElNueve",
+        "Canal 9",
+        "Canal Nueve",
+        "Canal 9 Argentina"
+      ],
+      "source": "flow",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/elnueve-ar.png"
+    },
+    {
+      "name": "Net TV",
+      "category": "Argentina · Nacionales",
+      "pack": "Nacional",
+      "scope": "argentina",
+      "aliases": [
+        "NetTV"
+      ],
+      "source": "flow",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/net-tv-ar.png"
+    },
+    {
+      "name": "Bravo TV",
+      "category": "Argentina · Nacionales",
+      "pack": "Nacional",
+      "scope": "argentina",
+      "aliases": [
+        "Bravo"
+      ],
+      "source": "flow"
+    },
+    {
+      "name": "TN",
+      "category": "Argentina · Noticias",
+      "pack": "Nacional",
+      "scope": "argentina",
+      "aliases": [
+        "Todo Noticias"
+      ],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/tn-todo-noticias-ar.png"
+    },
+    {
+      "name": "C5N",
+      "category": "Argentina · Noticias",
+      "pack": "Nacional",
+      "scope": "argentina",
+      "aliases": [],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/c5n-ar.png"
+    },
+    {
+      "name": "A24",
+      "category": "Argentina · Noticias",
+      "pack": "Nacional",
+      "scope": "argentina",
+      "aliases": [
+        "America 24"
+      ],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/a24-ar.png"
+    },
+    {
+      "name": "Crónica TV",
+      "category": "Argentina · Noticias",
+      "pack": "Nacional",
+      "scope": "argentina",
+      "aliases": [
+        "Cronica",
+        "Cronica Noticias"
+      ],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/cronica-hd-ar.png"
+    },
+    {
+      "name": "LN+",
+      "category": "Argentina · Noticias",
+      "pack": "Nacional",
+      "scope": "argentina",
+      "aliases": [
+        "LN Mas",
+        "La Nacion",
+        "La Nacion Mas"
+      ],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/la-nacion-mas-ar.png"
+    },
+    {
+      "name": "Canal 26",
+      "category": "Argentina · Noticias",
+      "pack": "Nacional",
+      "scope": "argentina",
+      "aliases": [
+        "26 TV"
+      ],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/canal-26-ar.png"
+    },
+    {
+      "name": "IP Noticias",
+      "category": "Argentina · Noticias",
+      "pack": "Nacional",
+      "scope": "argentina",
+      "aliases": [
+        "IP Informacion Periodistica",
+        "IP"
+      ],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/ip-noticias-ar.png"
+    },
+    {
+      "name": "Argentina 12",
+      "category": "Argentina · Noticias",
+      "pack": "Nacional",
+      "scope": "argentina",
+      "aliases": [
+        "IP Argentina 12"
+      ],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/argentina-12-ar.png"
+    },
+    {
+      "name": "El Destape",
+      "category": "Argentina · Noticias",
+      "pack": "Nacional",
+      "scope": "argentina",
+      "aliases": [
+        "ElDestape",
+        "El Destape TV"
+      ],
+      "source": "cgd"
+    },
+    {
+      "name": "Canal E",
+      "category": "Argentina · Noticias",
+      "pack": "Nacional",
+      "scope": "argentina",
+      "aliases": [
+        "Canal Economia"
+      ],
+      "source": "cgd"
+    },
+    {
+      "name": "24/7 Canal de Noticias",
+      "category": "Argentina · Noticias",
+      "pack": "Nacional",
+      "scope": "argentina",
+      "aliases": [
+        "24 7 Noticias"
+      ],
+      "source": "cgd"
+    },
+    {
+      "name": "Encuentro",
+      "category": "Argentina · Cultura",
+      "pack": "Nacional",
+      "scope": "argentina",
+      "aliases": [
+        "Canal Encuentro"
+      ],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/encuentro-ar.png"
+    },
+    {
+      "name": "Pakapaka",
+      "category": "Argentina · Infantiles",
+      "pack": "Nacional",
+      "scope": "argentina",
+      "aliases": [
+        "Paka Paka"
+      ],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/pakapaka-ar.png"
+    },
+    {
+      "name": "TEC",
+      "category": "Argentina · Cultura",
+      "pack": "Nacional",
+      "scope": "argentina",
+      "aliases": [
+        "TEC TV",
+        "Tecnopolis TV"
+      ],
+      "source": "cgd"
+    },
+    {
+      "name": "Construir TV",
+      "category": "Argentina · Cultura",
+      "pack": "Nacional",
+      "scope": "argentina",
+      "aliases": [
+        "Construir"
+      ],
+      "source": "cgd"
+    },
+    {
+      "name": "Canal Rural",
+      "category": "Argentina · Cultura",
+      "pack": "Nacional",
+      "scope": "argentina",
+      "aliases": [
+        "El Rural",
+        "Rural TV"
+      ],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/canal-rural-ar.png"
+    },
+    {
+      "name": "Canal (á)",
+      "category": "Argentina · Cultura",
+      "pack": "Nacional",
+      "scope": "argentina",
+      "aliases": [
+        "Canal A"
+      ],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/canal-a-ar.png"
+    },
+    {
+      "name": "Ciudad Magazine",
+      "category": "Argentina · Entretenimiento",
+      "pack": "Nacional",
+      "scope": "argentina",
+      "aliases": [
+        "Magazine",
+        "Ciudad"
+      ],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/ciudad-magazine-ar.png"
+    },
+    {
+      "name": "KZO",
+      "category": "Argentina · Entretenimiento",
+      "pack": "Nacional",
+      "scope": "argentina",
+      "aliases": [
+        "KZO TV"
+      ],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/kzo-ar.png"
+    },
+    {
+      "name": "Metro",
+      "category": "Argentina · Entretenimiento",
+      "pack": "Nacional",
+      "scope": "argentina",
+      "aliases": [
+        "Metro TV"
+      ],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/metro-ar.png"
+    },
+    {
+      "name": "Telemax",
+      "category": "Argentina · Entretenimiento",
+      "pack": "Nacional",
+      "scope": "argentina",
+      "aliases": [],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/telemax-ar.png"
+    },
+    {
+      "name": "Argentinísima Satelital",
+      "category": "Argentina · Entretenimiento",
+      "pack": "Nacional",
+      "scope": "argentina",
+      "aliases": [
+        "Argentinisima",
+        "Argentinisima Satelital",
+        "Argentinisima HD"
+      ],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/argentinisima-satelital-ar.png"
+    },
+    {
+      "name": "Canal de la Ciudad",
+      "category": "Argentina · Regionales",
+      "pack": "Regional",
+      "scope": "argentina",
+      "aliases": [
+        "Ciudad TV"
+      ],
+      "source": "existente",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/canal-de-la-ciudad-ar.png"
+    },
+    {
+      "name": "Canal 9 Litoral",
+      "category": "Argentina · Regionales",
+      "pack": "Regional",
+      "scope": "argentina",
+      "aliases": [],
+      "source": "existente"
+    },
+    {
+      "name": "Canal 10 Río Negro",
+      "category": "Argentina · Regionales",
+      "pack": "Regional",
+      "scope": "argentina",
+      "aliases": [
+        "Canal 10 Rio Negro"
+      ],
+      "source": "existente"
+    },
+    {
+      "name": "Canal 7 Neuquén",
+      "category": "Argentina · Regionales",
+      "pack": "Regional",
+      "scope": "argentina",
+      "aliases": [
+        "Canal 7 Neuquen",
+        "Telefe Neuquen"
+      ],
+      "source": "existente"
+    },
+    {
+      "name": "Canal 7 Chubut",
+      "category": "Argentina · Regionales",
+      "pack": "Regional",
+      "scope": "argentina",
+      "aliases": [],
+      "source": "existente"
+    },
+    {
+      "name": "Canal 11 Formosa",
+      "category": "Argentina · Regionales",
+      "pack": "Regional",
+      "scope": "argentina",
+      "aliases": [
+        "Lapacho TV",
+        "Lapacho TV Canal 11"
+      ],
+      "source": "existente"
+    },
+    {
+      "name": "Canal 12 Misiones",
+      "category": "Argentina · Regionales",
+      "pack": "Regional",
+      "scope": "argentina",
+      "aliases": [],
+      "source": "existente"
+    },
+    {
+      "name": "Canal 9 Resistencia",
+      "category": "Argentina · Regionales",
+      "pack": "Regional",
+      "scope": "argentina",
+      "aliases": [],
+      "source": "existente"
+    },
+    {
+      "name": "Telefe Rosario",
+      "category": "Argentina · Regionales",
+      "pack": "Regional",
+      "scope": "argentina",
+      "aliases": [
+        "Canal 5 Rosario"
+      ],
+      "source": "existente"
+    },
+    {
+      "name": "Canal 6 Posadas",
+      "category": "Argentina · Regionales",
+      "pack": "Regional",
+      "scope": "argentina",
+      "aliases": [
+        "Canal 6 Digital Misiones"
+      ],
+      "source": "existente"
+    },
+    {
+      "name": "Canal 10 Mar del Plata",
+      "category": "Argentina · Regionales",
+      "pack": "Regional",
+      "scope": "argentina",
+      "aliases": [],
+      "source": "existente"
+    },
+    {
+      "name": "Canal 4 Jujuy",
+      "category": "Argentina · Regionales",
+      "pack": "Regional",
+      "scope": "argentina",
+      "aliases": [],
+      "source": "existente"
+    },
+    {
+      "name": "Canal 11 Ushuaia",
+      "category": "Argentina · Regionales",
+      "pack": "Regional",
+      "scope": "argentina",
+      "aliases": [],
+      "source": "existente"
+    },
+    {
+      "name": "Canal 10 Córdoba",
+      "category": "Argentina · Regionales",
+      "pack": "Regional",
+      "scope": "argentina",
+      "aliases": [
+        "Canal 10 Cordoba"
+      ],
+      "source": "existente"
+    },
+    {
+      "name": "El Doce Córdoba",
+      "category": "Argentina · Regionales",
+      "pack": "Regional",
+      "scope": "argentina",
+      "aliases": [
+        "El Doce",
+        "Canal 12 Cordoba",
+        "Canal 12 Córdoba"
+      ],
+      "source": "existente",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/el-doce-ar.png"
+    },
+    {
+      "name": "El Ocho Tucumán",
+      "category": "Argentina · Regionales",
+      "pack": "Regional",
+      "scope": "argentina",
+      "aliases": [
+        "Canal 8 Tucuman",
+        "Canal 8 Tucumán",
+        "El Ocho TV"
+      ],
+      "source": "existente",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/el-ocho-tv-ar.png"
+    },
+    {
+      "name": "Canal 10 Tucumán",
+      "category": "Argentina · Regionales",
+      "pack": "Regional",
+      "scope": "argentina",
+      "aliases": [
+        "Canal 10 Tucuman"
+      ],
+      "source": "existente"
+    },
+    {
+      "name": "El Siete Mendoza",
+      "category": "Argentina · Regionales",
+      "pack": "Regional",
+      "scope": "argentina",
+      "aliases": [
+        "Canal 7 Mendoza",
+        "El Siete"
+      ],
+      "source": "existente",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/el-siete-ar.png"
+    },
+    {
+      "name": "El Tres Rosario",
+      "category": "Argentina · Regionales",
+      "pack": "Regional",
+      "scope": "argentina",
+      "aliases": [
+        "Canal 3 Rosario",
+        "El Tres",
+        "ElTres TV"
+      ],
+      "source": "existente",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/eltres-tv-ar.png"
+    },
+    {
+      "name": "13 Max",
+      "category": "Argentina · Regionales",
+      "pack": "Regional",
+      "scope": "argentina",
+      "aliases": [
+        "13Max",
+        "Canal 13 Corrientes"
+      ],
+      "source": "existente",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/13max-hd-ar.png"
+    },
+    {
+      "name": "Canal 9 Televida",
+      "category": "Argentina · Regionales",
+      "pack": "Regional",
+      "scope": "argentina",
+      "aliases": [
+        "Televida"
+      ],
+      "source": "existente",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/canal-9-televida-ar.png"
+    },
+    {
+      "name": "Santa Fe Canal",
+      "category": "Argentina · Regionales",
+      "pack": "Regional",
+      "scope": "argentina",
+      "aliases": [
+        "5RTV Santa Fe",
+        "5R TV Santa Fe"
+      ],
+      "source": "existente"
+    },
+    {
+      "name": "Aire de Santa Fe",
+      "category": "Argentina · Regionales",
+      "pack": "Regional",
+      "scope": "argentina",
+      "aliases": [],
+      "source": "existente"
+    },
+    {
+      "name": "DSports 3",
+      "category": "Argentina · Deportes",
+      "pack": "Cable",
+      "scope": "argentina",
+      "aliases": [
+        "DSports3",
+        "D Sports 3",
+        "DirecTV Sports 3"
+      ],
+      "source": "existente"
+    },
+    {
+      "name": "DSports Plus",
+      "category": "Argentina · Deportes",
+      "pack": "Cable",
+      "scope": "argentina",
+      "aliases": [
+        "DSports+",
+        "D Sports Plus",
+        "DirecTV Sports Plus",
+        "DirecTV Sports+"
+      ],
+      "source": "existente",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/world-latin-america/dsports-plus-lam.png"
+    },
+    {
+      "name": "CNN en Español",
+      "category": "Argentina · Noticias",
+      "pack": "Cable",
+      "scope": "latam",
+      "aliases": [
+        "CNN Espanol",
+        "CNN Spanish"
+      ],
+      "source": "cgd",
+      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/cnn-en-espanol-ar.png"
+    },
+    {
+      "name": "DNEWS",
+      "category": "Argentina · Noticias",
+      "pack": "Cable",
+      "scope": "latam",
+      "aliases": [
+        "D News",
+        "DirecTV News"
+      ],
+      "source": "directv"
+    }
+  ]
+}
