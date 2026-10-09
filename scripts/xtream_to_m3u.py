@@ -55,6 +55,26 @@ CINEMA_CHANNEL_RE = re.compile(
     r"mtv\s*live|comedy\s*central)\b",
     re.I,
 )
+# Categorías normalizadas para que la lista quede ordenada y prolija.
+NEWS_RE = re.compile(r"\\b(noticias?|news|informativo|informativos|noticiero|noticieros|24\\s*hs|24\\s*horas|cnn|c5n|tn\\b|a24|ln\\+|teleSUR|breaking)\\b", re.I)
+SPORTS_RE = re.compile(r"\\b(deportes?|sports?|f[uú]tbol|football|soccer|tyc|espn|fox\\s*sports?|directv\\s*sports?|tnt\\s*sports?|gol\\s*tv|bein\\s*sports?|formula\\s*1|f1|nba|tenis|boxeo|rugby|b[aá]squet)\\b", re.I)
+KIDS_RE = re.compile(r"\\b(infantil|infantiles|ni[nñ]os|kids|disney\\s*junior|cartoon\\s*network|nick(elodeon)?|baby\\s*tv|dreamworks)\\b", re.I)
+DOCU_RE = re.compile(r"\\b(documentales?|documentary|history|nat\\s*geo|national\\s*geographic|discovery|animal\\s*planet|investigation\\s*discovery|discovery\\s*science|smithsonian)\\b", re.I)
+MUSIC_RE = re.compile(r"\\b(m[uú]sica|music|mtv|vh1|concert|conciertos?|top\\s*music|stingray)\\b", re.I)
+ENTERTAINMENT_RE = re.compile(r"\\b(comedia|comedy|entretenimiento|variedades|reality|cocina|cooking|estilo\\s*de\\s*vida|lifestyle|fashion|moda)\\b", re.I)
+
+CATEGORY_ORDER = {
+    "Cine y Series": 0,
+    "Noticias": 1,
+    "Deportes": 2,
+    "Infantiles": 3,
+    "Documentales": 4,
+    "Música": 5,
+    "Entretenimiento": 6,
+    "General": 7,
+    "Eventos": 8,
+}
+
 CLEAR_NON_SPANISH_RE = re.compile(
     r"\b(english|eng\b|ingles|ingl[eé]s|fran[cç]ais|french|deutsch|"
     r"german|italiano|italian|portugu[eê]s|portuguese|turk|arabic|"
@@ -180,17 +200,45 @@ def keep_entry(entry):
     return is_argentina or is_spanish
 
 
-def priority(entry):
+def category_for(entry):
     name, attrs, group, country, language, extra = metadata(entry)
-    # Sort film/series TV channels first, then other Argentine/Spanish live TV,
-    # then live events. VOD groups have already been excluded.
-    if CINEMA_CHANNEL_RE.search(name):
-        return 0
-    if re.search(r"\b(cine|cinema|pel[ií]culas|series|films?|movies?)\b", group, re.I):
-        return 1
-    if EVENT_RE.search(name + " " + group):
-        return 3
-    return 2
+    text = f"{name} {group}"
+    # Cine/series en señales lineales primero; VOD ya se filtra antes.
+    if CINEMA_CHANNEL_RE.search(name) or re.search(r"\\b(cine|cinema|pel[ií]culas|series|films?|movies?)\\b", group, re.I):
+        return "Cine y Series"
+    if NEWS_RE.search(text):
+        return "Noticias"
+    if SPORTS_RE.search(text):
+        return "Eventos" if re.search(r"\\b(eventos?|ppv|partidos?\\s*en\\s*vivo)\\b", text, re.I) else "Deportes"
+    if KIDS_RE.search(text):
+        return "Infantiles"
+    if DOCU_RE.search(text):
+        return "Documentales"
+    if MUSIC_RE.search(text):
+        return "Música"
+    if ENTERTAINMENT_RE.search(text):
+        return "Entretenimiento"
+    if EVENT_RE.search(text):
+        return "Eventos"
+    return "General"
+
+
+def set_group_title(entry, category):
+    # Cambia solo group-title dentro de EXTINF; conserva tvg-logo, tvg-id y demás datos.
+    extinf = entry[0]
+    if re.search(r'\\bgroup-title="[^"]*"', extinf, re.I):
+        extinf = re.sub(r'\\bgroup-title="[^"]*"', lambda _: f'group-title="{category}"', extinf, count=1, flags=re.I)
+    else:
+        comma = extinf.rfind(",")
+        if comma >= 0:
+            extinf = extinf[:comma] + f' group-title="{category}"' + extinf[comma:]
+    return [extinf, *entry[1:]]
+
+
+def priority(entry):
+    category = category_for(entry)
+    name = metadata(entry)[0]
+    return CATEGORY_ORDER[category], name.casefold()
 
 
 def entry_name(entry):
@@ -204,7 +252,7 @@ def main():
         return 2
 
     OUT.parent.mkdir(parents=True, exist_ok=True)
-    merged, seen = [], set()
+    merged, seen = [], {}
     total_input = total_kept = 0
     for provider_id, url in providers:
         started = time.monotonic()
@@ -222,10 +270,20 @@ def main():
                 key = entry_name(entry)
                 if not key:
                     key = entry[-1].casefold()
+                category = category_for(entry)
+                normalized = set_group_title(entry, category)
                 if key in seen:
+                    # Si otro proveedor trae el mismo canal con logo y el elegido no,
+                    # preferimos el que tiene tvg-logo sin duplicar la señal.
+                    old_index = seen[key]
+                    old_entry = merged[old_index][1]
+                    old_has_logo = bool(metadata(old_entry)[1].get("tvg-logo"))
+                    new_has_logo = bool(metadata(normalized)[1].get("tvg-logo"))
+                    if new_has_logo and not old_has_logo:
+                        merged[old_index] = (priority(normalized), normalized)
                     continue
-                seen.add(key)
-                merged.append((priority(entry), entry))
+                seen[key] = len(merged)
+                merged.append((priority(normalized), normalized))
                 added += 1
             total_kept += kept
             print(f"Proveedor {provider_id}: {len(entries)} entradas; {kept} Argentina/español/eventos coincidentes; {added} nuevas; {time.monotonic()-started:.1f}s")
@@ -243,7 +301,8 @@ def main():
     temp.write_text("#EXTM3U\n" + "\n".join(playlist_lines) + "\n", encoding="utf-8")
     temp.replace(OUT)
     print(f"Lista creada: {OUT} — {len(seen)} entradas únicas de {total_input} revisadas ({total_kept} coincidencias antes de deduplicar).")
-    print("Filtro: solo entradas con indicios de español; canales de cine/series primero, después otros canales y eventos al final.")
+    print("Categorías: Cine y Series, Noticias, Deportes, Infantiles, Documentales, Música, Entretenimiento, General y Eventos.")
+    print("Logos: se conservan los tvg-logo originales; si hay duplicados, se prefiere la versión que sí trae logo.")
     print("IMPORTANTE: el archivo generado contiene URLs privadas. No lo publiques en un repositorio público.")
     print("Nota: el filtro usa nombres/grupos/metadatos M3U; no puede verificar el idioma real del audio.")
     return 0
