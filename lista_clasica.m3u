@@ -11,8 +11,8 @@ http://superxlatino.com:8880/STeWmW3XhTWK/pF4Ec5heCDK7/490448
 https://panel.host-live.com:443/tvrionegro/ngrp:tvrionegro_all/playlist.m3u8?PlaylistM3UCL
 #EXTINF:-1 tvg-id="" tvg-name="Canal 26" tvg-logo="http://redworld.pro:8880/images/810cc28538dad9335756506f03410daa.jpg" group-title="Argentina · Noticias",Canal 26
 http://superxlatino.com:8880/STeWmW3XhTWK/pF4Ec5heCDK7/490438
-#EXTINF:-1 tvg-id="" tvg-name="Canal 4 Jujuy" tvg-logo="https://static-c4-1.s3.amazonaws.com/assets/img/logos/canalcuatro-logo-500x500.png" group-title="Argentina · Noticias",Canal 4 Jujuy
-http://23.153.217.158:8080/live/79882700/27072023/61573.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Canal 4 Jujuy" tvg-logo="https://cdn.m3u.cl/logo/258_Canal_4_Jujuy.png" group-title="Argentina · Noticias",Canal 4 Jujuy
+https://5cd577a3dd8ec.streamlock.net/CAMARAS/live4/playlist.m3u8?PlaylistM3UCL
 #EXTINF:-1 tvg-id="" tvg-name="Canal 6 Posadas" tvg-logo="https://cdn.m3u.cl/logo/262_Canal_6_Posadas.png" group-title="Argentina · Noticias",Canal 6 Posadas
 https://iptv.ixfo.com.ar:30443/live/c6digital/playlist.m3u8?PlaylistM3UCL
 #EXTINF:-1 tvg-id="" tvg-name="Canal 7 Neuquén" tvg-logo="https://cdn.m3u.cl/logo/1401_Canal_7_Neuquen.png" group-title="Argentina · Noticias",Canal 7 Neuquén
@@ -23,14 +23,14 @@ http://superxlatino.com:8880/STeWmW3XhTWK/pF4Ec5heCDK7/252150
 https://stream.arcast.live/ahora/ahora/playlist.m3u8?PlaylistM3UCL
 #EXTINF:-1 tvg-id="" tvg-name="Canal 9 Resistencia" tvg-logo="https://cdn.m3u.cl/logo/250_Canal_9_Resistencia.png" group-title="Argentina · Noticias",Canal 9 Resistencia
 http://201.217.245.41:8081/testmelucas/canal9/playlist.m3u8?PlaylistM3UCL
-#EXTINF:-1 tvg-id="" tvg-name="Canal de la Ciudad" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/9/91/Logo_Canal_de_la_Ciudad.png" group-title="Argentina · Noticias",Canal de la Ciudad
-http://23.153.217.158:8080/live/79882700/27072023/61581.m3u8
-#EXTINF:-1 tvg-id="" tvg-name="Crónica TV" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWWMmcZCQ5tr1Wv90_JiMagFY_0XjSp1Un3g596k6BiQ&s" group-title="Argentina · Noticias",Crónica TV
-http://superxlatino.com:8880/STeWmW3XhTWK/pF4Ec5heCDK7/490452
-#EXTINF:-1 tvg-id="" tvg-name="El Nueve" tvg-logo="http://redworld.pro:8880/images/78805a221a988e79ef3f42d7c5bfd418.png" group-title="Argentina · Noticias",El Nueve
-http://superxlatino.com:8880/STeWmW3XhTWK/pF4Ec5heCDK7/490460
-#EXTINF:-1 tvg-id="canal13.cl" tvg-name="El Trece" tvg-logo="http://redworld.pro:8880/images/a67edae422309f893a73707b38e9ca09.png" group-title="Argentina · Noticias",El Trece
-https://redirector.dps.live/hls/13cl/playlist.m3u8?PlaylistM3UCL
+#EXTINF:-1 tvg-id="" tvg-name="Canal de la Ciudad" tvg-logo="https://cdn.m3u.cl/logo/237_Ciudad_TV.jpg" group-title="Argentina · Noticias",Canal de la Ciudad
+http://coninfo.net:1935/chacodxdtv/live/chunklist_w1251301598.m3u8?PlaylistM3UCL
+#EXTINF:-1 tvg-id="" tvg-name="Crónica TV" tvg-logo="https://generador.nubservices.com/logos/panel/272054-arg-cronica-hd-mulnhhbo.png" group-title="Argentina · Noticias",Crónica TV
+https://velive.lat:443/tanogrijalva/MfBQu2PVwt/272054
+#EXTINF:-1 tvg-id="" tvg-name="El Nueve" tvg-logo="https://generador.nubservices.com/logos/panel/272040-arg-el-nueve-op1-mulnhhyp.png" group-title="Argentina · Noticias",El Nueve
+https://velive.lat:443/tanogrijalva/MfBQu2PVwt/272040
+#EXTINF:-1 tvg-id="" tvg-name="El Trece" tvg-logo="http://redworld.pro:8880/images/78805a221a988e79ef3f42d7c5bfd418.png" group-title="Argentina · Noticias",El Trece
+http://superxlatino.com:8880/STeWmW3XhTWK/pF4Ec5heCDK7/490442
 #EXTINF:-1 group-title="Argentina · Noticias",LN+
 http://maracanazo.lat:8080/Jpg2210233/Rk8zS5x9kQ/165598
 #EXTINF:-1 tvg-id="" tvg-name="Net TV" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/net-tv-ar.png" group-title="Argentina · Noticias",Net TV
@@ -39,34 +39,34 @@ http://superxlatino.com:8880/STeWmW3XhTWK/pF4Ec5heCDK7/359919
 http://superxlatino.com:8880/STeWmW3XhTWK/pF4Ec5heCDK7/490439
 #EXTINF:-1 tvg-id="" tvg-name="TN" tvg-logo="http://redworld.pro:8880/images/78805a221a988e79ef3f42d7c5bfd418.png" group-title="Argentina · Noticias",TN
 http://superxlatino.com:8880/STeWmW3XhTWK/pF4Ec5heCDK7/490437
-#EXTINF:-1 tvg-id="" tvg-name="TV Pública" tvg-logo="http://redworld.pro:8880/images/e18523361e24e6508919b799b7e0a144.png" group-title="Argentina · Noticias",TV Pública
-http://superxlatino.com:8880/STeWmW3XhTWK/pF4Ec5heCDK7/490455
+#EXTINF:-1 tvg-id="" tvg-name="TV Pública" tvg-logo="https://i.imgur.com/JUZDOCO.png" group-title="Argentina · Noticias",TV Pública
+https://velive.lat:443/tanogrijalva/MfBQu2PVwt/429155
 #EXTINF:-1 tvg-id="" tvg-name="Canal Rural" tvg-logo="https://cdn.m3u.cl/logo/310_Canal_Rural.jpg" group-title="Argentina · Deportes",Canal Rural
 https://cda2.alsolnet.com/elrural/live/playlist.m3u8?PlaylistM3UCL
-#EXTINF:-1 tvg-id="" tvg-name="DeporTV" tvg-logo="https://i.imgur.com/THk9ARS.png" group-title="Argentina · Deportes",DeporTV
-https://velive.lat:443/tanogrijalva/MfBQu2PVwt/429015
+#EXTINF:-1 tvg-id="" tvg-name="DeporTV" tvg-logo="https://generador.nubservices.com/logos/panel/272074-arg-deportv-hd-mulnhcjg.png" group-title="Argentina · Deportes",DeporTV
+https://velive.lat:443/tanogrijalva/MfBQu2PVwt/272074
 #EXTINF:-1 tvg-id="" tvg-name="DSports" tvg-logo="https://generador.nubservices.com/logos/panel/187374-dsports-mulmmeak.png" group-title="Argentina · Deportes",DSports
 https://velive.lat:443/tanogrijalva/MfBQu2PVwt/187374
 #EXTINF:-1 tvg-id="" tvg-name="DSports 2" tvg-logo="https://generador.nubservices.com/logos/panel/187377-dsports-2-hd-mulmmev7.png" group-title="Argentina · Deportes",DSports 2
 https://velive.lat:443/tanogrijalva/MfBQu2PVwt/187377
 #EXTINF:-1 tvg-id="" tvg-name="ESPN 2" tvg-logo="https://static.wikia.nocookie.net/espn/images/7/79/ESPN2-Logo-D795.png/revision/latest/scale-to-width-down/300?cb=20130819193813" group-title="Argentina · Deportes",ESPN 2
 http://superxlatino.com:8880/STeWmW3XhTWK/pF4Ec5heCDK7/564188
-#EXTINF:-1 tvg-id="" tvg-name="ESPN 3" tvg-logo="https://gtv.best:443/images/QCqX5p5x3Y181Q8jwb82JCnxRqNfVddT0Tz2Sxz_rGZZIDfz-w94IUBeVdvj-o0S.jpg" group-title="Argentina · Deportes",ESPN 3
-http://superxlatino.com:8880/STeWmW3XhTWK/pF4Ec5heCDK7/564196
-#EXTINF:-1 tvg-id="" tvg-name="ESPN 4" tvg-logo="http://127.0.0.1/" group-title="Argentina · Deportes",ESPN 4
-http://superxlatino.com:8880/STeWmW3XhTWK/pF4Ec5heCDK7/564217
+#EXTINF:-1 tvg-id="" tvg-name="ESPN 3" tvg-logo="https://i.pinimg.com/474x/d1/32/ab/d132abffb1021e2f5ae191f46a17680d.jpg" group-title="Argentina · Deportes",ESPN 3
+https://velive.lat:443/tanogrijalva/MfBQu2PVwt/369713
+#EXTINF:-1 tvg-id="" tvg-name="ESPN 4" tvg-logo="https://i.postimg.cc/3wV0wTLD/file_00000000722071f5b30736ffa1f810a4.png" group-title="Argentina · Deportes",ESPN 4
+https://velive.lat:443/tanogrijalva/MfBQu2PVwt/413748
 #EXTINF:-1 tvg-id="" tvg-name="ESPN 5" tvg-logo="https://i.pinimg.com/474x/d1/32/ab/d132abffb1021e2f5ae191f46a17680d.jpg" group-title="Argentina · Deportes",ESPN 5
 https://velive.lat:443/tanogrijalva/MfBQu2PVwt/369711
 #EXTINF:-1 tvg-id="" tvg-name="ESPN 6" tvg-logo="https://i.pinimg.com/474x/d1/32/ab/d132abffb1021e2f5ae191f46a17680d.jpg" group-title="Argentina · Deportes",ESPN 6
 https://velive.lat:443/tanogrijalva/MfBQu2PVwt/369710
 #EXTINF:-1 tvg-id="" tvg-name="ESPN 7" tvg-logo="https://i.pinimg.com/474x/d1/32/ab/d132abffb1021e2f5ae191f46a17680d.jpg" group-title="Argentina · Deportes",ESPN 7
 https://velive.lat:443/tanogrijalva/MfBQu2PVwt/369709
-#EXTINF:-1 tvg-id="" tvg-name="ESPN Argentina" tvg-logo="http://redworld.pro:8880/images/8b98b351a8a5945ee781c949161a11a3.png" group-title="Argentina · Deportes",ESPN Argentina
-http://superxlatino.com:8880/STeWmW3XhTWK/pF4Ec5heCDK7/564012
+#EXTINF:-1 tvg-id="" tvg-name="ESPN Argentina" tvg-logo="https://gtv.best:443/images/QCqX5p5x3Y181Q8jwb82JIw1Kd3uv9irfCdByX5g7YoZOp6S_R72SLrmbkqWaL4c.jpg" group-title="Argentina · Deportes",ESPN Argentina
+http://superxlatino.com:8880/STeWmW3XhTWK/pF4Ec5heCDK7/564194
 #EXTINF:-1 tvg-id="" tvg-name="ESPN Extra" tvg-logo="https://generador.nubservices.com/logos/panel/245195-espn-extra-mun9mlfu.png" group-title="Argentina · Deportes",ESPN Extra
 https://velive.lat:443/tanogrijalva/MfBQu2PVwt/245195
-#EXTINF:-1 tvg-id="" tvg-name="ESPN Premium" tvg-logo="https://i.pinimg.com/474x/d1/32/ab/d132abffb1021e2f5ae191f46a17680d.jpg" group-title="Argentina · Deportes",ESPN Premium
-https://velive.lat:443/tanogrijalva/MfBQu2PVwt/369708
+#EXTINF:-1 tvg-id="" tvg-name="ESPN Premium" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDcvcjzjn2GWIfhC1z3_620MPgVaLRcPnlwA&usqp=CAU" group-title="Argentina · Deportes",ESPN Premium
+https://velive.lat:443/tanogrijalva/MfBQu2PVwt/152306
 #EXTINF:-1 tvg-id="" tvg-name="Fox Sports 2" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Fox_sports_2_logo.svg/2560px-Fox_sports_2_logo.svg.png" group-title="Argentina · Deportes",Fox Sports 2
 http://superxlatino.com:8880/STeWmW3XhTWK/pF4Ec5heCDK7/564191
 #EXTINF:-1 tvg-id="" tvg-name="Fox Sports 3" tvg-logo="https://gtv.best:443/images/QCqX5p5x3Y181Q8jwb82JJtufBJ7qwGksnnoXRmHnGnlkdQWq-VmrSvHL7VpcYwm.jpg" group-title="Argentina · Deportes",Fox Sports 3
@@ -75,95 +75,91 @@ http://superxlatino.com:8880/STeWmW3XhTWK/pF4Ec5heCDK7/564192
 http://superxlatino.com:8880/STeWmW3XhTWK/pF4Ec5heCDK7/564189
 #EXTINF:-1 tvg-id="" tvg-name="Fox Sports Premium" tvg-logo="http://redworld.pro:8880/images/ad07e76a6c8901e2de87ce4cfe761435.png" group-title="Argentina · Deportes",Fox Sports Premium
 http://superxlatino.com:8880/STeWmW3XhTWK/pF4Ec5heCDK7/564185
-#EXTINF:-1 tvg-id="" tvg-name="Golf Channel" tvg-logo="http://redworld.pro:8880/images/89b80113c1ed34f36bfe6936fcf5ed20.png" group-title="Argentina · Deportes",Golf Channel
-http://superxlatino.com:8880/STeWmW3XhTWK/pF4Ec5heCDK7/167746
+#EXTINF:-1 tvg-id="" tvg-name="Golf Channel" tvg-logo="https://generador.nubservices.com/logos/panel/265895-lat-golf-channel-latinoamerica-mulmmifa.png" group-title="Argentina · Deportes",Golf Channel
+https://velive.lat:443/tanogrijalva/MfBQu2PVwt/265895
 #EXTINF:-1 tvg-id="" tvg-name="Polo TV" tvg-logo="https://images.pluto.tv/channels/65004cf398020f00084ca8bc/colorLogoPNG.png" group-title="Argentina · Deportes",Polo TV
 https://stitcher.pluto.tv/stitch/hls/channel/65004cf398020f00084ca8bc/master.m3u8?deviceType=web&servertSideAds=false&deviceMake=safari&deviceVersion=1&deviceId=spencer&appVersion=1&deviceDNT=0&deviceModel=web&sid=41ba0809-62bc-11ef-83ed-4ec11ef77758
 #EXTINF:-1 tvg-id="" tvg-name="TNT Sports Argentina" tvg-logo="https://generador.nubservices.com/logos/panel/187361-tnt-sports-mulmmjvr.png" group-title="Argentina · Deportes",TNT Sports Argentina
 https://velive.lat:443/tanogrijalva/MfBQu2PVwt/187361
-#EXTINF:-1 tvg-id="" tvg-name="TyC Sports" tvg-logo="http://redworld.pro:8880/images/c5509c4b9b2f0749da4aed3a5ae3d7c3.png" group-title="Argentina · Deportes",TyC Sports
-http://superxlatino.com:8880/STeWmW3XhTWK/pF4Ec5heCDK7/327918
+#EXTINF:-1 tvg-id="" tvg-name="TyC Sports" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/TyC_Sports_logo.svg/960px-TyC_Sports_logo.svg.png" group-title="Argentina · Deportes",TyC Sports
+https://velive.lat:443/tanogrijalva/MfBQu2PVwt/429166
 #EXTINF:-1 tvg-id="" tvg-name="Encuentro" tvg-logo="https://generador.nubservices.com/logos/panel/272057-arg-encuentro-hd-mulnhjkw.png" group-title="Argentina · Cultura",Encuentro
 https://velive.lat:443/tanogrijalva/MfBQu2PVwt/272057
 #EXTINF:-1 tvg-id="" tvg-name="Pakapaka" tvg-logo="https://i.ibb.co/bQtRpYM/Pakapaka.png" group-title="Argentina · Cultura",Pakapaka
 http://23.153.217.158:8080/live/79882700/27072023/61601.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="Aire de Santa Fe" tvg-logo="https://cdn.m3u.cl/logo/252_Aire_de_Santa_Fe.png" group-title="Argentina · Entretenimiento",Aire de Santa Fe
 https://redirector.dps.live/hls/airedesantafetv/playlist.m3u8?PlaylistM3UCL
-#EXTINF:-1 tvg-id="" tvg-name="Canal 21" tvg-logo="http://127.0.0.1/" group-title="Argentina · Entretenimiento",Canal 21
-http://superxlatino.com:8880/STeWmW3XhTWK/pF4Ec5heCDK7/423205
+#EXTINF:-1 tvg-id="" tvg-name="Canal 21" tvg-logo="" group-title="Argentina · Entretenimiento",Canal 21
+http://superxlatino.com:8880/STeWmW3XhTWK/pF4Ec5heCDK7/361273
 #EXTINF:-1 tvg-id="" tvg-name="Canal E" tvg-logo="https://cdn.m3u.cl/logo/1417_Canal_E.png" group-title="Argentina · Entretenimiento",Canal E
 https://unlimited1-us.dps.live/perfiltv/perfiltv.smil/playlist.m3u8?PlaylistM3UCL
 #EXTINF:-1 tvg-id="" tvg-name="Canal Orbe 21" tvg-logo="https://cdn.m3u.cl/logo/207_Orbe_21.jpg" group-title="Argentina · Entretenimiento",Canal Orbe 21
 http://23.153.217.158:8080/live/79882700/27072023/74322.m3u8
-#EXTINF:-1 tvg-id="" tvg-name="Ciudad Magazine" tvg-logo="https://static.wikia.nocookie.net/logopedia/images/a/a8/Ciudadmagazine-logonuevo.png/revision/latest?cb=20210525001116&path-prefix=es" group-title="Argentina · Entretenimiento",Ciudad Magazine
-http://superxlatino.com:8880/STeWmW3XhTWK/pF4Ec5heCDK7/490453
+#EXTINF:-1 group-title="Argentina · Entretenimiento" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/ciudad-magazine-ar.png",Ciudad Magazine
+http://maracanazo.lat:8080/Jpg2210233/Rk8zS5x9kQ/165628
 #EXTINF:-1 tvg-id="" tvg-name="El Gourmet" tvg-logo="http://redworld.pro:8880/images/0e8398e1532318e98927555bc11e0ae1.png" group-title="Argentina · Entretenimiento",El Gourmet
 http://superxlatino.com:8880/STeWmW3XhTWK/pF4Ec5heCDK7/318616
-#EXTINF:-1 tvg-id="" tvg-name="Quiero Música" tvg-logo="https://i.imgur.com/RO9Dz3X.png" group-title="Argentina · Entretenimiento",Quiero Música
-https://velive.lat:443/tanogrijalva/MfBQu2PVwt/462245
+#EXTINF:-1 group-title="Argentina · Entretenimiento" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/quiero-musica-en-mi-idioma-ar.png",Quiero Música
+http://maracanazo.lat:8080/Jpg2210233/Rk8zS5x9kQ/420009
 #EXTINF:-1 tvg-id="" tvg-name="Canal 10 Córdoba" tvg-logo="" group-title="Argentina · Regionales",Canal 10 Córdoba
 http://superxlatino.com:8880/STeWmW3XhTWK/pF4Ec5heCDK7/359940
 #EXTINF:-1 tvg-id="" tvg-name="Canal 3 Rosario" tvg-logo="https://cdn.m3u.cl/logo/256_Canal_3_Rosario.png" group-title="Argentina · Regionales",Canal 3 Rosario
 https://59d52c5a5ce5e.streamlock.net:4443/canal3rosario/ngrp:canal3rosario_all/playlist.m3u8?PlaylistM3UCL
-#EXTINF:-1 tvg-id="" tvg-name="A&E" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQjV-u5jw-GdHMR9tjbDC9wxDWINx3jLXRUQ&usqp=CAU" group-title="Cine y Series",A&E
+#EXTINF:-1 tvg-id="" tvg-name="A&E" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQjV-u5jw-GdHMR9tjbDC9wxDWINx3jLXRUQ&usqp=CAU" group-title="TV · Ficción",A&E
 http://superxlatino.com:8880/STeWmW3XhTWK/pF4Ec5heCDK7/414453
-#EXTINF:-1 tvg-id="" tvg-name="AMC" tvg-logo="https://images.pluto.tv/channels/62fa81ccd1a7e90007c1ada0/colorLogoPNG.png" group-title="Cine y Series",AMC
+#EXTINF:-1 tvg-id="" tvg-name="AMC" tvg-logo="https://images.pluto.tv/channels/62fa81ccd1a7e90007c1ada0/colorLogoPNG.png" group-title="TV · Ficción",AMC
 https://stitcher.pluto.tv/stitch/hls/channel/62fa81ccd1a7e90007c1ada0/master.m3u8?deviceType=web&servertSideAds=false&deviceMake=safari&deviceVersion=1&deviceId=spencer&appVersion=1&deviceDNT=0&deviceModel=web&sid=66fdda05-62bc-11ef-b7b7-72aa874ccba6
-#EXTINF:-1 tvg-id="209dtv.cl" tvg-name="AXN" tvg-logo="https://i.ibb.co/NZ66vJS/AXNHD.jpg" group-title="Cine y Series",AXN
+#EXTINF:-1 tvg-id="209dtv.cl" tvg-name="AXN" tvg-logo="https://i.ibb.co/NZ66vJS/AXNHD.jpg" group-title="TV · Ficción",AXN
 http://23.153.217.158:8080/live/79882700/27072023/107.m3u8
-#EXTINF:-1 tvg-id="" tvg-name="Cinecanal" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfY_V6-B2g_kEqycv8FnYBzZZca7242M3uLw&usqp=CAU" group-title="Cine y Series",Cinecanal
+#EXTINF:-1 tvg-id="" tvg-name="Cinecanal" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfY_V6-B2g_kEqycv8FnYBzZZca7242M3uLw&usqp=CAU" group-title="TV · Ficción",Cinecanal
 http://superxlatino.com:8880/STeWmW3XhTWK/pF4Ec5heCDK7/414479
-#EXTINF:-1 tvg-id="" tvg-name="Cinemax" tvg-logo="https://cdn.livesoccertv.com/tt/images/channels/mini/starplusco.png?q=65&w=50" group-title="Cine y Series",Cinemax
-http://superxlatino.com:8880/STeWmW3XhTWK/pF4Ec5heCDK7/452658
-#EXTINF:-1 tvg-id="" tvg-name="Comedy Central" tvg-logo="https://cdn.livesoccertv.com/tt/images/channels/mini/starplusco.png?q=65&w=50" group-title="Cine y Series",Comedy Central
-http://superxlatino.com:8880/STeWmW3XhTWK/pF4Ec5heCDK7/452640
-#EXTINF:-1 tvg-id="" tvg-name="Europa Europa" tvg-logo="https://i.ibb.co/Ybwcc69/EUROPAEUROPA.png" group-title="Cine y Series",Europa Europa
-https://velive.lat:443/tanogrijalva/MfBQu2PVwt/187237
-#EXTINF:-1 tvg-id="" tvg-name="Film & Arts" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/world-latin-america/film-and-arts-lam.png" group-title="Cine y Series",Film & Arts
+#EXTINF:-1 tvg-id="" tvg-name="Cinemax" tvg-logo="https://cdn.livesoccertv.com/tt/images/channels/mini/starplusco.png?q=65&w=50" group-title="TV · Ficción",Cinemax
+http://superxlatino.com:8880/STeWmW3XhTWK/pF4Ec5heCDK7/452659
+#EXTINF:-1 tvg-id="" tvg-name="Comedy Central" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Comedy_Central_2018.svg/960px-Comedy_Central_2018.svg.png" group-title="TV · Ficción",Comedy Central
+https://velive.lat:443/tanogrijalva/MfBQu2PVwt/468467
+#EXTINF:-1 tvg-id="" tvg-name="Film & Arts" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/world-latin-america/film-and-arts-lam.png" group-title="TV · Ficción",Film & Arts
 https://velive.lat:443/tanogrijalva/MfBQu2PVwt/316750
-#EXTINF:-1 tvg-id="" tvg-name="FX" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJq1YUknstlcWYR_a39Pbh-VKNQP_noF_rDg&usqp=CAU" group-title="Cine y Series",FX
+#EXTINF:-1 tvg-id="" tvg-name="FX" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJq1YUknstlcWYR_a39Pbh-VKNQP_noF_rDg&usqp=CAU" group-title="TV · Ficción",FX
 http://superxlatino.com:8880/STeWmW3XhTWK/pF4Ec5heCDK7/414497
-#EXTINF:-1 tvg-id="" tvg-name="Golden" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxytfwU0t7hq8tWkwnq1tr0_J-NnCk_nV1Ow&usqp=CAU" group-title="Cine y Series",Golden
+#EXTINF:-1 tvg-id="" tvg-name="Golden" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxytfwU0t7hq8tWkwnq1tr0_J-NnCk_nV1Ow&usqp=CAU" group-title="TV · Ficción",Golden
 http://superxlatino.com:8880/STeWmW3XhTWK/pF4Ec5heCDK7/414506
-#EXTINF:-1 group-title="Cine y Series" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/world-latin-america/golden-edge-lam.png",Golden Edge
+#EXTINF:-1 group-title="TV · Ficción" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/world-latin-america/golden-edge-lam.png",Golden Edge
 http://maracanazo.lat:8080/Jpg2210233/Rk8zS5x9kQ/214681
-#EXTINF:-1 tvg-id="" tvg-name="HBO" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTA4WC_DVLdy7I-kMJhcpStbdiBOe00hos0AA&usqp=CAU" group-title="Cine y Series",HBO
-http://superxlatino.com:8880/STeWmW3XhTWK/pF4Ec5heCDK7/414465
-#EXTINF:-1 tvg-id="" tvg-name="HBO 2" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8lZ0U7y83aMg8VcxHcLWyr8k4eK-vVK_TPw&usqp=CAU" group-title="Cine y Series",HBO 2
+#EXTINF:-1 tvg-id="" tvg-name="HBO" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUtbjnKsynnCmmwzyL97_V5eVimvq_l9nScg&usqp=CAU" group-title="TV · Ficción",HBO
+http://superxlatino.com:8880/STeWmW3XhTWK/pF4Ec5heCDK7/414468
+#EXTINF:-1 tvg-id="" tvg-name="HBO 2" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8lZ0U7y83aMg8VcxHcLWyr8k4eK-vVK_TPw&usqp=CAU" group-title="TV · Ficción",HBO 2
 http://superxlatino.com:8880/STeWmW3XhTWK/pF4Ec5heCDK7/414462
-#EXTINF:-1 tvg-id="" tvg-name="HBO Family" tvg-logo="https://i.ibb.co/C8swFDC/HBOFAMILY.png" group-title="Cine y Series",HBO Family
+#EXTINF:-1 tvg-id="" tvg-name="HBO Family" tvg-logo="https://i.ibb.co/C8swFDC/HBOFAMILY.png" group-title="TV · Ficción",HBO Family
 https://velive.lat:443/tanogrijalva/MfBQu2PVwt/187173
-#EXTINF:-1 tvg-id="" tvg-name="HBO Mundi" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/HBO_Xtreme.svg/1200px-HBO_Xtreme.svg.png" group-title="Cine y Series",HBO Mundi
+#EXTINF:-1 tvg-id="" tvg-name="HBO Mundi" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/HBO_Xtreme.svg/1200px-HBO_Xtreme.svg.png" group-title="TV · Ficción",HBO Mundi
 https://velive.lat:443/tanogrijalva/MfBQu2PVwt/280426
-#EXTINF:-1 tvg-id="" tvg-name="HBO Plus" tvg-logo="https://cdn.livesoccertv.com/tt/images/channels/mini/starplusco.png?q=65&w=50" group-title="Cine y Series",HBO Plus
-http://superxlatino.com:8880/STeWmW3XhTWK/pF4Ec5heCDK7/452691
-#EXTINF:-1 tvg-id="" tvg-name="HBO Signature" tvg-logo="https://i.ibb.co/DbrQjXC/HBOSIGNATURA.png" group-title="Cine y Series",HBO Signature
-https://velive.lat:443/tanogrijalva/MfBQu2PVwt/187167
-#EXTINF:-1 tvg-id="" tvg-name="HBO Xtreme" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/HBO_Xtreme.svg/1200px-HBO_Xtreme.svg.png" group-title="Cine y Series",HBO Xtreme
+#EXTINF:-1 tvg-id="" tvg-name="HBO Plus" tvg-logo="https://i.ibb.co/8sQ0FS1/HBOPLU.png" group-title="TV · Ficción",HBO Plus
+https://velive.lat:443/tanogrijalva/MfBQu2PVwt/187170
+#EXTINF:-1 tvg-id="" tvg-name="HBO Signature" tvg-logo="https://i.ibb.co/85zVm5w/HBOSIGNATURESD.png" group-title="TV · Ficción",HBO Signature
+https://velive.lat:443/tanogrijalva/MfBQu2PVwt/187168
+#EXTINF:-1 tvg-id="" tvg-name="HBO Xtreme" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/HBO_Xtreme.svg/1200px-HBO_Xtreme.svg.png" group-title="TV · Ficción",HBO Xtreme
 https://velive.lat:443/tanogrijalva/MfBQu2PVwt/280427
-#EXTINF:-1 tvg-id="" tvg-name="I-Sat" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/I.Sat_logo.svg/1200px-I.Sat_logo.svg.png" group-title="Cine y Series",I-Sat
-http://23.153.217.158:8080/live/79882700/27072023/240.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="Lifetime" tvg-logo="http://redworld.pro:8880/images/4e6a938c29df214ad11bef9ee275cd76.png" group-title="Argentina · Canales identificados",Lifetime
 http://superxlatino.com:8880/STeWmW3XhTWK/pF4Ec5heCDK7/318632
-#EXTINF:-1 tvg-id="" tvg-name="Paramount Network" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoLcVhN7sW34YgTU8sCI6EtLwRAeGUp9-h_A&usqp=CAU" group-title="Cine y Series",Paramount Network
-http://superxlatino.com:8880/STeWmW3XhTWK/pF4Ec5heCDK7/414512
-#EXTINF:-1 tvg-id="" tvg-name="Sony Channel" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmUM5s02mVJaBsX8VO8xATB9ivrYta859D9g&usqp=CAU" group-title="Cine y Series",Sony Channel
+#EXTINF:-1 tvg-id="" tvg-name="Paramount Network" tvg-logo="http://redworld.pro:8880/images/29938cae6727790a47491882e556fce7.png" group-title="TV · Ficción",Paramount Network
+http://superxlatino.com:8880/STeWmW3XhTWK/pF4Ec5heCDK7/449493
+#EXTINF:-1 tvg-id="" tvg-name="Sony Channel" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmUM5s02mVJaBsX8VO8xATB9ivrYta859D9g&usqp=CAU" group-title="TV · Ficción",Sony Channel
 http://superxlatino.com:8880/STeWmW3XhTWK/pF4Ec5heCDK7/414488
-#EXTINF:-1 tvg-id="" tvg-name="Space" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaPteTsp2zPkNGIK2aC8M1_bKG7FUZBaFHrg&usqp=CAU" group-title="Cine y Series",Space
-http://superxlatino.com:8880/STeWmW3XhTWK/pF4Ec5heCDK7/414500
-#EXTINF:-1 tvg-id="" tvg-name="Star Channel" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpUSC9j9pUIeP68TVeZFtU_BOi3beYtu0zAw&usqp=CAU" group-title="Cine y Series",Star Channel
+#EXTINF:-1 tvg-id="" tvg-name="Space" tvg-logo="https://static.frequency.com/studio/itv/channels/1224-400x200.png" group-title="TV · Ficción",Space
+https://velive.lat:443/tanogrijalva/MfBQu2PVwt/428313
+#EXTINF:-1 tvg-id="" tvg-name="Star Channel" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpUSC9j9pUIeP68TVeZFtU_BOi3beYtu0zAw&usqp=CAU" group-title="TV · Ficción",Star Channel
 http://superxlatino.com:8880/STeWmW3XhTWK/pF4Ec5heCDK7/414459
-#EXTINF:-1 tvg-id="" tvg-name="TCM" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5C2mxnbZhloXPJ9g7G5nwhyJmJNq06VlqpQ&usqp=CAU" group-title="Cine y Series",TCM
-http://superxlatino.com:8880/STeWmW3XhTWK/pF4Ec5heCDK7/414491
-#EXTINF:-1 tvg-id="" tvg-name="TNT" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREx6xag_8jHvToBLGBqlHfK3Y6oMAi5cqnLw&usqp=CAU" group-title="Cine y Series",TNT
+#EXTINF:-1 tvg-id="" tvg-name="Studio Universal" tvg-logo="https://i.ibb.co/CW4Zmm4/STUDIOHD.png" group-title="TV · Ficción",Studio Universal
+https://velive.lat:443/tanogrijalva/MfBQu2PVwt/245403
+#EXTINF:-1 tvg-id="" tvg-name="TNT" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREx6xag_8jHvToBLGBqlHfK3Y6oMAi5cqnLw&usqp=CAU" group-title="TV · Ficción",TNT
 http://superxlatino.com:8880/STeWmW3XhTWK/pF4Ec5heCDK7/414473
-#EXTINF:-1 tvg-id="" tvg-name="TNT Series" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS412_DLemKjbNR286Bqh-5--md7yWlo7F9sw&usqp=CAU" group-title="Cine y Series",TNT Series
+#EXTINF:-1 tvg-id="" tvg-name="TNT Series" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS412_DLemKjbNR286Bqh-5--md7yWlo7F9sw&usqp=CAU" group-title="TV · Ficción",TNT Series
 http://superxlatino.com:8880/STeWmW3XhTWK/pF4Ec5heCDK7/414476
-#EXTINF:-1 tvg-id="" tvg-name="Universal Cinema" tvg-logo="http://daleplay.club:8080/images/2f9119fd3e55f3968f4c683b2e9916d9.png" group-title="Cine y Series",Universal Cinema
-http://superxlatino.com:8880/STeWmW3XhTWK/pF4Ec5heCDK7/414523
-#EXTINF:-1 tvg-id="" tvg-name="Universal TV" tvg-logo="https://i.ibb.co/LSF9qF4/UNIVERSALCHANSD.png" group-title="Cine y Series",Universal TV
-https://velive.lat:443/tanogrijalva/MfBQu2PVwt/187204
-#EXTINF:-1 tvg-id="" tvg-name="Warner Channel" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHNIfv7VLUeS2w8eoF4b-k5psDxmpHYqkxew&usqp=CAU" group-title="Cine y Series",Warner Channel
+#EXTINF:-1 tvg-id="" tvg-name="Universal Cinema" tvg-logo="https://i.ibb.co/SVRG0fM/UCINEMA.png" group-title="TV · Ficción",Universal Cinema
+https://velive.lat:443/tanogrijalva/MfBQu2PVwt/187233
+#EXTINF:-1 group-title="TV · Ficción" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/world-latin-america/universal-tv-lam.png",Universal TV
+http://maracanazo.lat:8080/Jpg2210233/Rk8zS5x9kQ/384225
+#EXTINF:-1 tvg-id="" tvg-name="Warner Channel" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHNIfv7VLUeS2w8eoF4b-k5psDxmpHYqkxew&usqp=CAU" group-title="TV · Ficción",Warner Channel
 http://superxlatino.com:8880/STeWmW3XhTWK/pF4Ec5heCDK7/414485
 #EXTINF:-1 tvg-id="" tvg-name="24 Horas Internacional [Geo-blocked]" tvg-logo="https://i.imgur.com/IUVRm5L.png" group-title="Noticias",24 Horas Internacional [Geo-blocked]
 https://rtvelivestream.akamaized.net/rtvesec/24h/24h_main_dvr.m3u8
@@ -211,8 +207,6 @@ https://velive.lat:443/tanogrijalva/MfBQu2PVwt/187293
 http://maracanazo.lat:8080/Jpg2210233/Rk8zS5x9kQ/563467
 #EXTINF:-1 tvg-id="" tvg-name="Claro Sports" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/world-latin-america/claro-sports-2-lam.png" group-title="Deportes",Claro Sports
 http://superxlatino.com:8880/STeWmW3XhTWK/pF4Ec5heCDK7/407036
-#EXTINF:-1 tvg-id="" tvg-name="DirecTV Sports" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/DirecTV_Sports_Latin_America_%282018%29.png/960px-DirecTV_Sports_Latin_America_%282018%29.png" group-title="Deportes",DirecTV Sports
-https://velive.lat:443/tanogrijalva/MfBQu2PVwt/429016
 #EXTINF:-1 tvg-id="" tvg-name="E$PN 3 HD." tvg-logo="http://127.0.0.1/" group-title="Deportes",E$PN 3 HD.
 https://velive.lat:443/tanogrijalva/MfBQu2PVwt/273608
 #EXTINF:-1 tvg-id="" tvg-name="E$PN PREMIUM HD." tvg-logo="http://127.0.0.1/" group-title="Deportes",E$PN PREMIUM HD.
@@ -225,16 +219,16 @@ https://velive.lat:443/tanogrijalva/MfBQu2PVwt/273616
 https://velive.lat:443/tanogrijalva/MfBQu2PVwt/273612
 #EXTINF:-1 tvg-id="" tvg-name="F⚽X $PORTS 2 HD" tvg-logo="http://127.0.0.1/" group-title="Deportes",F⚽X $PORTS 2 HD
 https://velive.lat:443/tanogrijalva/MfBQu2PVwt/273614
-#EXTINF:-1 tvg-id="" tvg-name="GolTV" tvg-logo="http://redworld.pro:8880/images/32b93d81e997e0e62abb75018e5a83c6.png" group-title="Deportes",GolTV
-http://superxlatino.com:8880/STeWmW3XhTWK/pF4Ec5heCDK7/104112
+#EXTINF:-1 tvg-id="" tvg-name="GolTV" tvg-logo="https://i.postimg.cc/zBpJHd9j/800px-GOLTV.png" group-title="Deportes",GolTV
+http://23.153.217.158:8080/live/79882700/27072023/486.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="MLB Network" tvg-logo="http://stalkertvlatinoplay.com/LOGOS/MLB/MLBNETWORK.png" group-title="Argentina · Canales identificados",MLB Network
 https://velive.lat:443/tanogrijalva/MfBQu2PVwt/322395
-#EXTINF:-1 tvg-id="" tvg-name="Motorvision" tvg-logo="https://images-2.rakuten.tv/storage/global-live-channel/translation/artwork/1c0727dc-17ab-4c8b-b6d9-3b300fb3f458.png" group-title="Argentina · Canales identificados",Motorvision
-https://d39g1vxj2ef6in.cloudfront.net/v1/master/3fec3e5cac39a52b2132f9c66c83dae043dc17d4/prod-rakuten-stitched/mv_es.m3u8?ads._fw_app_bundle=com.rakuten.tv&ads._fw_app_store_url=rakuten.tv&ads._fw_content_category=IAB2&ads._fw_content_genre=automotive&ads._fw_content_language=es&ads._fw_content_rating=tv-g&ads._fw_deviceMake=&ads._fw_device_model=&ads._fw_devicetype=3-connected_tv&ads._fw_gdpr=1&ads._fw_gdpr_consent=&ads._fw_is_lat=1&ads.amznbrmid=&ads.amznregion=&ads.amznslots=&ads.appName=RakutenTV&ads.app_version=&ads.brand_name=&ads.caid=MotorvisionSpanish&ads.csid=zeus_es_motorvision_ssai&ads.gam_correlator=&ads.os_language=&ads.rakuten_content_type=live_channels&ads.rakuten_device_type=web&ads.rakuten_device_year=&ads.rakuten_env=prod&ads.rakuten_market=es&ads.rakuten_pod_type=playerpage_midroll&ads.rakuten_rtv_content_id=4193&ads.rakuten_streaming_id=3c59a9bf-0008-43e8-82ff-ec4cea68b528&ads.rakuten_user_type=visitor&ads.tivo_devcountry=&ads.tivo_devmakedate=&ads.tivo_mvpd=&ads.tivo_platform=&ads.tivo_usid=&ads.tivo_uxloc=&ads.xumo_channelId=88883004&ads.xumo_contentId=3791&ads.xumo_contentName=MotorvisionSpanish&ads.xumo_ifa=&ads.xumo_ifaType=ppid&ads.xumo_providerId=3791&ads.xumo_providerName=MotorvisionSpanish&ads.xumo_streamId=88883004
-#EXTINF:-1 tvg-id="" tvg-name="NBA TV" tvg-logo="https://yt3.ggpht.com/lwNmuM6cV_kH2dT408Q5HBdKCf7gKM2A7yh_cclROgG5urRy9qvfoSsUhkUZX94xH6rg9m4bAw=ns-nd" group-title="Deportes",NBA TV
-http://superxlatino.com:8880/STeWmW3XhTWK/pF4Ec5heCDK7/447469
-#EXTINF:-1 tvg-id="" tvg-name="NFL Network" tvg-logo="http://redworld.pro:8880/images/8b98b351a8a5945ee781c949161a11a3.png" group-title="Argentina · Canales identificados",NFL Network
-http://superxlatino.com:8880/STeWmW3XhTWK/pF4Ec5heCDK7/564011
+#EXTINF:-1 tvg-id="" tvg-name="Motorvision" tvg-logo="https://images.pluto.tv/channels/6093f2ae4dd5ab0007d1ff9d/colorLogoPNG.png" group-title="Argentina · Canales identificados",Motorvision
+https://stitcher.pluto.tv/stitch/hls/channel/6093f2ae4dd5ab0007d1ff9d/master.m3u8?deviceType=web&servertSideAds=false&deviceMake=safari&deviceVersion=1&deviceId=spencer&appVersion=1&deviceDNT=0&deviceModel=web&sid=41ba0809-62bc-11ef-83ed-4ec11ef77758
+#EXTINF:-1 tvg-id="" tvg-name="NBA TV" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/nba-tv-ar.png" group-title="Deportes",NBA TV
+https://velive.lat:443/tanogrijalva/MfBQu2PVwt/446840
+#EXTINF:-1 tvg-id="" tvg-name="NFL Network" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbrN435KjQWuR0r5_4RWO3hHFDKK2h-NQsVA&s" group-title="Argentina · Canales identificados",NFL Network
+https://velive.lat:443/tanogrijalva/MfBQu2PVwt/475931
 #EXTINF:-1 tvg-id="" tvg-name="Soccer 09/07 09:00am - Argentina vs Egypt: FIFA World Cup 2026" tvg-logo="" group-title="Deportes",Soccer 09/07 09:00am - Argentina vs Egypt: FIFA World Cup 2026
 https://velive.lat:443/tanogrijalva/MfBQu2PVwt/446712
 #EXTINF:-1 tvg-id="" tvg-name="Soccer 09/07 11:00am - Argentina vs Egypt: FIFA World Cup 2026" tvg-logo="" group-title="Deportes",Soccer 09/07 11:00am - Argentina vs Egypt: FIFA World Cup 2026
@@ -251,8 +245,8 @@ http://superxlatino.com:8880/STeWmW3XhTWK/pF4Ec5heCDK7/167738
 http://superxlatino.com:8880/STeWmW3XhTWK/pF4Ec5heCDK7/321973
 #EXTINF:-1 tvg-id="" tvg-name="Discovery Kids" tvg-logo="http://redworld.pro:8880/images/9616dc155d8f864cd00ba06266376b5e.png" group-title="Infantiles",Discovery Kids
 http://superxlatino.com:8880/STeWmW3XhTWK/pF4Ec5heCDK7/321976
-#EXTINF:-1 tvg-id="" tvg-name="Disney Channel" tvg-logo="http://redworld.pro:8880/images/0b2fee0f1f24fda95232e562d8326026.png" group-title="Infantiles",Disney Channel
-http://superxlatino.com:8880/STeWmW3XhTWK/pF4Ec5heCDK7/321978
+#EXTINF:-1 tvg-id="" tvg-name="Disney Channel" tvg-logo="noimage.png" group-title="Argentina · Canales identificados",Disney Channel
+http://superxlatino.com:8880/STeWmW3XhTWK/pF4Ec5heCDK7/390871
 #EXTINF:-1 tvg-id="" tvg-name="Disney Junior" tvg-logo="http://redworld.pro:8880/images/69ee308370f166ebd34ee64895d1c9a8.png" group-title="Infantiles",Disney Junior
 http://superxlatino.com:8880/STeWmW3XhTWK/pF4Ec5heCDK7/321981
 #EXTINF:-1 tvg-id="" tvg-name="Nickelodeon" tvg-logo="https://images.pluto.tv/channels/5f0d668b872e4400073acc68/colorLogoPNG.png" group-title="Infantiles",Nickelodeon
@@ -273,12 +267,12 @@ http://superxlatino.com:8880/STeWmW3XhTWK/pF4Ec5heCDK7/318620
 https://stitcher.pluto.tv/stitch/hls/channel/652e7649b4b0470008259aaa/master.m3u8?deviceType=web&servertSideAds=false&deviceMake=safari&deviceVersion=1&deviceId=spencer&appVersion=1&deviceDNT=0&deviceModel=web&sid=41ba0809-62bc-11ef-83ed-4ec11ef77758
 #EXTINF:-1 tvg-id="" tvg-name="Tropical Music TV (720p)" tvg-logo="https://i.imgur.com/h48pwLn.png" group-title="Música",Tropical Music TV (720p)
 http://68.235.37.11:1935/vallenato/vallenato/.m3u8
-#EXTINF:-1 tvg-id="" tvg-name="VH1" tvg-logo="https://generador.nubservices.com/logos/panel/416657-us-vh1-classic-mulmyqvv.png" group-title="Música",VH1
-https://velive.lat:443/tanogrijalva/MfBQu2PVwt/416657
-#EXTINF:-1 tvg-id="" tvg-name="E! Entertainment" tvg-logo="http://live.phenixiptv.com:8080/images/ZUbFfR577OwfqSMNTCmm1VWwW7bRwIJULbKzcuLN3jAtUGmF9OpB5y7sH1lZ3iiREsi0qjgmXlkqE-GNhvAOLQ.png" group-title="Argentina · Canales identificados",E! Entertainment
-http://superxlatino.com:8880/STeWmW3XhTWK/pF4Ec5heCDK7/390885
-#EXTINF:-1 tvg-id="" tvg-name="Food Network" tvg-logo="http://127.0.0.1/" group-title="Argentina · Canales identificados",Food Network
-http://superxlatino.com:8880/STeWmW3XhTWK/pF4Ec5heCDK7/452654
+#EXTINF:-1 tvg-id="" tvg-name="VH1" tvg-logo="https://technetnetwork.com/logos/usa/vh1.png" group-title="Música",VH1
+https://velive.lat:443/tanogrijalva/MfBQu2PVwt/416658
+#EXTINF:-1 tvg-id="" tvg-name="E! Entertainment" tvg-logo="https://i.postimg.cc/L8HtfPfZ/file-0000000080bc720eb0eb6cf37f7a4ad3.png" group-title="Argentina · Canales identificados",E! Entertainment
+https://velive.lat:443/tanogrijalva/MfBQu2PVwt/446664
+#EXTINF:-1 tvg-id="" tvg-name="Food Network" tvg-logo="https://i.imgur.com/KraZ2Qb.png" group-title="Argentina · Canales identificados",Food Network
+https://velive.lat:443/tanogrijalva/MfBQu2PVwt/273870
 #EXTINF:-1 tvg-id="" tvg-name="11:30 - Arg - Aldosivi vs Sarmiento" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/b/b2/Superliga_Argentina_Logo.png" group-title="Eventos",11:30 - Arg - Aldosivi vs Sarmiento
 https://velive.lat:443/tanogrijalva/MfBQu2PVwt/479617
 #EXTINF:-1 tvg-id="" tvg-name="15:00 - Arg - Gimnasia y Esgrima La Plata vs. Atlético Tucumán" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/b/b2/Superliga_Argentina_Logo.png" group-title="Eventos",15:00 - Arg - Gimnasia y Esgrima La Plata vs. Atlético Tucumán
@@ -287,6 +281,8 @@ https://velive.lat:443/tanogrijalva/MfBQu2PVwt/479632
 https://velive.lat:443/tanogrijalva/MfBQu2PVwt/479635
 #EXTINF:-1 tvg-id="" tvg-name="18:45 - Arg - Unión vs Defensa y Justicia" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/b/b2/Superliga_Argentina_Logo.png" group-title="Eventos",18:45 - Arg - Unión vs Defensa y Justicia
 https://velive.lat:443/tanogrijalva/MfBQu2PVwt/479652
+#EXTINF:-1 tvg-id="" tvg-name="DirecTV Sports" tvg-logo="https://seeklogo.com/images/D/directv-sports-fight-logo-BBD16A544F-seeklogo.com.png" group-title="Eventos",DirecTV Sports
+http://23.153.217.158:8080/live/79882700/27072023/20350.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="Fight Network" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/TFN_logo.svg/2560px-TFN_logo.svg.png" group-title="Eventos",Fight Network
 https://velive.lat:443/tanogrijalva/MfBQu2PVwt/466748
 #EXTINF:-1 tvg-id="" tvg-name="NHL Network" tvg-logo="https://i.imgur.com/4vSU2dU.png" group-title="Eventos",NHL Network
@@ -299,8 +295,6 @@ http://api.new.livestream.com/accounts/22636012/events/8242619/live.m3u8?Playlis
 http://superxlatino.com:8880/STeWmW3XhTWK/pF4Ec5heCDK7/490466
 #EXTINF:-1 tvg-id="" tvg-name="AR | Multivision" tvg-logo="http://redworld.pro:8880/images/78805a221a988e79ef3f42d7c5bfd418.png" group-title="Argentina · Canales identificados",AR | Multivision
 http://superxlatino.com:8880/STeWmW3XhTWK/pF4Ec5heCDK7/490477
-#EXTINF:-1 tvg-id="" tvg-name="ARG CANAL 7 SALTA" tvg-logo="http://redworld.pro:8880/images/de8c3a2221c2a52944a9fecb8b805edd.jpeg" group-title="Argentina · Canales identificados",ARG CANAL 7 SALTA
-http://superxlatino.com:8880/STeWmW3XhTWK/pF4Ec5heCDK7/490476
 #EXTINF:-1 tvg-id="" tvg-name="ARG | 5RTV SANTA FE" tvg-logo="http://serviciosvisuales.ga:25461/images/7581131280791f83ed11284a39605542.jpg" group-title="Argentina · Canales identificados",ARG | 5RTV SANTA FE
 http://23.153.217.158:8080/live/79882700/27072023/61554.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="ARG | 5TV (CORRIENTES) (480P)" tvg-logo="http://svtv.xyz:8000/images/eb496f80856c37029f763fb4ef472b4e.png" group-title="Argentina · Canales identificados",ARG | 5TV (CORRIENTES) (480P)
@@ -310,13 +304,11 @@ http://23.153.217.158:8080/live/79882700/27072023/61556.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="ARG | AMÃ©RICA TV" tvg-logo="http://svtv.xyz/nologo.png" group-title="Argentina · Canales identificados",ARG | AMÃ©RICA TV
 http://23.153.217.158:8080/live/79882700/27072023/61551.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="ARG | Cine AR" tvg-logo="http://redworld.pro:8880/images/9886b06ab7ad16606fa6213688d32688.png" group-title="Argentina · Canales identificados",ARG | Cine AR
-http://superxlatino.com:8880/STeWmW3XhTWK/pF4Ec5heCDK7/490461
+http://67.220.71.35:8880/Jorgecarrillo/sCXdnVsqGBLY/490461
 #EXTINF:-1 tvg-id="" tvg-name="ARG | VER TV" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKUuk2eK30VLGHUUSRMHqdFVSmqoA9tcaZ4UZINGGp_Q&s" group-title="Argentina · Canales identificados",ARG | VER TV
 http://superxlatino.com:8880/STeWmW3XhTWK/pF4Ec5heCDK7/490465
-#EXTINF:-1 tvg-id="" tvg-name="ARG | VOLVER SD" tvg-logo="http://redworld.pro:8880/images/beae63ae6ceadf54861fc3a9fe4ea8a1.png" group-title="Argentina · Canales identificados",ARG | VOLVER SD
-http://superxlatino.com:8880/STeWmW3XhTWK/pF4Ec5heCDK7/490449
-#EXTINF:-1 tvg-id="" tvg-name="ARG: Argentisima SD" tvg-logo="https://argentinisimatv.com.ar/wp-content/uploads/2017/09/logo.png" group-title="Argentina · Canales identificados",ARG: Argentisima SD
-http://23.153.217.158:8080/live/79882700/27072023/61579.m3u8
+#EXTINF:-1 group-title="Argentina · Canales identificados",ARG: Argentisima HD
+http://maracanazo.lat:8080/Jpg2210233/Rk8zS5x9kQ/165631
 #EXTINF:-1 tvg-id="" tvg-name="ARG: Canal 4 Posadas" tvg-logo="http://fanc.tmsimg.com/assets/s75990_ll_h3_ac.png" group-title="Argentina · Canales identificados",ARG: Canal 4 Posadas
 http://23.153.217.158:8080/live/79882700/27072023/61574.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="ARG: Magazine SD" tvg-logo="http://fanc.tmsimg.com/assets/s16878_ll_h3_ab.png" group-title="Argentina · Canales identificados",ARG: Magazine SD
@@ -353,6 +345,8 @@ https://velive.lat:443/tanogrijalva/MfBQu2PVwt/272048
 https://velive.lat:443/tanogrijalva/MfBQu2PVwt/272061
 #EXTINF:-1 tvg-id="" tvg-name="ARG| TRECE  FHD" tvg-logo="https://generador.nubservices.com/logos/panel/272045-arg-trece-fhd-mulnhlnl.png" group-title="Argentina · Canales identificados",ARG| TRECE  FHD
 https://velive.lat:443/tanogrijalva/MfBQu2PVwt/272045
+#EXTINF:-1 tvg-id="" tvg-name="ARG| VOLVER HD" tvg-logo="https://generador.nubservices.com/logos/panel/272049-arg-volver-hd-mulnhm9q.png" group-title="Argentina · Canales identificados",ARG| VOLVER HD
+https://velive.lat:443/tanogrijalva/MfBQu2PVwt/272049
 #EXTINF:-1 tvg-id="" tvg-name="ATV Argentina (540p)" tvg-logo="https://i.ibb.co/rMBVDmZ/atvargentina-x1.png" group-title="Argentina · Canales identificados",ATV Argentina (540p)
 https://stream.arcast.com.ar/atbargentina/atbargentina/playlist.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="AVC HD (720p)" tvg-logo="https://i.imgur.com/8CT4y1O.png" group-title="Argentina · Canales identificados",AVC HD (720p)
@@ -375,8 +369,6 @@ https://vivo.solumedia.com:19360/dadaproductora/dadaproductora.m3u8
 http://superxlatino.com:8880/STeWmW3XhTWK/pF4Ec5heCDK7/359935
 #EXTINF:-1 tvg-id="" tvg-name="Canal 12 Puerto Madryn (720p) [Not 24/7]" tvg-logo="https://i.imgur.com/VYcTRbd.png" group-title="Argentina · Canales identificados",Canal 12 Puerto Madryn (720p) [Not 24/7]
 https://5f700d5b2c46f.streamlock.net/madryntv/madryntv/playlist.m3u8
-#EXTINF:-1 tvg-id="" tvg-name="Canal 2 de Ushuaia (1080p)" tvg-logo="https://i.ibb.co/q5NPdK2/canal2-logo.png" group-title="Argentina · Canales identificados",Canal 2 de Ushuaia (1080p)
-https://nd106.republicaservers.com:4433/hls/c6611/index.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="Canal 2 Misiones (1080p)" tvg-logo="https://i.imgur.com/YqTNXDf.png" group-title="Argentina · Canales identificados",Canal 2 Misiones (1080p)
 https://nd106.republicaservers.com:4433/hls/canal2misioness/index.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="Canal 2 Salta (480p)" tvg-logo="https://i.imgur.com/kwOIiaO.png" group-title="Argentina · Canales identificados",Canal 2 Salta (480p)
@@ -423,6 +415,8 @@ http://superxlatino.com:8880/STeWmW3XhTWK/pF4Ec5heCDK7/360498
 https://stream.arcast.live/canal7jujuy/ngrp:canal7jujuy_all/playlist.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="Canal 7 Jujuy | AR" tvg-logo="https://cdn.m3u.cl/logo/264_Canal_7_Jujuy.png" group-title="Argentina · Canales identificados",Canal 7 Jujuy | AR
 https://stream.arcast.live/canal7jujuy/ngrp:canal7jujuy_all/playlist.m3u8?PlaylistM3UCL
+#EXTINF:-1 tvg-id="" tvg-name="Canal 7 Salta (1080p)" tvg-logo="https://i.imgur.com/CudG6sl.png" group-title="Argentina · Canales identificados",Canal 7 Salta (1080p)
+https://vivo.solumedia.com:19360/cooperativa/cooperativa.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="Canal 7 Santiago del Estero (720p)" tvg-logo="https://i.imgur.com/iJMH0UK.png" group-title="Argentina · Canales identificados",Canal 7 Santiago del Estero (720p)
 https://stream.arcast.com.ar/envivo/castv/playlist.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="Canal 7 SLP | MX" tvg-logo="https://cdn.m3u.cl/logo/639_Canal_7_SLP.png" group-title="Argentina · Canales identificados",Canal 7 SLP | MX
@@ -460,11 +454,11 @@ http://superxlatino.com:8880/STeWmW3XhTWK/pF4Ec5heCDK7/359922
 #EXTINF:-1 tvg-id="" tvg-name="Canal Provincial (360p)" tvg-logo="https://i.imgur.com/bXHHtcb.png" group-title="Argentina · Canales identificados",Canal Provincial (360p)
 https://streaming.telered.com.ar/provincial/streaming/mystream.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="Canal Quantica Tv - Buenos Aires" tvg-logo="" group-title="Argentina · Canales identificados",Canal Quantica Tv - Buenos Aires
-http://superxlatino.com:8880/STeWmW3XhTWK/pF4Ec5heCDK7/359923
+http://67.220.71.35:8880/Jorgecarrillo/sCXdnVsqGBLY/359923
 #EXTINF:-1 tvg-id="" tvg-name="Canal Quatro Tv - Cordoba" tvg-logo="" group-title="Argentina · Canales identificados",Canal Quatro Tv - Cordoba
 http://superxlatino.com:8880/STeWmW3XhTWK/pF4Ec5heCDK7/359943
 #EXTINF:-1 tvg-id="" tvg-name="Canal RTN - Neuquen" tvg-logo="" group-title="Argentina · Canales identificados",Canal RTN - Neuquen
-http://superxlatino.com:8880/STeWmW3XhTWK/pF4Ec5heCDK7/361274
+http://67.220.71.35:8880/Jorgecarrillo/sCXdnVsqGBLY/361274
 #EXTINF:-1 tvg-id="" tvg-name="Canal Santa María (360p)" tvg-logo="https://www.canalsantamaria.com.ar/images/santamaria_logo.jpg" group-title="Argentina · Canales identificados",Canal Santa María (360p)
 https://streaming.telered.com.ar/santa-maria/streaming/mystream.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="Canal Señal U - Mendoza" tvg-logo="" group-title="Argentina · Canales identificados",Canal Señal U - Mendoza
@@ -492,7 +486,7 @@ http://superxlatino.com:8880/STeWmW3XhTWK/pF4Ec5heCDK7/359941
 #EXTINF:-1 tvg-id="" tvg-name="Canal unitv - Cordoba" tvg-logo="" group-title="Argentina · Canales identificados",Canal unitv - Cordoba
 http://superxlatino.com:8880/STeWmW3XhTWK/pF4Ec5heCDK7/359942
 #EXTINF:-1 tvg-id="" tvg-name="Canal UNLP - Buenos Aires" tvg-logo="" group-title="Argentina · Canales identificados",Canal UNLP - Buenos Aires
-http://superxlatino.com:8880/STeWmW3XhTWK/pF4Ec5heCDK7/359927
+http://67.220.71.35:8880/Jorgecarrillo/sCXdnVsqGBLY/359927
 #EXTINF:-1 tvg-id="" tvg-name="Canal Urbana Teve - C.A.B.A" tvg-logo="" group-title="Argentina · Canales identificados",Canal Urbana Teve - C.A.B.A
 http://superxlatino.com:8880/STeWmW3XhTWK/pF4Ec5heCDK7/359920
 #EXTINF:-1 tvg-id="" tvg-name="Caribbean Advantage TV (1080p)" tvg-logo="https://caribbeanadvantage.com/images/CAtv-logo-512.png" group-title="Argentina · Canales identificados",Caribbean Advantage TV (1080p)
@@ -531,12 +525,14 @@ https://5f700d5b2c46f.streamlock.net/elsellotv/elsellotv/playlist.m3u8
 https://ythls.armelin.one/channel/UC64ZNqX0FQHabP8iIkmnR3A.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="Enlace (720p)" tvg-logo="https://i.imgur.com/YwUVTmS.png" group-title="Argentina · Canales identificados",Enlace (720p)
 https://livecdn.enlace.plus/enlace/smil:enlace-hd.smil/playlist.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Europa Europa" tvg-logo="https://i.ibb.co/Ybwcc69/EUROPAEUROPA.png" group-title="TV · Ficción",Europa Europa
+https://velive.lat:443/tanogrijalva/MfBQu2PVwt/187237
 #EXTINF:-1 tvg-id="" tvg-name="Filmstream" tvg-logo="https://i.imgur.com/DTRPV6B.png" group-title="Argentina · Canales identificados",Filmstream
 https://spi-filmstream-1-in.samsung.wurl.tv/playlist.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="France 24 Español (1080p)" tvg-logo="https://i.imgur.com/ZnmAXVv.png" group-title="Argentina · Canales identificados",France 24 Español (1080p)
 https://ythls.armelin.one/channel/UCUdOoVWuWmgo1wByzcsyKDQ.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="Galavision Alburquerque Santa Fe HD" tvg-logo="https://i.ibb.co/2sdFqMJ/GALAVSIONSDSA.png" group-title="Argentina · Canales identificados",Galavision Alburquerque Santa Fe HD
-http://23.153.217.158:8080/live/79882700/27072023/22934.m3u8
+http://23.153.217.158:8080/live/79882700/27072023/68656.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="Global TV (1080p)" tvg-logo="https://i.imgur.com/z6srIMD.png" group-title="Argentina · Canales identificados",Global TV (1080p)
 https://stmv.video.gmpro.top/global/global/playlist.m3u8
 #EXTINF:-1 group-title="Argentina · Canales identificados",GT: Canal 7
@@ -545,6 +541,8 @@ http://maracanazo.lat:8080/Jpg2210233/Rk8zS5x9kQ/343339
 https://velive.lat:443/tanogrijalva/MfBQu2PVwt/479140
 #EXTINF:-1 tvg-id="" tvg-name="Hiperconectados TV" tvg-logo="https://i.imgur.com/CBbbrkI.png" group-title="Argentina · Canales identificados",Hiperconectados TV
 https://stmv5.voxtvhd.com.br/hiperconectados/hiperconectados/playlist.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="I-Sat" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/I.Sat_logo.svg/1200px-I.Sat_logo.svg.png" group-title="TV · Ficción",I-Sat
+http://23.153.217.158:8080/live/79882700/27072023/241.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="Jujuy tv" tvg-logo="http://127.0.0.1/" group-title="Argentina · Canales identificados",Jujuy tv
 https://velive.lat:443/tanogrijalva/MfBQu2PVwt/272076
 #EXTINF:-1 tvg-id="" tvg-name="Kanal D Drama (1080p)" tvg-logo="https://i.imgur.com/WIeZMKT.png" group-title="Argentina · Canales identificados",Kanal D Drama (1080p)
@@ -643,6 +641,8 @@ https://vivo.solumedia.com:19360/sicarditv/sicarditv.m3u8
 http://superxlatino.com:8880/STeWmW3XhTWK/pF4Ec5heCDK7/384001
 #EXTINF:-1 tvg-id="" tvg-name="Somos La Pampa (1080p)" tvg-logo="https://i2.paste.pics/91920f8c1ac64beaaf70f7fbc09982c8.png" group-title="Argentina · Canales identificados",Somos La Pampa (1080p)
 https://stream.arcast.com.ar/somosnoticias/somosnoticias/playlist.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="TCM" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5C2mxnbZhloXPJ9g7G5nwhyJmJNq06VlqpQ&usqp=CAU" group-title="TV · Ficción",TCM
+http://superxlatino.com:8880/STeWmW3XhTWK/pF4Ec5heCDK7/414491
 #EXTINF:-1 tvg-id="" tvg-name="TDC TV Santa Fe | AR" tvg-logo="https://cdn.m3u.cl/logo/289_TDC_TV_Santa_Fe.png" group-title="Argentina · Canales identificados",TDC TV Santa Fe | AR
 https://5e7cdf2370883.streamlock.net/tdconline/tdconline/playlist.m3u8?PlaylistM3UCL
 #EXTINF:-1 tvg-id="" tvg-name="TeleCinco Trelew (240p)" tvg-logo="https://i.imgur.com/ZDenyAE.png" group-title="Argentina · Canales identificados",TeleCinco Trelew (240p)
@@ -678,7 +678,7 @@ http://192.100.186.53:8090/hls/live.stream.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="Uniteve (720p) [Not 24/7]" tvg-logo="https://pbs.twimg.com/profile_images/720276300888453120/a_SDOmBc_400x400.jpg" group-title="Argentina · Canales identificados",Uniteve (720p) [Not 24/7]
 https://vivo.solumedia.com:19360/uniteve/uniteve.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="UNIVISION ALBUQUERQUE SANTA FE" tvg-logo="https://i.ibb.co/vP606jW/UNICIS.png" group-title="Argentina · Canales identificados",UNIVISION ALBUQUERQUE SANTA FE
-http://23.153.217.158:8080/live/79882700/27072023/22971.m3u8
+http://23.153.217.158:8080/live/79882700/27072023/74659.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="USA**:NM | SANTA FE | TELEMUNDO KASA" tvg-logo="" group-title="Argentina · Canales identificados",USA**:NM | SANTA FE | TELEMUNDO KASA
 http://23.153.217.158:8080/live/79882700/27072023/35399.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="VerTV (VTV) (720p) [Not 24/7]" tvg-logo="https://i.imgur.com/TLaausJ.png" group-title="Argentina · Canales identificados",VerTV (VTV) (720p) [Not 24/7]
