@@ -27,15 +27,18 @@ Al terminar, descargar el artefacto `lista-clasica-m3u` desde la ejecución. El 
 
 El generador conserva entradas con indicios de español y excluye grupos claramente marcados como VOD, películas individuales o episodios. Después normaliza el atributo `group-title` para que la APK muestre categorías uniformes y la lista quede ordenada alfabéticamente dentro de cada categoría:
 
-1. **Cine y Series**
-2. **Noticias**
-3. **Deportes**
-4. **Infantiles**
-5. **Documentales**
-6. **Música**
-7. **Entretenimiento**
-8. **General**
-9. **Eventos**
+1. **Adultos**
+2. **Cine y Series**
+3. **Noticias**
+4. **Deportes**
+5. **Infantiles**
+6. **Documentales**
+7. **Música**
+8. **Entretenimiento**
+9. **General**
+10. **Eventos**
+
+Los canales para adultos reconocidos por su nombre o categoría se agrupan en **Adultos**, separados del resto. Se conservan únicamente si no vienen marcados explícitamente con otro idioma; como con los demás canales, el idioma real no se puede verificar desde el nombre.
 
 Se conserva el atributo `tvg-logo` que entregue cada proveedor. Si un canal aparece repetido y una de las versiones tiene logo mientras la otra no, se prioriza la que sí tiene logo. El generador no inventa direcciones de imágenes: si ningún proveedor ofrece el logo, quedará sin logo hasta agregar una fuente confiable.
 
