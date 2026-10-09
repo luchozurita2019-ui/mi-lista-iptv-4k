@@ -56,12 +56,12 @@ CINEMA_CHANNEL_RE = re.compile(
     re.I,
 )
 # Categorías normalizadas para que la lista quede ordenada y prolija.
-NEWS_RE = re.compile(r"\\b(noticias?|news|informativo|informativos|noticiero|noticieros|24\\s*hs|24\\s*horas|cnn|c5n|tn\\b|a24|ln\\+|teleSUR|breaking)\\b", re.I)
-SPORTS_RE = re.compile(r"\\b(deportes?|sports?|f[uú]tbol|football|soccer|tyc|espn|fox\\s*sports?|directv\\s*sports?|tnt\\s*sports?|gol\\s*tv|bein\\s*sports?|formula\\s*1|f1|nba|tenis|boxeo|rugby|b[aá]squet)\\b", re.I)
-KIDS_RE = re.compile(r"\\b(infantil|infantiles|ni[nñ]os|kids|disney\\s*junior|cartoon\\s*network|nick(elodeon)?|baby\\s*tv|dreamworks)\\b", re.I)
-DOCU_RE = re.compile(r"\\b(documentales?|documentary|history|nat\\s*geo|national\\s*geographic|discovery|animal\\s*planet|investigation\\s*discovery|discovery\\s*science|smithsonian)\\b", re.I)
-MUSIC_RE = re.compile(r"\\b(m[uú]sica|music|mtv|vh1|concert|conciertos?|top\\s*music|stingray)\\b", re.I)
-ENTERTAINMENT_RE = re.compile(r"\\b(comedia|comedy|entretenimiento|variedades|reality|cocina|cooking|estilo\\s*de\\s*vida|lifestyle|fashion|moda)\\b", re.I)
+NEWS_RE = re.compile(r"\b(noticias?|news|informativo|informativos|noticiero|noticieros|24\s*hs|24\s*horas|cnn|c5n|tn\b|a24|ln\+|teleSUR|breaking)\b", re.I)
+SPORTS_RE = re.compile(r"\b(deportes?|sports?|f[uú]tbol|football|soccer|tyc|espn|fox\s*sports?|directv\s*sports?|tnt\s*sports?|gol\s*tv|bein\s*sports?|formula\s*1|f1|nba|tenis|boxeo|rugby|b[aá]squet)\b", re.I)
+KIDS_RE = re.compile(r"\b(infantil|infantiles|ni[nñ]os|kids|disney\s*junior|cartoon\s*network|nick(elodeon)?|baby\s*tv|dreamworks)\b", re.I)
+DOCU_RE = re.compile(r"\b(documentales?|documentary|history|nat\s*geo|national\s*geographic|discovery|animal\s*planet|investigation\s*discovery|discovery\s*science|smithsonian)\b", re.I)
+MUSIC_RE = re.compile(r"\b(m[uú]sica|music|mtv|vh1|concert|conciertos?|top\s*music|stingray)\b", re.I)
+ENTERTAINMENT_RE = re.compile(r"\b(comedia|comedy|entretenimiento|variedades|reality|cocina|cooking|estilo\s*de\s*vida|lifestyle|fashion|moda)\b", re.I)
 
 CATEGORY_ORDER = {
     "Cine y Series": 0,
@@ -204,12 +204,12 @@ def category_for(entry):
     name, attrs, group, country, language, extra = metadata(entry)
     text = f"{name} {group}"
     # Cine/series en señales lineales primero; VOD ya se filtra antes.
-    if CINEMA_CHANNEL_RE.search(name) or re.search(r"\\b(cine|cinema|pel[ií]culas|series|films?|movies?)\\b", group, re.I):
+    if CINEMA_CHANNEL_RE.search(name) or re.search(r"\b(cine|cinema|pel[ií]culas|series|films?|movies?)\b", group, re.I):
         return "Cine y Series"
     if NEWS_RE.search(text):
         return "Noticias"
     if SPORTS_RE.search(text):
-        return "Eventos" if re.search(r"\\b(eventos?|ppv|partidos?\\s*en\\s*vivo)\\b", text, re.I) else "Deportes"
+        return "Eventos" if re.search(r"\b(eventos?|ppv|partidos?\s*en\s*vivo)\b", text, re.I) else "Deportes"
     if KIDS_RE.search(text):
         return "Infantiles"
     if DOCU_RE.search(text):
@@ -226,8 +226,8 @@ def category_for(entry):
 def set_group_title(entry, category):
     # Cambia solo group-title dentro de EXTINF; conserva tvg-logo, tvg-id y demás datos.
     extinf = entry[0]
-    if re.search(r'\\bgroup-title="[^"]*"', extinf, re.I):
-        extinf = re.sub(r'\\bgroup-title="[^"]*"', lambda _: f'group-title="{category}"', extinf, count=1, flags=re.I)
+    if re.search(r'\bgroup-title="[^"]*"', extinf, re.I):
+        extinf = re.sub(r'\bgroup-title="[^"]*"', lambda _: f'group-title="{category}"', extinf, count=1, flags=re.I)
     else:
         comma = extinf.rfind(",")
         if comma >= 0:
