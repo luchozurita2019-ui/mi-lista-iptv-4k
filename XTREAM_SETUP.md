@@ -23,11 +23,23 @@ Abrir **Actions → Generar Lista clásica M3U desde Xtream → Run workflow**. 
 
 Al terminar, descargar el artefacto `lista-clasica-m3u` desde la ejecución. El artefacto se elimina automáticamente después de un día.
 
-## 3. Cómo filtra el contenido
+## 3. Filtro, categorías y logos
 
-El generador prioriza pistas en el nombre del canal, grupo, país e idioma M3U para conservar contenido identificado como argentino o en español, incluidos eventos deportivos/en vivo cuando el nombre o grupo contiene esas pistas. Descarta entradas marcadas claramente como otros países o idiomas.
+El generador conserva entradas con indicios de español y excluye grupos claramente marcados como VOD, películas individuales o episodios. Después normaliza el atributo `group-title` para que la APK muestre categorías uniformes y la lista quede ordenada alfabéticamente dentro de cada categoría:
 
-**Limitación importante:** los proveedores no etiquetan todos los canales de la misma manera. Un canal/evento sin país ni idioma indicado puede quedar afuera; un nombre que diga “ES” o “Latino” tampoco garantiza que el audio realmente esté en español. El script no inspecciona la señal de video/audio, así que hay que revisar la primera lista generada y ajustar los filtros con ejemplos reales si falta algún canal argentino o evento.
+1. **Cine y Series**
+2. **Noticias**
+3. **Deportes**
+4. **Infantiles**
+5. **Documentales**
+6. **Música**
+7. **Entretenimiento**
+8. **General**
+9. **Eventos**
+
+Se conserva el atributo `tvg-logo` que entregue cada proveedor. Si un canal aparece repetido y una de las versiones tiene logo mientras la otra no, se prioriza la que sí tiene logo. El generador no inventa direcciones de imágenes: si ningún proveedor ofrece el logo, quedará sin logo hasta agregar una fuente confiable.
+
+**Limitación importante:** la clasificación se basa en nombres y grupos; puede equivocarse si el proveedor etiqueta mal un canal. Tampoco puede confirmar el idioma real del audio. Hay que revisar la primera lista generada y ajustar las reglas con ejemplos reales.
 
 ## Privacidad
 
