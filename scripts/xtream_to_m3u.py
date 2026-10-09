@@ -66,7 +66,7 @@ CINEMA_CHANNEL_RE = re.compile(
     re.I,
 )
 # Categorías normalizadas para que la lista quede ordenada y prolija.
-ADULT_RE = re.compile(r"\b(adultos?|adult|xxx|18\+|er[oó]tic[oa]s?|erotica|playboy|venus|hustler|penthouse|private\s*tv|brazzers|dorcel|redlight|sexy\s*hot)\b", re.I)
+ADULT_RE = re.compile(r"\b(adultos?|adult|xxx|18\s*\+|porn(?:o|ography)?|porno|er[oó]tic[oa]s?|erotica|playboy|venus|hustler|penthouse|private\s*tv|brazzers|dorcel|red\s*light|sexy\s*hot|naughty|milf|babes?|hentai|sex\s*tv)\b", re.I)
 NEWS_RE = re.compile(r"\b(noticias?|news|informativo|informativos|noticiero|noticieros|24\s*hs|24\s*horas|cnn|c5n|tn\b|a24|ln\+|teleSUR|breaking)\b", re.I)
 SPORTS_RE = re.compile(r"\b(deportes?|sports?|f[uú]tbol|football|soccer|tyc|espn|fox\s*sports?|directv\s*sports?|tnt\s*sports?|gol\s*tv|bein\s*sports?|formula\s*1|f1|nba|tenis|boxeo|rugby|b[aá]squet)\b", re.I)
 KIDS_RE = re.compile(r"\b(infantil|infantiles|ni[nñ]os|kids|disney\s*junior|cartoon\s*network|nick(elodeon)?|baby\s*tv|dreamworks)\b", re.I)
@@ -558,13 +558,13 @@ def find_logo(name, manifest):
 
 
 def probe_stream(url: str):
-    """Prueba breve de una URL sin descargar la transmisión completa ni registrar la URL."""
+    """Prueba breve de la URL y descarta respuestas HTML/de error que simulan un stream."""
     started = time.monotonic()
     request = urllib.request.Request(
         url,
         headers={
-            "User-Agent": "TVFULL-Stability-Check/1.0",
-            "Accept": "*/*",
+            "User-Agent": "TVFULL-Stream-Check/1.1",
+            "Accept": "video/*,application/vnd.apple.mpegurl,application/x-mpegURL,application/octet-stream,*/*",
             "Range": f"bytes=0-{PROBE_BYTES - 1}",
             "Connection": "close",
         },
@@ -573,9 +573,25 @@ def probe_stream(url: str):
         with urllib.request.urlopen(request, timeout=PROBE_TIMEOUT) as response:
             status = response.status
             data = response.read(PROBE_BYTES)
+            content_type = response.headers.get("Content-Type", "").casefold()
             elapsed = time.monotonic() - started
-            # Algunos servidores ignoran Range y devuelven 200; se acepta si entregan datos.
-            ok = status in (200, 206) and bool(data)
+            sample = data[:1024].lstrip().casefold()
+            # HTTP 200 no alcanza: algunos proveedores devuelven una página HTML
+            # de error/autenticación en lugar del video.
+            error_page = (
+                sample.startswith((b"<!doctype html", b"<html", b"<head", b"<body"))
+                or any(token in sample for token in (
+                    b"invalid username", b"invalid password", b"unauthorized",
+                    b"access denied", b"not found", b"account expired",
+                    b"stream not found", b"server error",
+                ))
+            )
+            hls_manifest = sample.startswith(b"#extm3u")
+            ts_packet = len(data) >= 377 and data[0] == 0x47 and data[188] == 0x47 and data[376] == 0x47
+            media_type = any(token in content_type for token in (
+                "video/", "audio/", "mpegurl", "mp2t", "octet-stream", "mp4",
+            ))
+            ok = status in (200, 206) and bool(data) and not error_page and (hls_manifest or ts_packet or media_type or not content_type)
             return {
                 "ok": ok,
                 "elapsed": elapsed,
@@ -694,6 +710,24 @@ def main():
 
     winners.sort(key=lambda item: item[0])
     playlist_lines = [line for _, entry in winners for line in entry]
+    # Validación final: impedir publicar una lista vacía, adulta o con entradas VOD.
+    final_entries = parse_entries("\\n".join(playlist_lines))
+    if not final_entries:
+        print("ERROR: la lista final quedó vacía; se cancela la publicación.", file=sys.stderr)
+        return 1
+    invalid_final = []
+    for entry in final_entries:
+        final_name, final_attrs, final_group, *_ = metadata(entry)
+        final_path = urllib.parse.urlparse(entry[-1]).path.casefold()
+        if ADULT_RE.search(final_name + " " + final_group):
+            invalid_final.append("adulto")
+        if VOD_RE.search(final_name + " " + final_group) or re.search(r"/(?:movie|movies|series|vod)(?:/|$)", final_path):
+            invalid_final.append("vod")
+        if final_group == "General":
+            invalid_final.append("General")
+    if invalid_final:
+        print("ERROR: validación final detectó entradas prohibidas; no se publica la lista.", file=sys.stderr)
+        return 1
     temp = OUT.with_suffix(".m3u.tmp")
     temp.write_text("#EXTM3U\n" + "\n".join(playlist_lines) + "\n", encoding="utf-8")
     temp.replace(OUT)
