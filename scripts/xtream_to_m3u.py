@@ -191,7 +191,7 @@ def _fold_name(value: str) -> str:
 def catalog_match(name: str, group: str = ""):
     # Match a known channel by its actual name, not only by group-title.
     folded = " " + _fold_name(name) + " "
-    catalog = sorted(CHANNEL_CATALOG, key=lambda row: max(len(_fold_name(a)) for a in row[2]), reverse=True)
+    catalog = sorted(CHANNEL_CATALOG, key=lambda row: (row[0].startswith("Argentina ·"), max(len(_fold_name(a)) for a in row[2])), reverse=True)
     for category, canonical, aliases in catalog:
         for alias in sorted(aliases, key=lambda a: len(_fold_name(a)), reverse=True):
             needle = " " + _fold_name(alias) + " "
@@ -369,7 +369,7 @@ def category_for(entry):
     if known and known[0].startswith("Argentina ·"):
         return known[0]
     if known and ARGENTINA_RE.search(f"{name} {group} {attrs.get('tvg-country', '')}"):
-        return known[0]
+        return known[0] if known[0] != "General" else "Argentina · Regionales"
     # Primero noticias/deportes para no clasificar, por ejemplo, TNT Sports como cine.
     if ADULT_RE.search(text):
         return "Argentina · Canales identificados"  # normalmente se filtra antes
