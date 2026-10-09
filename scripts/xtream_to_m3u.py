@@ -188,7 +188,7 @@ def keep_entry(entry):
 
     # Excluir grupos de catálogo VOD, aunque el proveedor los llame "Películas",
     # "Series", "Movies", "Anime", etc. antes de normalizar categorías.
-    if VOD_RE.search(group_name):
+    if VOD_RE.search(name + " " + group_name):
         return False
     if re.search(r"\b(S\d{1,2}E\d{1,2}|temporada\s+\d+|episodio\s+\d+)\b", name, re.I):
         return False
