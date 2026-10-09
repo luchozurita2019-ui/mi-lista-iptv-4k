@@ -152,7 +152,7 @@ def keep_entry(entry):
     # Exclude VOD catalogs and individual films/episodes: the target is live TV.
     if VOD_RE.search(group_name):
         return False
-    if re.search(r"\\b(S\\d{1,2}E\\d{1,2}|temporada\\s+\\d+|episodio\\s+\\d+)\\b", name, re.I):
+    if re.search(r"\b(S\d{1,2}E\d{1,2}|temporada\s+\d+|episodio\s+\d+)\b", name, re.I):
         return False
 
     # Explicit language/country metadata takes precedence over loose title hints.
@@ -162,9 +162,8 @@ def keep_entry(entry):
         return False
 
     is_argentina = bool(ARGENTINA_RE.search(extra))
-    is_spanish = bool(SPANISH_RE.search(extra) or re.search(r"\\b(es|spa|es-419)\\b", lang))
+    is_spanish = bool(SPANISH_RE.search(extra) or re.search(r"\b(es|spa|es-419)\b", lang))
     is_event = bool(EVENT_RE.search(name + " " + group_name))
-    is_cinema_channel = bool(CINEMA_CHANNEL_RE.search(name))
 
     # Keep live movie/series channels only when there is also evidence they
     # belong to Argentina/Spanish content; the name alone cannot prove audio.
@@ -179,7 +178,7 @@ def priority(entry):
     # then live events. VOD groups have already been excluded.
     if CINEMA_CHANNEL_RE.search(name):
         return 0
-    if re.search(r"\\b(cine|cinema|pel[ií]culas|series|films?|movies?)\\b", group, re.I):
+    if re.search(r"\b(cine|cinema|pel[ií]culas|series|films?|movies?)\b", group, re.I):
         return 1
     if EVENT_RE.search(name + " " + group):
         return 3
