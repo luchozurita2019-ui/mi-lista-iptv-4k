@@ -69,15 +69,8 @@ jobs:
           XTREAM_10_PASSWORD: ${{ secrets.XTREAM_10_PASSWORD }}
         run: python3 scripts/xtream_to_m3u.py
 
-      - name: Publicar lista fija en el repositorio privado
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Publicar lista fija en main
         run: |
-          visibility="$(gh api "repos/$GITHUB_REPOSITORY" --jq .visibility)"
-          if [ "$visibility" != "private" ]; then
-            echo "::warning::La lista no se publica porque el repositorio todavía es público. Cambialo a privado y ejecutá nuevamente el workflow."
-            exit 0
-          fi
           cp dist/lista_clasica.m3u lista_clasica.m3u
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
