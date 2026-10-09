@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Merge up to ten Xtream M3U sources and keep Argentine/Spanish content.
+"""Merge up to ten Xtream M3U sources; keep Spanish-language live TV only, prioritizing Argentine content.
 
 Credentials belong in GitHub Actions Secrets, never in source control. The
 output contains stream URLs and must be treated as sensitive.
@@ -162,13 +162,21 @@ def keep_entry(entry):
         return False
 
     is_argentina = bool(ARGENTINA_RE.search(extra))
-    is_spanish = bool(SPANISH_RE.search(extra) or re.search(r"\b(es|spa|es-419)\b", lang))
+    is_spanish = bool(
+        SPANISH_RE.search(extra)
+        or re.search(r"\b(es|spa|es-419|spanish|castellano|español)\b", lang)
+        or is_argentina
+    )
     is_event = bool(EVENT_RE.search(name + " " + group_name))
 
-    # Keep live movie/series channels only when there is also evidence they
-    # belong to Argentina/Spanish content; the name alone cannot prove audio.
-    if is_event:
-        return is_argentina or is_spanish
+    # The playlist is Spanish-language only. Recognized Argentine channel
+    # names/country tags count as a Spanish hint unless explicit non-Spanish
+    # metadata above says otherwise. Unknown-language entries are excluded.
+    if not is_spanish:
+        return False
+
+    # Retain Argentine content and Spanish-language events/channels; events
+    # need not be permanent channel names to qualify.
     return is_argentina or is_spanish
 
 
@@ -235,7 +243,7 @@ def main():
     temp.write_text("#EXTM3U\n" + "\n".join(playlist_lines) + "\n", encoding="utf-8")
     temp.replace(OUT)
     print(f"Lista creada: {OUT} — {len(seen)} entradas únicas de {total_input} revisadas ({total_kept} coincidencias antes de deduplicar).")
-    print("Orden: canales de cine/series primero; después otros canales argentinos/en español; eventos al final.")
+    print("Filtro: solo entradas con indicios de español; canales de cine/series primero, después otros canales y eventos al final.")
     print("IMPORTANTE: el archivo generado contiene URLs privadas. No lo publiques en un repositorio público.")
     print("Nota: el filtro usa nombres/grupos/metadatos M3U; no puede verificar el idioma real del audio.")
     return 0
