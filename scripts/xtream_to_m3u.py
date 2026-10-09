@@ -407,7 +407,7 @@ def keep_entry(entry):
         return False
 
     is_argentina = bool(ARGENTINA_RE.search(extra))
-    is_adult = bool(ADULT_RE.search(name + " " + group_name))
+    is_adult = bool(ADULT_RE.search(name + " " + group_name + " " + stream_path))
     # Esta lista es exclusivamente de TV en vivo; no se admite contenido adulto.
     if is_adult:
         return False
@@ -591,7 +591,7 @@ def probe_stream(url: str):
             media_type = any(token in content_type for token in (
                 "video/", "audio/", "mpegurl", "mp2t", "octet-stream", "mp4",
             ))
-            ok = status in (200, 206) and bool(data) and not error_page and (hls_manifest or ts_packet or media_type or not content_type)
+            ok = status in (200, 206) and bool(data) and not error_page and (hls_manifest or ts_packet or media_type or content_type in ("", "text/plain"))
             return {
                 "ok": ok,
                 "elapsed": elapsed,
