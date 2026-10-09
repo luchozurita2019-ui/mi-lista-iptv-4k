@@ -56,6 +56,7 @@ CINEMA_CHANNEL_RE = re.compile(
     re.I,
 )
 # Categorías normalizadas para que la lista quede ordenada y prolija.
+ADULT_RE = re.compile(r"\\b(adultos?|adult|xxx|18\\+|er[oó]tic[oa]s?|erotica|playboy|venus|hustler|penthouse|private\\s*tv|brazzers|dorcel|redlight|sexy\\s*hot)\\b", re.I)
 NEWS_RE = re.compile(r"\b(noticias?|news|informativo|informativos|noticiero|noticieros|24\s*hs|24\s*horas|cnn|c5n|tn\b|a24|ln\+|teleSUR|breaking)\b", re.I)
 SPORTS_RE = re.compile(r"\b(deportes?|sports?|f[uú]tbol|football|soccer|tyc|espn|fox\s*sports?|directv\s*sports?|tnt\s*sports?|gol\s*tv|bein\s*sports?|formula\s*1|f1|nba|tenis|boxeo|rugby|b[aá]squet)\b", re.I)
 KIDS_RE = re.compile(r"\b(infantil|infantiles|ni[nñ]os|kids|disney\s*junior|cartoon\s*network|nick(elodeon)?|baby\s*tv|dreamworks)\b", re.I)
@@ -64,15 +65,16 @@ MUSIC_RE = re.compile(r"\b(m[uú]sica|music|mtv|vh1|concert|conciertos?|top\s*mu
 ENTERTAINMENT_RE = re.compile(r"\b(comedia|comedy|entretenimiento|variedades|reality|cocina|cooking|estilo\s*de\s*vida|lifestyle|fashion|moda)\b", re.I)
 
 CATEGORY_ORDER = {
-    "Cine y Series": 0,
-    "Noticias": 1,
-    "Deportes": 2,
-    "Infantiles": 3,
-    "Documentales": 4,
-    "Música": 5,
-    "Entretenimiento": 6,
-    "General": 7,
-    "Eventos": 8,
+    "Adultos": 0,
+    "Cine y Series": 1,
+    "Noticias": 2,
+    "Deportes": 3,
+    "Infantiles": 4,
+    "Documentales": 5,
+    "Música": 6,
+    "Entretenimiento": 7,
+    "General": 8,
+    "Eventos": 9,
 }
 
 CLEAR_NON_SPANISH_RE = re.compile(
@@ -182,6 +184,7 @@ def keep_entry(entry):
         return False
 
     is_argentina = bool(ARGENTINA_RE.search(extra))
+    is_adult = bool(ADULT_RE.search(name + " " + group_name))
     is_spanish = bool(
         SPANISH_RE.search(extra)
         or re.search(r"\b(es|spa|es-419|spanish|castellano|español)\b", lang)
@@ -192,7 +195,9 @@ def keep_entry(entry):
     # The playlist is Spanish-language only. Recognized Argentine channel
     # names/country tags count as a Spanish hint unless explicit non-Spanish
     # metadata above says otherwise. Unknown-language entries are excluded.
-    if not is_spanish:
+    # Adult channels are retained in their own category even when the provider
+    # omits language metadata; explicit non-Spanish metadata is still rejected.
+    if not is_spanish and not is_adult:
         return False
 
     # Retain Argentine content and Spanish-language events/channels; events
@@ -204,6 +209,8 @@ def category_for(entry):
     name, attrs, group, country, language, extra = metadata(entry)
     text = f"{name} {group}"
     # Primero noticias/deportes para no clasificar, por ejemplo, TNT Sports como cine.
+    if ADULT_RE.search(text):
+        return "Adultos"
     if NEWS_RE.search(text):
         return "Noticias"
     if SPORTS_RE.search(text):
@@ -302,7 +309,7 @@ def main():
     temp.write_text("#EXTM3U\n" + "\n".join(playlist_lines) + "\n", encoding="utf-8")
     temp.replace(OUT)
     print(f"Lista creada: {OUT} — {len(seen)} entradas únicas de {total_input} revisadas ({total_kept} coincidencias antes de deduplicar).")
-    print("Categorías: Cine y Series, Noticias, Deportes, Infantiles, Documentales, Música, Entretenimiento, General y Eventos.")
+    print("Categorías: Adultos, Cine y Series, Noticias, Deportes, Infantiles, Documentales, Música, Entretenimiento, General y Eventos.")
     print("Logos: se conservan los tvg-logo originales; si hay duplicados, se prefiere la versión que sí trae logo.")
     print("IMPORTANTE: el archivo generado contiene URLs privadas. No lo publiques en un repositorio público.")
     print("Nota: el filtro usa nombres/grupos/metadatos M3U; no puede verificar el idioma real del audio.")
