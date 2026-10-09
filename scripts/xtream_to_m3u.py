@@ -74,6 +74,101 @@ DOCU_RE = re.compile(r"\b(documentales?|documentary|history|nat\s*geo|national\s
 MUSIC_RE = re.compile(r"\b(m[uú]sica|music|mtv|vh1|concert|conciertos?|top\s*music|stingray)\b", re.I)
 ENTERTAINMENT_RE = re.compile(r"\b(comedia|comedy|entretenimiento|variedades|reality|cocina|cooking|estilo\s*de\s*vida|lifestyle|fashion|moda)\b", re.I)
 
+# Catálogo de nombres canónicos: permite reconocer canales aunque el proveedor
+# no marque idioma/país y consolidar variantes como "HBO HD" y "HBO FHD".
+# Solo se seleccionan URLs que aparezcan realmente en alguno de los proveedores.
+CHANNEL_CATALOG = [
+    ("Cine y Series", "HBO", ("hbo",)),
+    ("Cine y Series", "HBO 2", ("hbo 2", "hbo2")),
+    ("Cine y Series", "HBO Plus", ("hbo plus", "hboplus")),
+    ("Cine y Series", "HBO Family", ("hbo family",)),
+    ("Cine y Series", "HBO Signature", ("hbo signature",)),
+    ("Cine y Series", "HBO Mundi", ("hbo mundi",)),
+    ("Cine y Series", "HBO Xtreme", ("hbo xtreme",)),
+    ("Cine y Series", "Cinemax", ("cinemax",)),
+    ("Cine y Series", "Cinecanal", ("cinecanal",)),
+    ("Cine y Series", "Space", ("space",)),
+    ("Cine y Series", "TNT", ("tnt",)),
+    ("Cine y Series", "TNT Series", ("tnt series",)),
+    ("Cine y Series", "Warner Channel", ("warner channel", "warner")),
+    ("Cine y Series", "Universal TV", ("universal tv", "studio universal")),
+    ("Cine y Series", "Universal Cinema", ("universal cinema",)),
+    ("Cine y Series", "Sony Channel", ("sony channel", "sony")),
+    ("Cine y Series", "AXN", ("axn",)),
+    ("Cine y Series", "Star Channel", ("star channel", "fox channel")),
+    ("Cine y Series", "FX", ("fx",)),
+    ("Cine y Series", "AMC", ("amc",)),
+    ("Cine y Series", "Paramount Network", ("paramount network", "paramount")),
+    ("Cine y Series", "Golden", ("golden",)),
+    ("Cine y Series", "Golden Edge", ("golden edge",)),
+    ("Cine y Series", "A&E", ("a&e", "a and e")),
+    ("Cine y Series", "Film & Arts", ("film & arts", "film and arts")),
+    ("Cine y Series", "TCM", ("tcm",)),
+    ("Cine y Series", "I-Sat", ("i-sat", "isat")),
+    ("Cine y Series", "Europa Europa", ("europa europa",)),
+    ("Cine y Series", "Lifetime", ("lifetime",)),
+    ("Noticias", "TN", ("tn", "todo noticias")),
+    ("Noticias", "C5N", ("c5n",)),
+    ("Noticias", "A24", ("a24",)),
+    ("Noticias", "Crónica TV", ("cronica tv", "crónica tv")),
+    ("Noticias", "LN+", ("ln+", "ln mas")),
+    ("Noticias", "Canal 26", ("canal 26",)),
+    ("Noticias", "TV Pública", ("tv publica", "tv pública")),
+    ("Noticias", "América TV", ("america tv", "américa tv")),
+    ("Noticias", "Telefe", ("telefe",)),
+    ("Noticias", "El Trece", ("eltrece", "el trece")),
+    ("Deportes", "TyC Sports", ("tyc sports", "t y c sports")),
+    ("Deportes", "ESPN", ("espn",)),
+    ("Deportes", "ESPN 2", ("espn 2", "espn2")),
+    ("Deportes", "ESPN 3", ("espn 3", "espn3")),
+    ("Deportes", "Fox Sports", ("fox sports",)),
+    ("Deportes", "TNT Sports", ("tnt sports",)),
+    ("Deportes", "DirecTV Sports", ("directv sports", "d sports")),
+    ("Deportes", "DeporTV", ("deportv",)),
+    ("Infantiles", "Cartoon Network", ("cartoon network",)),
+    ("Infantiles", "Nickelodeon", ("nickelodeon", "nick")),
+    ("Infantiles", "Disney Channel", ("disney channel",)),
+    ("Infantiles", "Disney Junior", ("disney junior",)),
+    ("Infantiles", "Discovery Kids", ("discovery kids",)),
+    ("Infantiles", "Tooncast", ("tooncast",)),
+    ("Documentales", "Discovery Channel", ("discovery channel",)),
+    ("Documentales", "Animal Planet", ("animal planet",)),
+    ("Documentales", "National Geographic", ("national geographic", "nat geo")),
+    ("Documentales", "History", ("history channel", "history")),
+    ("Documentales", "Discovery Science", ("discovery science",)),
+    ("Música", "MTV", ("mtv",)),
+    ("Música", "VH1", ("vh1",)),
+    ("Música", "Quiero Música", ("quiero musica", "quiero música")),
+    ("Música", "MuchMusic", ("muchmusic",)),
+    ("Entretenimiento", "Comedy Central", ("comedy central",)),
+    ("Entretenimiento", "E! Entertainment", ("e! entertainment", "e entertainment")),
+    ("Entretenimiento", "Food Network", ("food network",)),
+    ("Entretenimiento", "El Gourmet", ("el gourmet",)),
+    ("General", "Canal 9", ("canal 9",)),
+    ("General", "Canal 10", ("canal 10",)),
+    ("General", "Canal 7", ("canal 7",)),
+]
+
+def _fold_name(value: str) -> str:
+    value = value.casefold().replace("&", " and ")
+    value = re.sub(r"\\b(hd|fhd|uhd|4k|sd|1080p|720p|hevc|h265|h264|latino|argentina|arg)\\b", " ", value)
+    return re.sub(r"[^a-z0-9]+", " ", value).strip()
+
+def catalog_match(name: str, group: str = ""):
+    # Match a known channel by its actual name, not only by group-title.
+    folded = " " + _fold_name(name) + " "
+    for category, canonical, aliases in CHANNEL_CATALOG:
+        for alias in aliases:
+            needle = " " + _fold_name(alias) + " "
+            if needle.strip() and needle in folded:
+                # Avoid classifying TNT Sports as the movie channel TNT.
+                if canonical == "TNT" and " sports " in folded:
+                    continue
+                if canonical == "HBO" and re.search(r"\\bhbo\\s*(2|plus|family|signature|mundi|xtreme)\\b", name, re.I):
+                    continue
+                return category, canonical
+    return None
+
 CATEGORY_ORDER = {
     "Adultos": 0,
     "Cine y Series": 1,
@@ -194,10 +289,14 @@ def keep_entry(entry):
     if re.search(r"\b(S\d{1,2}E\d{1,2}|temporada\s+\d+|episodio\s+\d+)\b", name, re.I):
         return False
 
-    # Explicit language/country metadata takes precedence over loose title hints.
+    # La coincidencia con un canal conocido permite incluirlo aunque el proveedor
+    # omita país/idioma (caso típico de HBO, Space, Cinecanal, etc.).
+    known = catalog_match(name, group)
+    # Explicit language/country metadata still blocks a clearly foreign-language
+    # feed unless its channel is a recognized Argentine/Spanish service.
     explicit_non_spanish = bool(CLEAR_NON_SPANISH_RE.search(lang))
     explicit_other_country = bool(country_name and NON_ARG_COUNTRY_RE.search(country_name))
-    if explicit_non_spanish or explicit_other_country:
+    if (explicit_non_spanish or explicit_other_country) and not known:
         return False
 
     is_argentina = bool(ARGENTINA_RE.search(extra))
@@ -214,17 +313,19 @@ def keep_entry(entry):
     # metadata above says otherwise. Unknown-language entries are excluded.
     # Adult channels are retained in their own category even when the provider
     # omits language metadata; explicit non-Spanish metadata is still rejected.
-    if not is_spanish and not is_adult:
+    if not is_spanish and not is_adult and not known:
         return False
 
-    # Retain Argentine content and Spanish-language events/channels; events
-    # need not be permanent channel names to qualify.
-    return is_argentina or is_spanish or is_adult
+    # Retain known named live channels even if provider metadata is incomplete.
+    return bool(known) or is_argentina or is_spanish or is_adult
 
 
 def category_for(entry):
     name, attrs, group, country, language, extra = metadata(entry)
     text = f"{name} {group}"
+    known = catalog_match(name, group)
+    if known:
+        return known[0]
     # Primero noticias/deportes para no clasificar, por ejemplo, TNT Sports como cine.
     if ADULT_RE.search(text):
         return "Adultos"
@@ -267,7 +368,59 @@ def priority(entry):
 
 
 def entry_name(entry):
-    return metadata(entry)[0].casefold()
+    name, attrs, group, country, language, extra = metadata(entry)
+    known = catalog_match(name, group)
+    if known:
+        return "catalog:" + _fold_name(known[1])
+    return _fold_name(name)
+
+def set_logo_if_missing(entry, logo_url):
+    if not logo_url:
+        return entry
+    extinf = entry[0]
+    if re.search(r'\\btvg-logo="[^"]+"', extinf, re.I):
+        return entry
+    if re.search(r'\\btvg-logo=""', extinf, re.I):
+        extinf = re.sub(r'\\btvg-logo=""', f'tvg-logo="{logo_url}"', extinf, count=1, flags=re.I)
+    else:
+        comma = extinf.rfind(",")
+        if comma >= 0:
+            extinf = extinf[:comma] + f' tvg-logo="{logo_url}"' + extinf[comma:]
+    return [extinf, *entry[1:]]
+
+def fetch_logo_manifest():
+    # Usa nombres reales de archivos de un repositorio público de logos; no inventa URLs.
+    manifest = []
+    for directory in ("argentina", "international", "world-latin-america"):
+        url = f"https://api.github.com/repos/tv-logo/tv-logos/contents/countries/{directory}"
+        request = urllib.request.Request(url, headers={"User-Agent": "TVFULL-Logo-Finder/1.0", "Accept": "application/vnd.github+json"})
+        try:
+            with urllib.request.urlopen(request, timeout=8) as response:
+                payload = json.loads(response.read(2 * 1024 * 1024).decode("utf-8", errors="replace"))
+            if isinstance(payload, list):
+                for item in payload:
+                    name = item.get("name", "")
+                    if name.lower().endswith((".png", ".webp", ".jpg", ".jpeg")):
+                        manifest.append((name, item.get("download_url", "")))
+        except Exception:
+            continue
+    return manifest
+
+def find_logo(name, manifest):
+    if not manifest:
+        return ""
+    target = _fold_name(name).replace(" ", "-")
+    if not target:
+        return ""
+    # Exact filename match first, then a conservative channel-name prefix match.
+    ranked = []
+    for filename, url in manifest:
+        stem = filename.rsplit(".", 1)[0].casefold()
+        stem_fold = _fold_name(stem.replace("-", " "))
+        score = 2 if stem_fold == _fold_name(name) else 1 if stem_fold.startswith(_fold_name(name) + " ") else 0
+        if score:
+            ranked.append((score, len(stem), url))
+    return max(ranked, default=(0, 0, ""))[2]
 
 
 def probe_stream(url: str):
@@ -345,6 +498,21 @@ def main():
         print("ERROR: ningún proveedor entregó entradas que coincidan con los filtros; no se genera una lista vacía.", file=sys.stderr)
         return 1
 
+    # Rellenar logos faltantes con archivos existentes del catálogo público.
+    # Se conserva siempre el logo del proveedor si ya lo trae.
+    logo_manifest = fetch_logo_manifest()
+    logos_added = 0
+    for candidate in candidates:
+        entry = candidate["entry"]
+        name, attrs, group, country, language, extra = metadata(entry)
+        if not attrs.get("tvg-logo"):
+            known = catalog_match(name, group)
+            logo = find_logo(known[1] if known else name, logo_manifest)
+            if logo:
+                candidate["entry"] = set_logo_if_missing(entry, logo)
+                candidate["has_logo"] = True
+                logos_added += 1
+
     # Probar primero los canales duplicados, donde elegir la mejor fuente aporta más.
     group_counts = {}
     for candidate in candidates:
@@ -404,12 +572,15 @@ def main():
         "canales_ganadores_probados_y_correctos": passed,
         "metodo": "prueba HTTP breve con Range; no garantiza reproducción sostenida",
         "limite_pruebas": MAX_PROBES,
+        "logos_completados": logos_added,
+        "proveedores_configurados": len(providers),
         "nota": "No se guardan URLs, usuarios ni contraseñas en este informe.",
     }
     Path("dist/diagnostico_estabilidad.json").write_text(
         json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
     print(f"Lista creada: {OUT} — {len(winners)} canales únicos de {total_input} entradas revisadas.")
+    print(f"Proveedores configurados: {len(providers)}/10; logos completados: {logos_added}.")
     print(f"Estabilidad: {len(results)} URLs probadas; {sum(1 for result in results.values() if result['ok'])} entregaron datos en la prueba breve.")
     print("La mejor alternativa por canal se elige por respuesta válida, tiempo de respuesta y disponibilidad de logo.")
     if len(candidates) > len(results):
