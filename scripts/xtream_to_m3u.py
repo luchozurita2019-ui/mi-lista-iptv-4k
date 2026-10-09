@@ -47,10 +47,11 @@ EVENT_RE = re.compile(
 )
 # Explicit VOD/individual-title groups are not live TV channels.
 VOD_RE = re.compile(
-    # Xtream suele mezclar TV en vivo, películas y series en el mismo get.php.
-    # Los nombres de grupo de VOD deben bloquearse antes de normalizar categorías.
+    # No bloquear "películas/movies" por sí solo: también puede nombrar canales
+    # lineales de cine. El VOD se identifica por su ruta, marcadores explícitos
+    # de catálogo/a pedido o episodios individuales.
     r"\b(vod|video\s*on\s*demand|on\s*demand|a\s*la\s*carta|"
-    r"peliculas?|films?|movies?|series|tv\s*shows?|shows?\s*tv|anime|"
+    r"series|tv\s*shows?|shows?\s*tv|anime|"
     r"catalogo|cat[aá]logo|descargas?|temporadas?|episodios?|"
     r"full\s*movies?|all\s*movies?|all\s*series?|"
     r"contenido\s*a\s*pedido|estrenos\s*vod)\b",
