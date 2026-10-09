@@ -5,6 +5,8 @@ on:
     branches: [main]
     paths:
       - "scripts/xtream_to_m3u.py"
+      - "scripts/stream_stability.py"
+      - "tests/**"
       - ".github/workflows/actualizar-lista-xtream.yml"
   workflow_dispatch:
   schedule:
@@ -25,8 +27,23 @@ jobs:
       - name: Descargar repositorio
         uses: actions/checkout@v4
 
+      - name: Validar selector sin credenciales ni proveedores reales
+        run: |
+          python3 -m unittest discover -s tests -v
+          python3 -m py_compile scripts/xtream_to_m3u.py scripts/stream_stability.py
+
+      - name: Preparar verificación multimedia
+        run: |
+          if ! command -v ffprobe >/dev/null; then
+            sudo apt-get update
+            sudo apt-get install -y ffmpeg
+          fi
+          ffprobe -version | head -n 1
+
       - name: Generar lista combinada
+        id: generar
         env:
+          STABILITY_FFPROBE: "1"
           XTREAM_1_URL: ${{ secrets.XTREAM_1_URL }}
           XTREAM_1_SERVER: ${{ secrets.XTREAM_1_SERVER }}
           XTREAM_1_USERNAME: ${{ secrets.XTREAM_1_USERNAME }}
@@ -70,11 +87,12 @@ jobs:
         run: python3 scripts/xtream_to_m3u.py
 
       - name: Publicar lista fija en main
+        if: github.ref == 'refs/heads/main'
         run: |
           cp dist/lista_clasica.m3u lista_clasica.m3u
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add lista_clasica.m3u
+          git add lista_clasica.m3u stability_history.json
           if git diff --cached --quiet; then
             echo "La lista no tuvo cambios; no hace falta crear un commit."
           else
@@ -82,10 +100,23 @@ jobs:
             git push
           fi
 
+      - name: Conservar mediciones cuando se rechaza una generación
+        if: always() && github.ref == 'refs/heads/main' && steps.generar.outcome == 'failure'
+        run: |
+          if [ ! -f stability_history.json ]; then exit 0; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add stability_history.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Registrar mediciones sin reemplazar la lista"
+            git push
+          fi
+
       - name: Guardar lista como artefacto de diagnóstico temporal
+        if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: lista-clasica-m3u
-          path: dist/
-          if-no-files-found: error
+          name: diagnostico-estabilidad
+          path: dist/diagnostico_estabilidad.json
+          if-no-files-found: ignore
           retention-days: 1

@@ -11,7 +11,10 @@ import re
 import sys
 import time
 import json
-from concurrent.futures import ThreadPoolExecutor, as_completed
+from concurrent.futures import ThreadPoolExecutor, wait, FIRST_COMPLETED
+from collections import defaultdict, deque
+from stream_stability import (Probe, request_target, identity, load_history, observe,
+                              choose, probe_order, validate_retention, atomic_json)
 import urllib.parse
 import urllib.request
 import unicodedata
@@ -19,9 +22,7 @@ from pathlib import Path
 
 OUT = Path("dist/lista_clasica.m3u")
 TIMEOUT = 20
-PROBE_TIMEOUT = 4
-PROBE_BYTES = 4096
-PROBE_WORKERS = 24
+PROBE_WORKERS = 4
 MAX_PROBES = 600
 MAX_BYTES = 80 * 1024 * 1024
 
@@ -78,35 +79,36 @@ ENTERTAINMENT_RE = re.compile(r"\b(comedia|comedy|entretenimiento|variedades|rea
 # no marque idioma/país y consolidar variantes como "HBO HD" y "HBO FHD".
 # Solo se seleccionan URLs que aparezcan realmente en alguno de los proveedores.
 CHANNEL_CATALOG = [
-    ("Cine y Series", "HBO", ("hbo",)),
-    ("Cine y Series", "HBO 2", ("hbo 2", "hbo2")),
-    ("Cine y Series", "HBO Plus", ("hbo plus", "hboplus")),
-    ("Cine y Series", "HBO Family", ("hbo family",)),
-    ("Cine y Series", "HBO Signature", ("hbo signature",)),
-    ("Cine y Series", "HBO Mundi", ("hbo mundi",)),
-    ("Cine y Series", "HBO Xtreme", ("hbo xtreme",)),
-    ("Cine y Series", "Cinemax", ("cinemax",)),
-    ("Cine y Series", "Cinecanal", ("cinecanal",)),
-    ("Cine y Series", "Space", ("space",)),
-    ("Cine y Series", "TNT", ("tnt",)),
-    ("Cine y Series", "TNT Series", ("tnt series",)),
-    ("Cine y Series", "Warner Channel", ("warner channel", "warner")),
-    ("Cine y Series", "Universal TV", ("universal tv", "studio universal")),
-    ("Cine y Series", "Universal Cinema", ("universal cinema",)),
-    ("Cine y Series", "Sony Channel", ("sony channel", "sony")),
-    ("Cine y Series", "AXN", ("axn",)),
-    ("Cine y Series", "Star Channel", ("star channel", "fox channel")),
-    ("Cine y Series", "FX", ("fx",)),
-    ("Cine y Series", "AMC", ("amc",)),
-    ("Cine y Series", "Paramount Network", ("paramount network", "paramount")),
-    ("Cine y Series", "Golden", ("golden",)),
-    ("Cine y Series", "Golden Edge", ("golden edge",)),
-    ("Cine y Series", "A&E", ("a&e", "a and e")),
-    ("Cine y Series", "Film & Arts", ("film & arts", "film and arts")),
-    ("Cine y Series", "TCM", ("tcm",)),
-    ("Cine y Series", "I-Sat", ("i-sat", "isat")),
-    ("Cine y Series", "Europa Europa", ("europa europa",)),
-    ("Cine y Series", "Lifetime", ("lifetime",)),
+    ("TV · Ficción", "HBO", ("hbo",)),
+    ("TV · Ficción", "HBO 2", ("hbo 2", "hbo2")),
+    ("TV · Ficción", "HBO Plus", ("hbo plus", "hboplus")),
+    ("TV · Ficción", "HBO Family", ("hbo family",)),
+    ("TV · Ficción", "HBO Signature", ("hbo signature",)),
+    ("TV · Ficción", "HBO Mundi", ("hbo mundi",)),
+    ("TV · Ficción", "HBO Xtreme", ("hbo xtreme",)),
+    ("TV · Ficción", "Cinemax", ("cinemax",)),
+    ("TV · Ficción", "Cinecanal", ("cinecanal",)),
+    ("TV · Ficción", "Space", ("space",)),
+    ("TV · Ficción", "TNT", ("tnt",)),
+    ("TV · Ficción", "TNT Series", ("tnt series",)),
+    ("TV · Ficción", "Warner Channel", ("warner channel", "warner")),
+    ("TV · Ficción", "Universal TV", ("universal tv",)),
+    ("TV · Ficción", "Studio Universal", ("studio universal",)),
+    ("TV · Ficción", "Universal Cinema", ("universal cinema",)),
+    ("TV · Ficción", "Sony Channel", ("sony channel", "sony")),
+    ("TV · Ficción", "AXN", ("axn",)),
+    ("TV · Ficción", "Star Channel", ("star channel", "fox channel")),
+    ("TV · Ficción", "FX", ("fx",)),
+    ("TV · Ficción", "AMC", ("amc",)),
+    ("TV · Ficción", "Paramount Network", ("paramount network", "paramount")),
+    ("TV · Ficción", "Golden", ("golden",)),
+    ("TV · Ficción", "Golden Edge", ("golden edge",)),
+    ("TV · Ficción", "A&E", ("a&e", "a and e")),
+    ("TV · Ficción", "Film & Arts", ("film & arts", "film and arts")),
+    ("TV · Ficción", "TCM", ("tcm",)),
+    ("TV · Ficción", "I-Sat", ("i-sat", "isat")),
+    ("TV · Ficción", "Europa Europa", ("europa europa",)),
+    ("TV · Ficción", "Lifetime", ("lifetime",)),
     ("Noticias", "TN", ("tn", "todo noticias")),
     ("Noticias", "C5N", ("c5n",)),
     ("Noticias", "A24", ("a24",)),
@@ -279,7 +281,7 @@ CATEGORY_ORDER = {
     "Argentina · Cultura": 2,
     "Argentina · Entretenimiento": 3,
     "Argentina · Regionales": 4,
-    "Cine y Series": 5,
+    "TV · Ficción": 5,
     "Noticias": 6,
     "Deportes": 7,
     "Infantiles": 8,
@@ -339,11 +341,23 @@ def fetch_m3u(provider_id: int, url: str) -> str:
     with urllib.request.urlopen(request, timeout=TIMEOUT) as response:
         if response.status != 200:
             raise RuntimeError(f"HTTP {response.status}")
-        data = response.read(MAX_BYTES + 1)
+        deadline = time.monotonic() + TIMEOUT
+        chunks = []
+        size = 0
+        while size <= MAX_BYTES:
+            if time.monotonic() >= deadline:
+                raise TimeoutError("playlist_budget")
+            chunk = response.read1(min(65536, MAX_BYTES + 1 - size))
+            if not chunk:
+                break
+            chunks.append(chunk)
+            size += len(chunk)
+        data = b"".join(chunks)
     if len(data) > MAX_BYTES:
         raise RuntimeError("la lista supera el límite de 80 MiB")
     text = data.decode("utf-8-sig", errors="replace")
-    if "#EXTM3U" not in text[:2048]:
+    first_line = text.lstrip().splitlines()[0] if text.strip() else ""
+    if first_line != "#EXTM3U" and not first_line.startswith("#EXTM3U "):
         raise RuntimeError("la respuesta no parece una lista M3U válida")
     return text
 
@@ -364,9 +378,20 @@ def parse_entries(text: str):
     return entries
 
 
+def extinf_comma(line):
+    quoted = False
+    for index, char in enumerate(line):
+        if char == '"':
+            quoted = not quoted
+        elif char == ',' and not quoted:
+            return index
+    return -1
+
+
 def metadata(entry):
     extinf = entry[0]
-    name = extinf.rsplit(",", 1)[-1].strip()
+    comma = extinf_comma(extinf)
+    name = extinf[comma + 1:].strip() if comma >= 0 else ""
     attrs = {}
     for key, value in re.findall(r'([\w-]+)="([^"]*)"', extinf):
         attrs[key.casefold()] = value
@@ -448,7 +473,7 @@ def category_for(entry):
         return "Eventos" if re.search(r"\b(eventos?|ppv|partidos?\s*en\s*vivo)\b", text, re.I) else "Deportes"
     # Cine/series en señales lineales; VOD ya se filtra antes.
     if CINEMA_CHANNEL_RE.search(name) or re.search(r"\b(cine|cinema|pel[ií]culas|series|films?|movies?)\b", group, re.I):
-        return "Cine y Series"
+        return "TV · Ficción"
     if KIDS_RE.search(text):
         return "Infantiles"
     if DOCU_RE.search(text):
@@ -469,7 +494,7 @@ def set_group_title(entry, category):
     if re.search(r'\bgroup-title="[^"]*"', extinf, re.I):
         extinf = re.sub(r'\bgroup-title="[^"]*"', lambda _: f'group-title="{category}"', extinf, count=1, flags=re.I)
     else:
-        comma = extinf.rfind(",")
+        comma = extinf_comma(extinf)
         if comma >= 0:
             extinf = extinf[:comma] + f' group-title="{category}"' + extinf[comma:]
     return [extinf, *entry[1:]]
@@ -489,7 +514,7 @@ def set_display_name(entry):
             lambda _: f'tvg-name="{known[1]}"',
             extinf, count=1, flags=re.I
         )
-    comma = extinf.rfind(",")
+    comma = extinf_comma(extinf)
     if comma >= 0:
         extinf = extinf[:comma + 1] + known[1]
     return [extinf, *entry[1:]]
@@ -517,7 +542,7 @@ def set_logo_if_missing(entry, logo_url):
     if re.search(r'\btvg-logo=""', extinf, re.I):
         extinf = re.sub(r'\btvg-logo=""', f'tvg-logo="{logo_url}"', extinf, count=1, flags=re.I)
     else:
-        comma = extinf.rfind(",")
+        comma = extinf_comma(extinf)
         if comma >= 0:
             extinf = extinf[:comma] + f' tvg-logo="{logo_url}"' + extinf[comma:]
     return [extinf, *entry[1:]]
@@ -557,56 +582,26 @@ def find_logo(name, manifest):
     return max(ranked, default=(0, 0, ""))[2]
 
 
-def probe_stream(url: str):
-    """Prueba breve de la URL y descarta respuestas HTML/de error que simulan un stream."""
-    started = time.monotonic()
-    request = urllib.request.Request(
-        url,
-        headers={
-            "User-Agent": "TVFULL-Stream-Check/1.1",
-            "Accept": "video/*,application/vnd.apple.mpegurl,application/x-mpegURL,application/octet-stream,*/*",
-            "Range": f"bytes=0-{PROBE_BYTES - 1}",
-            "Connection": "close",
-        },
-    )
-    try:
-        with urllib.request.urlopen(request, timeout=PROBE_TIMEOUT) as response:
-            status = response.status
-            data = response.read(PROBE_BYTES)
-            content_type = response.headers.get("Content-Type", "").casefold()
-            elapsed = time.monotonic() - started
-            sample = data[:1024].lstrip().lower()
-            # HTTP 200 no alcanza: algunos proveedores devuelven una página HTML
-            # de error/autenticación en lugar del video.
-            error_page = (
-                sample.startswith((b"<!doctype html", b"<html", b"<head", b"<body"))
-                or any(token in sample for token in (
-                    b"invalid username", b"invalid password", b"unauthorized",
-                    b"access denied", b"not found", b"account expired",
-                    b"stream not found", b"server error",
-                ))
-            )
-            hls_manifest = sample.startswith(b"#extm3u")
-            ts_packet = len(data) >= 377 and data[0] == 0x47 and data[188] == 0x47 and data[376] == 0x47
-            media_type = any(token in content_type for token in (
-                "video/", "audio/", "mpegurl", "mp2t", "octet-stream", "mp4",
-            ))
-            ok = status in (200, 206) and bool(data) and not error_page and (hls_manifest or ts_packet or media_type or content_type in ("", "text/plain"))
-            return {
-                "ok": ok,
-                "elapsed": elapsed,
-                "bytes": len(data),
-                "status": status,
-                "score": (1 if ok else 0, -elapsed, len(data)),
-            }
-    except Exception:
-        return {
-            "ok": False,
-            "elapsed": time.monotonic() - started,
-            "bytes": 0,
-            "status": 0,
-            "score": (0, -9999.0, 0),
-        }
+def probe_stream(url: str, headers=None):
+    return Probe(verify_media=os.getenv("STABILITY_FFPROBE") == "1").run(url, headers)
+
+
+def validate_playlist(entries):
+    if not entries:
+        raise ValueError("empty_playlist")
+    for entry in entries:
+        name, attrs, group, *_ = metadata(entry)
+        url, headers = request_target(entry)
+        target = urllib.parse.urlsplit(url)
+        if target.scheme not in ("http", "https") or not target.netloc:
+            raise ValueError("invalid_url")
+        if ADULT_RE.search(name + " " + group + " " + target.path):
+            raise ValueError("adult_content")
+        if VOD_RE.search(name + " " + group) or re.search(r"/(?:movie|movies|series|vod)(?:/|$)", target.path, re.I):
+            raise ValueError("vod_content")
+        if not name or group == "General":
+            raise ValueError("invalid_metadata")
+
 
 
 def main():
@@ -663,82 +658,86 @@ def main():
                 candidate["has_logo"] = True
                 logos_added += 1
 
-    # Probar primero los canales duplicados, donde elegir la mejor fuente aporta más.
-    group_counts = {}
+    history_path = Path("stability_history.json")
+    history = load_history(history_path)
+    baseline = parse_entries(Path("lista_clasica.m3u").read_text(encoding="utf-8")) if Path("lista_clasica.m3u").exists() else []
+    previous = {entry_name(entry): identity(*request_target(entry)) for entry in baseline}
+    grouped = defaultdict(list)
+    seen = set()
     for candidate in candidates:
-        group_counts[candidate["name"]] = group_counts.get(candidate["name"], 0) + 1
-    probe_order = sorted(
-        range(len(candidates)),
-        key=lambda i: (group_counts[candidates[i]["name"]] > 1, group_counts[candidates[i]["name"]]),
-        reverse=True,
-    )
-    selected_indices = probe_order[:MAX_PROBES]
+        candidate["url"], candidate["headers"] = request_target(candidate["entry"])
+        candidate["key"] = identity(candidate["url"], candidate["headers"])
+        # A URL with different required headers is a different transport identity.
+        pair = (candidate["name"], candidate["key"])
+        if pair not in seen:
+            grouped[candidate["name"]].append(candidate)
+            seen.add(pair)
+    selected = probe_order(grouped, history, previous)[:MAX_PROBES]
+    # Serialize each account's checks so an authorized single-connection account
+    # is never flooded by the selector. Only four provider jobs run concurrently.
+    by_provider = defaultdict(list)
+    for candidate in selected:
+        source = dict(providers)[candidate["provider"]]
+        parsed_source = urllib.parse.urlsplit(source)
+        credentials = urllib.parse.parse_qs(parsed_source.query)
+        account = identity(json.dumps([parsed_source.netloc, credentials.get("username"), credentials.get("password")]))
+        by_provider[account].append(candidate)
+    queues = {account: deque(batch) for account, batch in by_provider.items()}
+    ready = deque(queues)
+    deadline = time.monotonic() + 15 * 60
     results = {}
     with ThreadPoolExecutor(max_workers=PROBE_WORKERS) as pool:
-        futures = {
-            pool.submit(probe_stream, candidates[i]["entry"][-1]): i
-            for i in selected_indices
-        }
-        for future in as_completed(futures):
-            i = futures[future]
-            try:
-                results[i] = future.result()
-            except Exception:
-                results[i] = {"ok": False, "elapsed": 9999.0, "bytes": 0, "status": 0, "score": (0, -9999.0, 0)}
-
-    # Elegir una sola URL por canal: primero las que entregan datos, luego las más rápidas.
-    # Si todas fallan o quedaron sin probar, mantener una alternativa como respaldo.
-    grouped = {}
-    for i, candidate in enumerate(candidates):
-        grouped.setdefault(candidate["name"], []).append((i, candidate))
+        active = {}
+        while ready or active:
+            if time.monotonic() >= deadline:
+                ready.clear()
+            while ready and len(active) < PROBE_WORKERS:
+                account = ready.popleft()
+                candidate = queues[account].popleft()
+                future = pool.submit(probe_stream, candidate["url"], candidate["headers"])
+                active[future] = (account, candidate["key"])
+            if not active:
+                break
+            completed, _ = wait(active, return_when=FIRST_COMPLETED)
+            for future in completed:
+                account, key = active.pop(future)
+                try:
+                    results[key] = future.result()
+                except Exception:
+                    results[key] = {"state": "fail", "reason": "transport", "latency": None}
+                if queues[account] and time.monotonic() < deadline:
+                    ready.append(account)
+    for key, result in results.items():
+        observe(history, key, result)
     winners = []
-    tested = passed = 0
+    winner_states = defaultdict(int)
     for name, options in grouped.items():
-        def rank(item):
-            i, candidate = item
-            result = results.get(i)
-            if result is None:
-                # Sin prueba por el límite de seguridad: neutral, por detrás de una prueba exitosa.
-                return (0, -9998.0, int(candidate["has_logo"]))
-            return (*result["score"], int(candidate["has_logo"]))
-        winner_i, winner = max(options, key=rank)
-        if winner_i in results:
-            tested += 1
-            if results[winner_i]["ok"]:
-                passed += 1
+        # Never introduce a URL measured as failed, or HLS conclusively marked VOD.
+        options = [c for c in options if results.get(c["key"], {}).get("reason") != "vod"
+                   and (results.get(c["key"], {}).get("state") != "fail" or c["key"] == previous.get(name))]
+        if not options:
+            continue
+        winner = choose(options, results, history, previous.get(name))
+        state = results.get(winner["key"], {}).get("state", "unknown")
+        winner_states[state] += 1
         winners.append((priority(winner["entry"]), winner["entry"]))
-
-    winners.sort(key=lambda item: item[0])
-    playlist_lines = [line for _, entry in winners for line in entry]
-    # Validación final: impedir publicar una lista vacía, adulta o con entradas VOD.
-    final_entries = parse_entries("\n".join(playlist_lines))
-    if not final_entries:
-        print("ERROR: la lista final quedó vacía; se cancela la publicación.", file=sys.stderr)
-        return 1
-    invalid_final = []
-    for entry in final_entries:
-        final_name, final_attrs, final_group, *_ = metadata(entry)
-        final_path = urllib.parse.urlparse(entry[-1]).path.casefold()
-        if ADULT_RE.search(final_name + " " + final_group):
-            invalid_final.append("adulto")
-        if VOD_RE.search(final_name + " " + final_group) or re.search(r"/(?:movie|movies|series|vod)(?:/|$)", final_path):
-            invalid_final.append("vod")
-        if final_group == "General":
-            invalid_final.append("General")
-    if invalid_final:
-        print("ERROR: validación final detectó entradas prohibidas; no se publica la lista.", file=sys.stderr)
-        return 1
-    temp = OUT.with_suffix(".m3u.tmp")
-    temp.write_text("#EXTM3U\n" + "\n".join(playlist_lines) + "\n", encoding="utf-8")
-    temp.replace(OUT)
-
+    # Save measurements even when publication is refused. They contain no URLs.
+    atomic_json(history_path, history)
     report = {
         "canales_unicos": len(winners),
         "entradas_candidatas": len(candidates),
         "urls_probadas": len(results),
-        "urls_con_datos": sum(1 for result in results.values() if result["ok"]),
-        "canales_ganadores_probados_y_correctos": passed,
-        "metodo": "prueba HTTP breve con Range; no garantiza reproducción sostenida",
+        "urls_con_datos": sum(1 for result in results.values() if result["state"] == "pass"),
+        "ganadores_por_evidencia": dict(winner_states),
+        "metodo": "muestras TS continuas / segmentos y avance HLS + historial ponderado; no garantiza reproducción",
+        "ffprobe_habilitado": os.getenv("STABILITY_FFPROBE") == "1",
+        "urls_parciales": sum(row["state"] == "partial" for row in results.values()),
+        "urls_fallidas": sum(row["state"] == "fail" for row in results.values()),
+        "urls_sin_probar": len(seen) - len(results),
+        "historial_version": 1,
+        "conexiones_por_proveedor": 1,
+        "presupuesto_global_segundos": 900,
+        "publicacion": "pendiente",
         "limite_pruebas": MAX_PROBES,
         "logos_completados": logos_added,
         "proveedores_configurados": len(providers),
@@ -747,13 +746,39 @@ def main():
     Path("dist/diagnostico_estabilidad.json").write_text(
         json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
+    if results and not any(row["state"] in ("pass", "partial") for row in results.values()):
+        report["publicacion"] = "rechazada_sin_medios"
+        atomic_json("dist/diagnostico_estabilidad.json", report)
+        print("ERROR: ninguna muestra tiene evidencia de medios; se conserva la lista publicada.", file=sys.stderr)
+        return 1
+
+    winners.sort(key=lambda item: item[0])
+    playlist_lines = [line for _, entry in winners for line in entry]
+    # Compare logical identities before replacing the previous good playlist.
+    final_entries = parse_entries("\n".join(playlist_lines))
+    try:
+        validate_playlist(final_entries)
+        if len(final_entries) != len(winners):
+            raise ValueError("entry_count_mismatch")
+        validate_retention(set(previous), {entry_name(entry) for entry in final_entries})
+    except ValueError as exc:
+        report["publicacion"] = str(exc)
+        atomic_json("dist/diagnostico_estabilidad.json", report)
+        print(f"ERROR: publicación rechazada ({exc}); se conserva la lista anterior.", file=sys.stderr)
+        return 1
+    temp = OUT.with_suffix(".m3u.tmp")
+    temp.write_text("#EXTM3U\n" + "\n".join(playlist_lines) + "\n", encoding="utf-8")
+    temp.replace(OUT)
+    report["publicacion"] = "validada"
+    atomic_json("dist/diagnostico_estabilidad.json", report)
+
     print(f"Lista creada: {OUT} — {len(winners)} canales únicos de {total_input} entradas revisadas.")
     print(f"Proveedores configurados: {len(providers)}/10; logos completados: {logos_added}.")
-    print(f"Estabilidad: {len(results)} URLs probadas; {sum(1 for result in results.values() if result['ok'])} entregaron datos en la prueba breve.")
-    print("La mejor alternativa por canal se elige por respuesta válida, tiempo de respuesta y disponibilidad de logo.")
+    print(f"Estabilidad: {len(results)} URLs probadas; {sum(1 for result in results.values() if result['state'] == 'pass')} mostraron continuidad o avance HLS en la muestra.")
+    print("Selección por evidencia actual, fiabilidad histórica y margen de cambio; el logo solo desempata.")
     if len(candidates) > len(results):
-        print(f"Nota: se alcanzó el límite de {MAX_PROBES} pruebas; los canales restantes conservan una alternativa sin medir.")
-    print("IMPORTANTE: el archivo generado contiene URLs privadas. No lo publiques en un repositorio público.")
+        print(f"Nota: hay alternativas sin medir por los límites de cantidad/tiempo; los canales restantes conservan una alternativa sin medir.")
+    print("IMPORTANTE: los Secrets protegen las entradas, pero el M3U público puede exponer credenciales en sus URLs.")
     print("Nota: la prueba breve no demuestra estabilidad durante horas ni compatibilidad con todos los reproductores.")
     return 0
 
