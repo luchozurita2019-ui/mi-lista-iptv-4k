@@ -575,7 +575,7 @@ def probe_stream(url: str):
             data = response.read(PROBE_BYTES)
             content_type = response.headers.get("Content-Type", "").casefold()
             elapsed = time.monotonic() - started
-            sample = data[:1024].lstrip().casefold()
+            sample = data[:1024].lstrip().lower()
             # HTTP 200 no alcanza: algunos proveedores devuelven una página HTML
             # de error/autenticación en lugar del video.
             error_page = (
