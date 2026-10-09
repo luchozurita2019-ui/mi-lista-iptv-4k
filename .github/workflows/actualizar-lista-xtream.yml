@@ -22,33 +22,43 @@ jobs:
 
       - name: Generar lista combinada
         env:
+          XTREAM_1_URL: ${{ secrets.XTREAM_1_URL }}
           XTREAM_1_SERVER: ${{ secrets.XTREAM_1_SERVER }}
           XTREAM_1_USERNAME: ${{ secrets.XTREAM_1_USERNAME }}
           XTREAM_1_PASSWORD: ${{ secrets.XTREAM_1_PASSWORD }}
+          XTREAM_2_URL: ${{ secrets.XTREAM_2_URL }}
           XTREAM_2_SERVER: ${{ secrets.XTREAM_2_SERVER }}
           XTREAM_2_USERNAME: ${{ secrets.XTREAM_2_USERNAME }}
           XTREAM_2_PASSWORD: ${{ secrets.XTREAM_2_PASSWORD }}
+          XTREAM_3_URL: ${{ secrets.XTREAM_3_URL }}
           XTREAM_3_SERVER: ${{ secrets.XTREAM_3_SERVER }}
           XTREAM_3_USERNAME: ${{ secrets.XTREAM_3_USERNAME }}
           XTREAM_3_PASSWORD: ${{ secrets.XTREAM_3_PASSWORD }}
+          XTREAM_4_URL: ${{ secrets.XTREAM_4_URL }}
           XTREAM_4_SERVER: ${{ secrets.XTREAM_4_SERVER }}
           XTREAM_4_USERNAME: ${{ secrets.XTREAM_4_USERNAME }}
           XTREAM_4_PASSWORD: ${{ secrets.XTREAM_4_PASSWORD }}
+          XTREAM_5_URL: ${{ secrets.XTREAM_5_URL }}
           XTREAM_5_SERVER: ${{ secrets.XTREAM_5_SERVER }}
           XTREAM_5_USERNAME: ${{ secrets.XTREAM_5_USERNAME }}
           XTREAM_5_PASSWORD: ${{ secrets.XTREAM_5_PASSWORD }}
+          XTREAM_6_URL: ${{ secrets.XTREAM_6_URL }}
           XTREAM_6_SERVER: ${{ secrets.XTREAM_6_SERVER }}
           XTREAM_6_USERNAME: ${{ secrets.XTREAM_6_USERNAME }}
           XTREAM_6_PASSWORD: ${{ secrets.XTREAM_6_PASSWORD }}
+          XTREAM_7_URL: ${{ secrets.XTREAM_7_URL }}
           XTREAM_7_SERVER: ${{ secrets.XTREAM_7_SERVER }}
           XTREAM_7_USERNAME: ${{ secrets.XTREAM_7_USERNAME }}
           XTREAM_7_PASSWORD: ${{ secrets.XTREAM_7_PASSWORD }}
+          XTREAM_8_URL: ${{ secrets.XTREAM_8_URL }}
           XTREAM_8_SERVER: ${{ secrets.XTREAM_8_SERVER }}
           XTREAM_8_USERNAME: ${{ secrets.XTREAM_8_USERNAME }}
           XTREAM_8_PASSWORD: ${{ secrets.XTREAM_8_PASSWORD }}
+          XTREAM_9_URL: ${{ secrets.XTREAM_9_URL }}
           XTREAM_9_SERVER: ${{ secrets.XTREAM_9_SERVER }}
           XTREAM_9_USERNAME: ${{ secrets.XTREAM_9_USERNAME }}
           XTREAM_9_PASSWORD: ${{ secrets.XTREAM_9_PASSWORD }}
+          XTREAM_10_URL: ${{ secrets.XTREAM_10_URL }}
           XTREAM_10_SERVER: ${{ secrets.XTREAM_10_SERVER }}
           XTREAM_10_USERNAME: ${{ secrets.XTREAM_10_USERNAME }}
           XTREAM_10_PASSWORD: ${{ secrets.XTREAM_10_PASSWORD }}
