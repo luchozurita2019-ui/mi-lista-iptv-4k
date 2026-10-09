@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Build a merged M3U from up to ten Xtream Codes accounts supplied as env vars.
+"""Merge up to ten Xtream M3U sources and keep Argentine/Spanish content.
 
-Never put credentials in source control. The generated M3U contains stream URLs
-that may themselves include credentials; treat the output as sensitive.
+Credentials belong in GitHub Actions Secrets, never in source control. The
+output contains stream URLs and must be treated as sensitive.
 """
 from __future__ import annotations
 
@@ -18,8 +18,51 @@ OUT = Path("dist/lista_clasica.m3u")
 TIMEOUT = 20
 MAX_BYTES = 80 * 1024 * 1024
 
+# M3U metadata is inconsistent across providers, so filtering uses group/title
+# and tvg-country/tvg-language hints. It cannot verify the actual audio track.
+ARGENTINA_RE = re.compile(
+    r"\b(argentina|argentinos?|arg|buenos\s*aires|caba|cordoba|c[oó]rdoba|"
+    r"rosario|santa\s*fe|mendoza|tucum[aá]n|telefe|eltrece|el\s*trece|"
+    r"canal\s*9|canal\s*7|tv\s*p[uú]blica|america\s*tv|am[eé]rica\s*tv|"
+    r"tn\b|c5n|cronica|cr[oó]nica|ln\+|a24|tyc\s*sports|t y c\s*sports)\b",
+    re.I,
+)
+SPANISH_RE = re.compile(
+    r"\b(espanol|español|spanish|castellano|latino|latina|latam|"
+    r"es-la|spa|espan[aã]|peliculas|pel[ií]culas|series\s*es|"
+    r"deportes\s*es|audio\s*es)\b",
+    re.I,
+)
+EVENT_RE = re.compile(
+    r"\b(eventos?|events?|en\s*vivo|live|ppv|deportes?|sports?|"
+    r"f[uú]tbol|football|soccer|partidos?|liga|copa|mundial|"
+    r"boxeo|tenis|basquet|b[aá]squet|formula\s*1|f1)\b",
+    re.I,
+)
+CLEAR_NON_SPANISH_RE = re.compile(
+    r"\b(english|eng\b|ingles|ingl[eé]s|fran[cç]ais|french|deutsch|"
+    r"german|italiano|italian|portugu[eê]s|portuguese|turk|arabic|"
+    r"russian|hindi|japanese|korean)\b",
+    re.I,
+)
+NON_ARG_COUNTRY_RE = re.compile(
+    r"\b(brazil|brasil|chile|colombia|col[oô]mbia|peru|per[uú]|"
+    r"mexico|m[eé]xico|venezuela|uruguay|paraguay|ecuador|bolivia|"
+    r"spain|espa[nñ]a|usa|united states|uk|united kingdom|canada)\b",
+    re.I,
+)
+
 
 def env_provider(i: int):
+    # Optional full URL lets each source retain its own type/output parameters.
+    full_url = os.getenv(f"XTREAM_{i}_URL", "").strip()
+    if full_url:
+        parsed = urllib.parse.urlparse(full_url)
+        if parsed.scheme not in ("http", "https") or not parsed.netloc or not parsed.path.endswith("/get.php"):
+            print(f"[WARN] Proveedor {i}: URL Xtream inválida; se omite.", file=sys.stderr)
+            return None
+        return i, full_url
+
     server = os.getenv(f"XTREAM_{i}_SERVER", "").strip().rstrip("/")
     username = os.getenv(f"XTREAM_{i}_USERNAME", "").strip()
     password = os.getenv(f"XTREAM_{i}_PASSWORD", "").strip()
@@ -57,14 +100,10 @@ def fetch_m3u(provider_id: int, url: str) -> str:
 
 def parse_entries(text: str):
     lines = [line.strip() for line in text.replace("\r", "").split("\n") if line.strip()]
-    entries = []
-    pending = []
+    entries, pending = [], []
     for line in lines:
         if line.startswith("#EXTINF"):
             pending = [line]
-        elif line.startswith("#EXTVLCOPT") or line.startswith("#KODIPROP") or line.startswith("#EXTGRP"):
-            if pending:
-                pending.append(line)
         elif line.startswith("#"):
             if pending:
                 pending.append(line)
@@ -75,19 +114,59 @@ def parse_entries(text: str):
     return entries
 
 
+def metadata(entry):
+    extinf = entry[0]
+    name = extinf.rsplit(",", 1)[-1].strip()
+    attrs = {}
+    for key, value in re.findall(r'([\w-]+)="([^"]*)"', extinf):
+        attrs[key.casefold()] = value
+    group = attrs.get("group-title", "")
+    country = attrs.get("tvg-country", "")
+    language = attrs.get("tvg-language", "")
+    extra = " ".join([name, group, country, language] + entry[1:-1])
+    return name, attrs, group, country, language, extra
+
+
+def keep_entry(entry):
+    name, attrs, group, country, language, extra = metadata(entry)
+    folded = extra.casefold()
+    group_name = group.casefold()
+    country_name = country.casefold()
+    lang = language.casefold()
+
+    # Explicit language/country metadata takes precedence over loose title hints.
+    explicit_non_spanish = bool(CLEAR_NON_SPANISH_RE.search(lang))
+    explicit_other_country = bool(country_name and NON_ARG_COUNTRY_RE.search(country_name))
+    if explicit_non_spanish or explicit_other_country:
+        return False
+
+    is_argentina = bool(ARGENTINA_RE.search(extra))
+    is_spanish = bool(SPANISH_RE.search(extra) or re.search(r"\b(es|spa|es-419)\b", lang))
+    is_event = bool(EVENT_RE.search(name + " " + group_name))
+
+    # Events are kept when the title/group marks them Argentine or Spanish,
+    # even if the provider doesn't label them as permanent TV channels.
+    if is_event:
+        return is_argentina or is_spanish
+
+    # Ordinary channels need a positive Argentina or Spanish-language signal.
+    # Avoid assuming an unlabelled international channel is Spanish.
+    return is_argentina or is_spanish
+
+
 def entry_name(entry):
-    line = entry[0]
-    return line.rsplit(",", 1)[-1].strip().casefold()
+    return metadata(entry)[0].casefold()
 
 
 def main():
     providers = [p for i in range(1, 11) if (p := env_provider(i))]
     if not providers:
-        print("No hay proveedores configurados. Añadí GitHub Actions Secrets XTREAM_1_SERVER, XTREAM_1_USERNAME y XTREAM_1_PASSWORD (hasta XTREAM_10_*).", file=sys.stderr)
+        print("Configurá XTREAM_1_URL ... XTREAM_10_URL como Secrets (URL completa), o las variables XTREAM_n_SERVER/USERNAME/PASSWORD.", file=sys.stderr)
         return 2
 
     OUT.parent.mkdir(parents=True, exist_ok=True)
     merged, seen = [], set()
+    total_input = total_kept = 0
     for provider_id, url in providers:
         started = time.monotonic()
         try:
@@ -95,8 +174,12 @@ def main():
             entries = parse_entries(content)
             if not entries:
                 raise RuntimeError("la lista no contiene canales HTTP(S) válidos")
-            added = 0
+            kept = added = 0
             for entry in entries:
+                total_input += 1
+                if not keep_entry(entry):
+                    continue
+                kept += 1
                 key = entry_name(entry)
                 if not key:
                     key = entry[-1].casefold()
@@ -105,20 +188,22 @@ def main():
                 seen.add(key)
                 merged.extend(entry)
                 added += 1
-            print(f"Proveedor {provider_id}: {len(entries)} canales válidos, {added} nuevos; {time.monotonic()-started:.1f}s")
+            total_kept += kept
+            print(f"Proveedor {provider_id}: {len(entries)} entradas; {kept} Argentina/español/eventos coincidentes; {added} nuevas; {time.monotonic()-started:.1f}s")
         except Exception as exc:
-            # Do not print source URLs or exception strings that could contain credentials.
+            # Never print source URLs or exception strings that may expose credentials.
             print(f"[WARN] Proveedor {provider_id}: no se pudo importar ({type(exc).__name__}).", file=sys.stderr)
 
     if not merged:
-        print("ERROR: ningún proveedor entregó canales válidos; no se genera una lista vacía.", file=sys.stderr)
+        print("ERROR: ningún proveedor entregó entradas que coincidan con los filtros; no se genera una lista vacía.", file=sys.stderr)
         return 1
 
     temp = OUT.with_suffix(".m3u.tmp")
     temp.write_text("#EXTM3U\n" + "\n".join(merged) + "\n", encoding="utf-8")
     temp.replace(OUT)
-    print(f"Lista creada: {OUT} — {len(seen)} canales únicos.")
+    print(f"Lista creada: {OUT} — {len(seen)} entradas únicas de {total_input} revisadas ({total_kept} coincidencias antes de deduplicar).")
     print("IMPORTANTE: el archivo generado contiene URLs privadas. No lo publiques en un repositorio público.")
+    print("Nota: el filtro usa nombres/grupos/metadatos M3U; no puede verificar el idioma real del audio.")
     return 0
 
 
