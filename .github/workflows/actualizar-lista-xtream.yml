@@ -15,7 +15,7 @@ permissions:
 
 concurrency:
   group: xtream-playlist-build
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   build:
