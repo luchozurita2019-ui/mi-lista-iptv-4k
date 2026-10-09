@@ -146,7 +146,39 @@ CHANNEL_CATALOG = [
     ("Entretenimiento", "El Gourmet", ("el gourmet",)),
     ("General", "Canal 9", ("canal 9",)),
     ("General", "Canal 10", ("canal 10",)),
-    ("General", "Canal 7", ("canal 7",)),
+    ("General", "Canal 7", ("canal 7",)),    ("Argentina · Noticias", "TN", ("tn", "todo noticias")),
+    ("Argentina · Noticias", "C5N", ("c5n",)),
+    ("Argentina · Noticias", "A24", ("a24",)),
+    ("Argentina · Noticias", "Crónica TV", ("cronica tv", "crónica tv", "cronica")),
+    ("Argentina · Noticias", "LN+", ("ln+", "ln mas")),
+    ("Argentina · Noticias", "Canal 26", ("canal 26",)),
+    ("Argentina · Noticias", "IP Noticias", ("ip noticias",)),
+    ("Argentina · Noticias", "TV Pública", ("tv publica", "tv pública", "tvp argentina")),
+    ("Argentina · Noticias", "América TV", ("america tv", "américa tv", "america")),
+    ("Argentina · Noticias", "Telefe", ("telefe",)),
+    ("Argentina · Noticias", "El Trece", ("eltrece", "el trece", "canal 13 argentina")),
+    ("Argentina · Noticias", "Net TV", ("net tv",)),
+    ("Argentina · Noticias", "Bravo TV", ("bravo tv",)),
+    ("Argentina · Noticias", "Canal 9", ("canal 9 argentina", "canal nueve argentina")),
+    ("Argentina · Deportes", "TyC Sports", ("tyc sports", "t y c sports")),
+    ("Argentina · Deportes", "DeporTV", ("deportv",)),
+    ("Argentina · Deportes", "TNT Sports Argentina", ("tnt sports argentina",)),
+    ("Argentina · Deportes", "ESPN Argentina", ("espn argentina",)),
+    ("Argentina · Deportes", "Fox Sports Argentina", ("fox sports argentina",)),
+    ("Argentina · Cultura", "Encuentro", ("canal encuentro", "encuentro")),
+    ("Argentina · Cultura", "Pakapaka", ("pakapaka", "paka paka")),
+    ("Argentina · Cultura", "Construir TV", ("construir tv",)),
+    ("Argentina · Cultura", "Canal Rural", ("canal rural", "el rural")),
+    ("Argentina · Entretenimiento", "Ciudad Magazine", ("ciudad magazine",)),
+    ("Argentina · Entretenimiento", "Quiero Música", ("quiero musica", "quiero música")),
+    ("Argentina · Entretenimiento", "El Gourmet", ("el gourmet argentina",)),
+    ("Argentina · Regionales", "Canal 10 Córdoba", ("canal 10 cordoba", "canal 10 córdoba")),
+    ("Argentina · Regionales", "El Doce Córdoba", ("el doce cordoba", "el doce córdoba", "canal 12 cordoba")),
+    ("Argentina · Regionales", "Canal 8 Tucumán", ("canal 8 tucuman", "canal 8 tucumán")),
+    ("Argentina · Regionales", "Canal 10 Tucumán", ("canal 10 tucuman", "canal 10 tucumán")),
+    ("Argentina · Regionales", "Canal 7 Mendoza", ("canal 7 mendoza",)),
+    ("Argentina · Regionales", "Canal 3 Rosario", ("canal 3 rosario",)),
+]
 ]
 
 def _fold_name(value: str) -> str:
@@ -173,16 +205,19 @@ def catalog_match(name: str, group: str = ""):
     return None
 
 CATEGORY_ORDER = {
-    "Adultos": 0,
-    "Cine y Series": 1,
-    "Noticias": 2,
-    "Deportes": 3,
-    "Infantiles": 4,
-    "Documentales": 5,
-    "Música": 6,
-    "Entretenimiento": 7,
-    "General": 8,
-    "Eventos": 9,
+    "Argentina · Noticias": 0,
+    "Argentina · Deportes": 1,
+    "Argentina · Cultura": 2,
+    "Argentina · Entretenimiento": 3,
+    "Argentina · Regionales": 4,
+    "Cine y Series": 5,
+    "Noticias": 6,
+    "Deportes": 7,
+    "Infantiles": 8,
+    "Documentales": 9,
+    "Música": 10,
+    "Entretenimiento": 11,
+    "Eventos": 12,
 }
 
 CLEAR_NON_SPANISH_RE = re.compile(
@@ -304,6 +339,9 @@ def keep_entry(entry):
 
     is_argentina = bool(ARGENTINA_RE.search(extra))
     is_adult = bool(ADULT_RE.search(name + " " + group_name))
+    # Esta lista es exclusivamente de TV en vivo; no se admite contenido adulto.
+    if is_adult:
+        return False
     is_spanish = bool(
         SPANISH_RE.search(extra)
         or re.search(r"\b(es|spa|es-419|spanish|castellano|español)\b", lang)
@@ -316,22 +354,25 @@ def keep_entry(entry):
     # metadata above says otherwise. Unknown-language entries are excluded.
     # Adult channels are retained in their own category even when the provider
     # omits language metadata; explicit non-Spanish metadata is still rejected.
-    if not is_spanish and not is_adult and not known:
+    # Solo canales argentinos identificados por nombre/categoría o metadatos del proveedor.
+    # No incorporar canales internacionales solo por estar en español.
+    argentina_known = bool(known and known[0].startswith("Argentina ·"))
+    if not argentina_known and not is_argentina:
         return False
-
-    # Retain known named live channels even if provider metadata is incomplete.
-    return bool(known) or is_argentina or is_spanish or is_adult
+    return True
 
 
 def category_for(entry):
     name, attrs, group, country, language, extra = metadata(entry)
     text = f"{name} {group}"
     known = catalog_match(name, group)
-    if known:
+    if known and known[0].startswith("Argentina ·"):
+        return known[0]
+    if known and ARGENTINA_RE.search(f"{name} {group} {attrs.get('tvg-country', '')}"):
         return known[0]
     # Primero noticias/deportes para no clasificar, por ejemplo, TNT Sports como cine.
     if ADULT_RE.search(text):
-        return "Adultos"
+        return "Argentina · Canales identificados"  # normalmente se filtra antes
     if NEWS_RE.search(text):
         return "Noticias"
     if SPORTS_RE.search(text):
@@ -349,7 +390,8 @@ def category_for(entry):
         return "Entretenimiento"
     if EVENT_RE.search(text):
         return "Eventos"
-    return "General"
+    # No crear el grupo genérico "General".
+    return "Argentina · Canales identificados"
 
 
 def set_group_title(entry, category):
@@ -367,7 +409,7 @@ def set_group_title(entry, category):
 def priority(entry):
     category = category_for(entry)
     name = metadata(entry)[0]
-    return CATEGORY_ORDER[category], name.casefold()
+    return CATEGORY_ORDER.get(category, 13), name.casefold()
 
 
 def entry_name(entry):
