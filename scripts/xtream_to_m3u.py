@@ -39,6 +39,22 @@ EVENT_RE = re.compile(
     r"boxeo|tenis|basquet|b[aá]squet|formula\s*1|f1)\b",
     re.I,
 )
+# Explicit VOD/individual-title groups are not live TV channels.
+VOD_RE = re.compile(
+    r"\b(vod|video\s*on\s*demand|on\s*demand|a\s*la\s*carta|"
+    r"peliculas?\s*vod|movies?\s*vod|series?\s*vod|"
+    r"catalogo|cat[aá]logo|descargas?|temporadas?|episodios?|"
+    r"full\s*movies?|all\s*movies?|all\s*series?)\b",
+    re.I,
+)
+# Linear TV channels dedicated to films/series; these are sorted first.
+CINEMA_CHANNEL_RE = re.compile(
+    r"\b(hbo|cinemax|cinecanal|space|tnt|universal|warner|sony|axn|"
+    r"star\s*channel|fox|fx|paramount|amc|studio\s*universal|"
+    r"film\s*&\s*arts|golden|isat|a\s*\&\s*e|a\s*and\s*e|"
+    r"mtv\s*live|comedy\s*central)\b",
+    re.I,
+)
 CLEAR_NON_SPANISH_RE = re.compile(
     r"\b(english|eng\b|ingles|ingl[eé]s|fran[cç]ais|french|deutsch|"
     r"german|italiano|italian|portugu[eê]s|portuguese|turk|arabic|"
@@ -129,10 +145,15 @@ def metadata(entry):
 
 def keep_entry(entry):
     name, attrs, group, country, language, extra = metadata(entry)
-    folded = extra.casefold()
     group_name = group.casefold()
     country_name = country.casefold()
     lang = language.casefold()
+
+    # Exclude VOD catalogs and individual films/episodes: the target is live TV.
+    if VOD_RE.search(group_name):
+        return False
+    if re.search(r"\\b(S\\d{1,2}E\\d{1,2}|temporada\\s+\\d+|episodio\\s+\\d+)\\b", name, re.I):
+        return False
 
     # Explicit language/country metadata takes precedence over loose title hints.
     explicit_non_spanish = bool(CLEAR_NON_SPANISH_RE.search(lang))
@@ -141,17 +162,28 @@ def keep_entry(entry):
         return False
 
     is_argentina = bool(ARGENTINA_RE.search(extra))
-    is_spanish = bool(SPANISH_RE.search(extra) or re.search(r"\b(es|spa|es-419)\b", lang))
+    is_spanish = bool(SPANISH_RE.search(extra) or re.search(r"\\b(es|spa|es-419)\\b", lang))
     is_event = bool(EVENT_RE.search(name + " " + group_name))
+    is_cinema_channel = bool(CINEMA_CHANNEL_RE.search(name))
 
-    # Events are kept when the title/group marks them Argentine or Spanish,
-    # even if the provider doesn't label them as permanent TV channels.
+    # Keep live movie/series channels only when there is also evidence they
+    # belong to Argentina/Spanish content; the name alone cannot prove audio.
     if is_event:
         return is_argentina or is_spanish
-
-    # Ordinary channels need a positive Argentina or Spanish-language signal.
-    # Avoid assuming an unlabelled international channel is Spanish.
     return is_argentina or is_spanish
+
+
+def priority(entry):
+    name, attrs, group, country, language, extra = metadata(entry)
+    # Sort film/series TV channels first, then other Argentine/Spanish live TV,
+    # then live events. VOD groups have already been excluded.
+    if CINEMA_CHANNEL_RE.search(name):
+        return 0
+    if re.search(r"\\b(cine|cinema|pel[ií]culas|series|films?|movies?)\\b", group, re.I):
+        return 1
+    if EVENT_RE.search(name + " " + group):
+        return 3
+    return 2
 
 
 def entry_name(entry):
@@ -186,7 +218,7 @@ def main():
                 if key in seen:
                     continue
                 seen.add(key)
-                merged.extend(entry)
+                merged.append((priority(entry), entry))
                 added += 1
             total_kept += kept
             print(f"Proveedor {provider_id}: {len(entries)} entradas; {kept} Argentina/español/eventos coincidentes; {added} nuevas; {time.monotonic()-started:.1f}s")
@@ -199,9 +231,12 @@ def main():
         return 1
 
     temp = OUT.with_suffix(".m3u.tmp")
-    temp.write_text("#EXTM3U\n" + "\n".join(merged) + "\n", encoding="utf-8")
+    merged.sort(key=lambda item: item[0])
+    playlist_lines = [line for _, entry in merged for line in entry]
+    temp.write_text("#EXTM3U\n" + "\n".join(playlist_lines) + "\n", encoding="utf-8")
     temp.replace(OUT)
     print(f"Lista creada: {OUT} — {len(seen)} entradas únicas de {total_input} revisadas ({total_kept} coincidencias antes de deduplicar).")
+    print("Orden: canales de cine/series primero; después otros canales argentinos/en español; eventos al final.")
     print("IMPORTANTE: el archivo generado contiene URLs privadas. No lo publiques en un repositorio público.")
     print("Nota: el filtro usa nombres/grupos/metadatos M3U; no puede verificar el idioma real del audio.")
     return 0
