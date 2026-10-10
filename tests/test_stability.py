@@ -336,6 +336,8 @@ class GeneratorTests(unittest.TestCase):
             self.assertEqual([generator.metadata(e)[0] for e in entries], ['HBO'])
 
     def test_channel_identity_does_not_merge_local_or_numbered_feeds(self):
+        for _, canonical, _ in generator.CHANNEL_CATALOG:
+            self.assertIsNotNone(generator.catalog_match(canonical), canonical)
         self.assertEqual(generator.catalog_match('AR | Crónica HD')[1], 'Crónica TV')
         self.assertIsNone(generator.catalog_match('Telefe Tucumán'))
         self.assertIsNone(generator.catalog_match('Canal 12 Posadas'))

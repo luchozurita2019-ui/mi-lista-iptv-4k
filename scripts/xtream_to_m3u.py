@@ -271,7 +271,7 @@ def catalog_match(name: str, group: str = ""):
     folded = " " + _fold_name(name) + " "
     catalog = sorted(CHANNEL_CATALOG, key=lambda row: (row[0].startswith("Argentina ·"), max(len(_fold_name(a)) for a in row[2])), reverse=True)
     for category, canonical, aliases in catalog:
-        for alias in sorted(aliases, key=lambda a: len(_fold_name(a)), reverse=True):
+        for alias in sorted(set([canonical, *aliases]), key=lambda a: len(_fold_name(a)), reverse=True):
             needle = " " + _fold_name(alias) + " "
             # A backup must be the same channel. Substring matches incorrectly
             # merge numbered channels and regional editions into generic feeds.
