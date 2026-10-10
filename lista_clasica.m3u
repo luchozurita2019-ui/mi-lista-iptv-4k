@@ -1,164 +1,164 @@
 #EXTM3U
-#EXTINF:-1 tvg-id="" tvg-name="A24" tvg-logo="http://redworld.pro:8880/images/b58b7fa78b3287771d8164b37a9ee036.png" group-title="Argentina · Noticias",A24
-http://superxlatino.com:8880/STeWmW3XhTWK/pF4Ec5heCDK7/490467
-#EXTINF:-1 tvg-id="" tvg-name="América TV" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/FIFA%2B_(2025).svg/960px-FIFA%2B_(2025).svg.png" group-title="Argentina · Noticias",América TV
-https://velive.lat:443/tanogrijalva/MfBQu2PVwt/429027
-#EXTINF:-1 group-title="Argentina · Noticias" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/c5n-ar.png",C5N
-http://maracanazo.lat:8080/Jpg2210233/Rk8zS5x9kQ/165595
+#EXTINF:-1 tvg-id="" tvg-name="A24" tvg-logo="https://generador.nubservices.com/logos/panel/272055-arg-a24-hd-mulnhelp.png" group-title="Argentina · Noticias",A24
+https://velive.lat:443/tanogrijalva/MfBQu2PVwt/272055
+#EXTINF:-1 tvg-id="" tvg-name="América TV" tvg-logo="https://dash.restreamiptv.top/logos/ch/1946459.png?v=4" group-title="Argentina · Noticias",América TV
+https://velive.lat:443/tanogrijalva/MfBQu2PVwt/466493
+#EXTINF:-1 tvg-id="" tvg-name="C5N" tvg-logo="http://daleplay.biz:8080/images/bfa0e2b6f1134e36360a1261eee7eb9c.png" group-title="Argentina · Noticias",C5N
+http://23.153.217.158:8080/live/79882700/27072023/15817.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="Canal 10 Río Negro" tvg-logo="https://cdn.m3u.cl/logo/299_Canal_10_Rio_Negro.png" group-title="Argentina · Noticias",Canal 10 Río Negro
 https://panel.host-live.com:443/tvrionegro/ngrp:tvrionegro_all/playlist.m3u8?PlaylistM3UCL
-#EXTINF:-1 tvg-id="" tvg-name="Canal 26" tvg-logo="https://generador.nubservices.com/logos/panel/272058-arg-canal-26-op3-mulnhgh6.png" group-title="Argentina · Noticias",Canal 26
-https://velive.lat:443/tanogrijalva/MfBQu2PVwt/272058
+#EXTINF:-1 tvg-id="" tvg-name="Canal 26" tvg-logo="https://generador.nubservices.com/logos/panel/272037-arg-canal-26-op2-mulnhby1.png" group-title="Argentina · Noticias",Canal 26
+https://velive.lat:443/tanogrijalva/MfBQu2PVwt/272037
 #EXTINF:-1 tvg-id="" tvg-name="Canal 4 Jujuy" tvg-logo="https://cdn.m3u.cl/logo/258_Canal_4_Jujuy.png" group-title="Argentina · Noticias",Canal 4 Jujuy
 https://5cd577a3dd8ec.streamlock.net/CAMARAS/live4/playlist.m3u8?PlaylistM3UCL
 #EXTINF:-1 tvg-id="" tvg-name="Canal 6 Posadas" tvg-logo="https://cdn.m3u.cl/logo/262_Canal_6_Posadas.png" group-title="Argentina · Noticias",Canal 6 Posadas
 https://iptv.ixfo.com.ar:30443/live/c6digital/playlist.m3u8?PlaylistM3UCL
-#EXTINF:-1 tvg-id="" tvg-name="Canal 7 Neuquén" tvg-logo="https://i.ibb.co/BrvQsWm/C7neuquenlogo2023.png" group-title="Argentina · Noticias",Canal 7 Neuquén
-https://stream.arcast.com.ar/c7nq/ngrp:c7nq_all/playlist.m3u8
-#EXTINF:-1 tvg-id="" tvg-name="Canal 9" tvg-logo="https://cdn.m3u.cl/logo/353_Canal_9_Bio_Bi­o_TV.png" group-title="Argentina · Noticias",Canal 9
-https://unlimited1-cl-isp.dps.live/c9/c9.smil/playlist.m3u8?PlaylistM3UCL
+#EXTINF:-1 tvg-id="" tvg-name="Canal 7 Neuquén" tvg-logo="https://cdn.m3u.cl/logo/1401_Canal_7_Neuquen.png" group-title="Argentina · Noticias",Canal 7 Neuquén
+https://stream.arcast.com.ar/c7nq/ngrp:c7nq_all/playlist.m3u8?PlaylistM3UCL
+#EXTINF:-1 tvg-id="" tvg-name="Canal 9" tvg-logo="http://goldfull.pro:8880/images/af6bd0bf5130ca63c286f44f14735047.png" group-title="Argentina · Noticias",Canal 9
+http://superxlatino.com:8880/STeWmW3XhTWK/pF4Ec5heCDK7/252150
 #EXTINF:-1 tvg-id="" tvg-name="Canal 9 Litoral" tvg-logo="https://cdn.m3u.cl/logo/236_Canal_9_Litoral.png" group-title="Argentina · Noticias",Canal 9 Litoral
 https://stream.arcast.live/ahora/ahora/playlist.m3u8?PlaylistM3UCL
 #EXTINF:-1 tvg-id="" tvg-name="Canal 9 Resistencia" tvg-logo="https://cdn.m3u.cl/logo/250_Canal_9_Resistencia.png" group-title="Argentina · Noticias",Canal 9 Resistencia
 http://201.217.245.41:8081/testmelucas/canal9/playlist.m3u8?PlaylistM3UCL
-#EXTINF:-1 tvg-id="" tvg-name="Canal de la Ciudad" tvg-logo="https://cdn.m3u.cl/logo/1353_Ciudad_TV_Resistencia.png" group-title="Argentina · Noticias",Canal de la Ciudad
-http://coninfo.net:1935/chacodxdtv/live/playlist.m3u8?PlaylistM3UCL
+#EXTINF:-1 tvg-id="" tvg-name="Canal de la Ciudad" tvg-logo="https://cdn.m3u.cl/logo/237_Ciudad_TV.jpg" group-title="Argentina · Noticias",Canal de la Ciudad
+http://coninfo.net:1935/chacodxdtv/live/chunklist_w1251301598.m3u8?PlaylistM3UCL
 #EXTINF:-1 tvg-id="" tvg-name="Crónica TV" tvg-logo="https://generador.nubservices.com/logos/panel/272054-arg-cronica-hd-mulnhhbo.png" group-title="Argentina · Noticias",Crónica TV
 https://velive.lat:443/tanogrijalva/MfBQu2PVwt/272054
-#EXTINF:-1 tvg-id="" tvg-name="El Nueve" tvg-logo="https://generador.nubservices.com/logos/panel/272040-arg-el-nueve-op1-mulnhhyp.png" group-title="Argentina · Noticias",El Nueve
-https://velive.lat:443/tanogrijalva/MfBQu2PVwt/272040
-#EXTINF:-1 tvg-id="" tvg-name="El Trece" tvg-logo="https://s.supremeplay.org/images/079d569db6962ac55cdc8f29fb1eb67c301e1ffd.png" group-title="Argentina · Noticias",El Trece
-https://velive.lat:443/tanogrijalva/MfBQu2PVwt/479138
+#EXTINF:-1 tvg-id="" tvg-name="El Nueve" tvg-logo="https://w7.pngwing.com/pngs/539/881/png-transparent-canal-9-hd-logo.png" group-title="Argentina · Noticias",El Nueve
+https://velive.lat:443/tanogrijalva/MfBQu2PVwt/21482
+#EXTINF:-1 tvg-id="" tvg-name="El Trece" tvg-logo="https://generador.nubservices.com/logos/panel/272044-ar-el-trece-mulnhbjp.png" group-title="Argentina · Noticias",El Trece
+https://velive.lat:443/tanogrijalva/MfBQu2PVwt/272044
 #EXTINF:-1 group-title="Argentina · Noticias",LN+
 http://maracanazo.lat:8080/Jpg2210233/Rk8zS5x9kQ/165598
-#EXTINF:-1 tvg-id="" tvg-name="Net TV" tvg-logo="https://i.imgur.com/IhJ0BjF.png" group-title="Argentina · Noticias",Net TV
-https://unlimited1-us.dps.live/nettv/nettv.smil/playlist.m3u8
-#EXTINF:-1 tvg-id="" tvg-name="Telefe" tvg-logo="https://images.pluto.tv/channels/5de91cf02fc07c0009910465/colorLogoPNG.png" group-title="Argentina · Noticias",Telefe
-https://stitcher.pluto.tv/stitch/hls/channel/5de91cf02fc07c0009910465/master.m3u8?deviceType=web&servertSideAds=false&deviceMake=safari&deviceVersion=1&deviceId=spencer&appVersion=1&deviceDNT=0&deviceModel=web&sid=5c994790-62bc-11ef-843f-be5cd951c95a
+#EXTINF:-1 tvg-id="" tvg-name="Net TV" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/net-tv-ar.png" group-title="Argentina · Noticias",Net TV
+http://superxlatino.com:8880/STeWmW3XhTWK/pF4Ec5heCDK7/359919
+#EXTINF:-1 tvg-id="" tvg-name="Telefe" tvg-logo="https://cdn.mitvstatic.com/channels/ar_telefe_m.png" group-title="Argentina · Noticias",Telefe
+http://23.153.217.158:8080/live/79882700/27072023/61544.m3u8
 #EXTINF:-1 group-title="Argentina · Noticias" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/tn-todo-noticias-ar.png",TN
 http://maracanazo.lat:8080/Jpg2210233/Rk8zS5x9kQ/218993
 #EXTINF:-1 tvg-id="" tvg-name="TV Pública" tvg-logo="https://cdn.m3u.cl/logo/648_TVP_Los_Mochis.png" group-title="Argentina · Noticias",TV Pública
 https://5ca3e84a76d30.streamlock.net:443/gpacifico2/smil:mochis.smil/playlist.m3u8?PlaylistM3UCL
 #EXTINF:-1 tvg-id="" tvg-name="Canal Rural" tvg-logo="https://cdn.m3u.cl/logo/310_Canal_Rural.jpg" group-title="Argentina · Deportes",Canal Rural
 https://cda2.alsolnet.com/elrural/live/playlist.m3u8?PlaylistM3UCL
-#EXTINF:-1 group-title="Argentina · Deportes" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/deportv-ar.png",DeporTV
-http://maracanazo.lat:8080/Jpg2210233/Rk8zS5x9kQ/220250
+#EXTINF:-1 tvg-id="" tvg-name="DeporTV" tvg-logo="https://generador.nubservices.com/logos/panel/272074-arg-deportv-hd-mulnhcjg.png" group-title="Argentina · Deportes",DeporTV
+https://velive.lat:443/tanogrijalva/MfBQu2PVwt/272074
 #EXTINF:-1 tvg-id="" tvg-name="DSports" tvg-logo="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh9g6A0vh_OOEW2aCaidh0rfEjA6bLFke0dG1_W2RWBsw469ccs9B9278_SEMB8km107YA378Y4ysiggaseQjh6ba8Qf6QCrP7G8PlhTJxFbavWaBo3ckrLmFy6L530kIiMuVYV3PLCrsY/s1280/image.png" group-title="Argentina · Deportes",DSports
-https://velive.lat:443/tanogrijalva/MfBQu2PVwt/316095
-#EXTINF:-1 group-title="Argentina · Deportes",DSports 2
-http://maracanazo.lat:8080/Jpg2210233/Rk8zS5x9kQ/169946
-#EXTINF:-1 tvg-id="" tvg-name="ESPN 2" tvg-logo="https://dash.restreamiptv.top/logos/ch/1946645.png?v=8" group-title="Argentina · Deportes",ESPN 2
-https://velive.lat:443/tanogrijalva/MfBQu2PVwt/466509
-#EXTINF:-1 tvg-id="" tvg-name="ESPN 3" tvg-logo="https://dash.restreamiptv.top/logos/ch/1946647.png?v=8" group-title="Argentina · Deportes",ESPN 3
-https://velive.lat:443/tanogrijalva/MfBQu2PVwt/466511
-#EXTINF:-1 tvg-id="" tvg-name="ESPN 4" tvg-logo="https://generador.nubservices.com/logos/panel/243079-espn-4-op2-mun9mg10.png" group-title="Argentina · Deportes",ESPN 4
-https://velive.lat:443/tanogrijalva/MfBQu2PVwt/243079
-#EXTINF:-1 group-title="Argentina · Deportes" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/world-latin-america/espn-5-lam.png",ESPN 5
-http://maracanazo.lat:8080/Jpg2210233/Rk8zS5x9kQ/169918
-#EXTINF:-1 tvg-id="" tvg-name="ESPN 6" tvg-logo="https://i.pinimg.com/474x/d1/32/ab/d132abffb1021e2f5ae191f46a17680d.jpg" group-title="Argentina · Deportes",ESPN 6
-https://velive.lat:443/tanogrijalva/MfBQu2PVwt/369710
-#EXTINF:-1 group-title="Argentina · Deportes" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/world-latin-america/espn-7-lam.png",ESPN 7
-http://maracanazo.lat:8080/Jpg2210233/Rk8zS5x9kQ/169958
-#EXTINF:-1 tvg-id="" tvg-name="ESPN Argentina" tvg-logo="https://generador.nubservices.com/logos/panel/243088-espn-op3-mun9mphb.png" group-title="Argentina · Deportes",ESPN Argentina
-https://velive.lat:443/tanogrijalva/MfBQu2PVwt/243088
+https://velive.lat:443/tanogrijalva/MfBQu2PVwt/316081
+#EXTINF:-1 tvg-id="" tvg-name="DSports 2" tvg-logo="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh9g6A0vh_OOEW2aCaidh0rfEjA6bLFke0dG1_W2RWBsw469ccs9B9278_SEMB8km107YA378Y4ysiggaseQjh6ba8Qf6QCrP7G8PlhTJxFbavWaBo3ckrLmFy6L530kIiMuVYV3PLCrsY/s1280/image.png" group-title="Argentina · Deportes",DSports 2
+https://velive.lat:443/tanogrijalva/MfBQu2PVwt/316085
+#EXTINF:-1 tvg-id="" tvg-name="ESPN 2" tvg-logo="https://generador.nubservices.com/logos/panel/243074-espn-2-op1-mun9md2j.png" group-title="Argentina · Deportes",ESPN 2
+https://velive.lat:443/tanogrijalva/MfBQu2PVwt/243074
+#EXTINF:-1 tvg-id="" tvg-name="ESPN 3" tvg-logo="https://generador.nubservices.com/logos/panel/243097-espn-3-op4-mun9mobd.png" group-title="Argentina · Deportes",ESPN 3
+https://velive.lat:443/tanogrijalva/MfBQu2PVwt/243097
+#EXTINF:-1 tvg-id="" tvg-name="ESPN 4" tvg-logo="https://i.ibb.co/xC9P0T3/ESPN-4-logo-svg.png" group-title="Argentina · Deportes",ESPN 4
+http://23.153.217.158:8080/live/79882700/27072023/517.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="ESPN 5" tvg-logo="https://i.pinimg.com/474x/d1/32/ab/d132abffb1021e2f5ae191f46a17680d.jpg" group-title="Argentina · Deportes",ESPN 5
+https://velive.lat:443/tanogrijalva/MfBQu2PVwt/369711
+#EXTINF:-1 tvg-id="" tvg-name="ESPN 6" tvg-logo="https://dash.restreamiptv.top/logos/ch/1946652.png?v=8" group-title="Argentina · Deportes",ESPN 6
+https://velive.lat:443/tanogrijalva/MfBQu2PVwt/466516
+#EXTINF:-1 tvg-id="" tvg-name="ESPN 7" tvg-logo="https://generador.nubservices.com/logos/panel/243085-espn-7-op2-mun9mjmc.png" group-title="Argentina · Deportes",ESPN 7
+https://velive.lat:443/tanogrijalva/MfBQu2PVwt/243085
+#EXTINF:-1 tvg-id="" tvg-name="ESPN Argentina" tvg-logo="https://dash.restreamiptv.top/logos/ch/1946643.png?v=8" group-title="Argentina · Deportes",ESPN Argentina
+https://velive.lat:443/tanogrijalva/MfBQu2PVwt/466507
 #EXTINF:-1 tvg-id="1620dtv.cl" tvg-name="ESPN Extra" tvg-logo="http://puntoz.xyz/LOGOS/espn.extrap.png" group-title="Argentina · Deportes",ESPN Extra
 http://23.153.217.158:8080/live/79882700/27072023/54417.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="ESPN Premium" tvg-logo="https://i.ibb.co/M57Q0Kv/espn-premium2.png" group-title="Argentina · Deportes",ESPN Premium
-http://23.153.217.158:8080/live/79882700/27072023/545.m3u8
+http://23.153.217.158:8080/live/79882700/27072023/542.m3u8
 #EXTINF:-1 group-title="Argentina · Deportes" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/world-latin-america/fox-sports-2-hd-lam.png",Fox Sports 2
 http://maracanazo.lat:8080/Jpg2210233/Rk8zS5x9kQ/208741
-#EXTINF:-1 group-title="Argentina · Deportes" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/world-latin-america/fox-sports-3-hd-lam.png",Fox Sports 3
-http://maracanazo.lat:8080/Jpg2210233/Rk8zS5x9kQ/165657
-#EXTINF:-1 group-title="Argentina · Deportes" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/world-latin-america/fox-sports-premium-lam.png",Fox Sports Argentina
-http://maracanazo.lat:8080/Jpg2210233/Rk8zS5x9kQ/192219
-#EXTINF:-1 tvg-id="" tvg-name="Fox Sports Premium" tvg-logo="http://redworld.pro:8880/images/ad07e76a6c8901e2de87ce4cfe761435.png" group-title="Argentina · Deportes",Fox Sports Premium
-http://superxlatino.com:8880/STeWmW3XhTWK/pF4Ec5heCDK7/564185
-#EXTINF:-1 group-title="Argentina · Deportes" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/world-latin-america/golf-channel-on-nbc-lam.png",Golf Channel
-http://maracanazo.lat:8080/Jpg2210233/Rk8zS5x9kQ/478719
+#EXTINF:-1 tvg-id="" tvg-name="Fox Sports 3" tvg-logo="https://i.postimg.cc/bv5qJvvN/fox3.png" group-title="Argentina · Deportes",Fox Sports 3
+http://23.153.217.158:8080/live/79882700/27072023/455.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Fox Sports Argentina" tvg-logo="https://static.epg.best/us/FoxSports1.us.png" group-title="Argentina · Deportes",Fox Sports Argentina
+https://velive.lat:443/tanogrijalva/MfBQu2PVwt/420280
+#EXTINF:-1 tvg-id="" tvg-name="Fox Sports Premium" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/All_Elite_Wrestling_logo_2024.svg/1200px-All_Elite_Wrestling_logo_2024.svg.png" group-title="Argentina · Deportes",Fox Sports Premium
+https://velive.lat:443/tanogrijalva/MfBQu2PVwt/479926
+#EXTINF:-1 tvg-id="" tvg-name="Golf Channel" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/7/7e/NBC_Golf_flat_logo.png" group-title="Argentina · Deportes",Golf Channel
+http://23.153.217.158:8080/live/79882700/27072023/549.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="Polo TV" tvg-logo="https://images.pluto.tv/channels/65004cf398020f00084ca8bc/colorLogoPNG.png" group-title="Argentina · Deportes",Polo TV
 https://stitcher.pluto.tv/stitch/hls/channel/65004cf398020f00084ca8bc/master.m3u8?deviceType=web&servertSideAds=false&deviceMake=safari&deviceVersion=1&deviceId=spencer&appVersion=1&deviceDNT=0&deviceModel=web&sid=41ba0809-62bc-11ef-83ed-4ec11ef77758
 #EXTINF:-1 group-title="Argentina · Deportes" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/world-latin-america/tnt-sports-premium-lam.png",TNT Sports Argentina
 http://maracanazo.lat:8080/Jpg2210233/Rk8zS5x9kQ/165664
-#EXTINF:-1 tvg-id="" tvg-name="TyC Sports" tvg-logo="http://redworld.pro:8880/images/c5509c4b9b2f0749da4aed3a5ae3d7c3.png" group-title="Argentina · Deportes",TyC Sports
-http://superxlatino.com:8880/STeWmW3XhTWK/pF4Ec5heCDK7/327918
-#EXTINF:-1 group-title="Argentina · Cultura" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/encuentro-ar.png",Encuentro
-http://maracanazo.lat:8080/Jpg2210233/Rk8zS5x9kQ/165602
+#EXTINF:-1 tvg-id="" tvg-name="TyC Sports" tvg-logo="https://generador.nubservices.com/logos/panel/187371-tyc-sports-hd-mulmmkgt.png" group-title="Argentina · Deportes",TyC Sports
+https://velive.lat:443/tanogrijalva/MfBQu2PVwt/187371
+#EXTINF:-1 tvg-id="" tvg-name="Encuentro" tvg-logo="https://generador.nubservices.com/logos/panel/272057-arg-encuentro-hd-mulnhjkw.png" group-title="Argentina · Cultura",Encuentro
+https://velive.lat:443/tanogrijalva/MfBQu2PVwt/272057
 #EXTINF:-1 tvg-id="" tvg-name="Pakapaka" tvg-logo="https://i.ibb.co/bQtRpYM/Pakapaka.png" group-title="Argentina · Cultura",Pakapaka
 http://23.153.217.158:8080/live/79882700/27072023/61601.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="Aire de Santa Fe" tvg-logo="https://cdn.m3u.cl/logo/252_Aire_de_Santa_Fe.png" group-title="Argentina · Entretenimiento",Aire de Santa Fe
 https://redirector.dps.live/hls/airedesantafetv/playlist.m3u8?PlaylistM3UCL
-#EXTINF:-1 tvg-id="" tvg-name="Canal 21" tvg-logo="https://cdn.m3u.cl/logo/348_Canal_21_Chillan.jpg" group-title="Argentina · Entretenimiento",Canal 21
-https://tls-cl.cdnz.cl/canal21tv/live/playlist.m3u8?PlaylistM3UCL
+#EXTINF:-1 tvg-id="" tvg-name="Canal 21" tvg-logo="" group-title="Argentina · Entretenimiento",Canal 21
+http://superxlatino.com:8880/STeWmW3XhTWK/pF4Ec5heCDK7/361273
 #EXTINF:-1 tvg-id="" tvg-name="Canal E" tvg-logo="https://cdn.m3u.cl/logo/1417_Canal_E.png" group-title="Argentina · Entretenimiento",Canal E
 https://unlimited1-us.dps.live/perfiltv/perfiltv.smil/playlist.m3u8?PlaylistM3UCL
 #EXTINF:-1 tvg-id="" tvg-name="Canal Orbe 21" tvg-logo="https://cdn.m3u.cl/logo/207_Orbe_21.jpg" group-title="Argentina · Entretenimiento",Canal Orbe 21
 http://23.153.217.158:8080/live/79882700/27072023/74322.m3u8
-#EXTINF:-1 group-title="Argentina · Entretenimiento" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/ciudad-magazine-ar.png",Ciudad Magazine
-http://maracanazo.lat:8080/Jpg2210233/Rk8zS5x9kQ/165628
-#EXTINF:-1 tvg-id="232dtv.cl" tvg-name="El Gourmet" tvg-logo="http://puntoz.net/LOGOS/elgourmetp.png" group-title="Argentina · Entretenimiento",El Gourmet
-http://23.153.217.158:8080/live/79882700/27072023/54498.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Ciudad Magazine" tvg-logo="https://static.wikia.nocookie.net/logopedia/images/a/a8/Ciudadmagazine-logonuevo.png/revision/latest?cb=20210525001116&path-prefix=es" group-title="Argentina · Entretenimiento",Ciudad Magazine
+http://superxlatino.com:8880/STeWmW3XhTWK/pF4Ec5heCDK7/490453
+#EXTINF:-1 tvg-id="" tvg-name="El Gourmet" tvg-logo="https://i.imgur.com/Z66BTt0.png" group-title="Argentina · Entretenimiento",El Gourmet
+https://velive.lat:443/tanogrijalva/MfBQu2PVwt/269970
 #EXTINF:-1 group-title="Argentina · Entretenimiento" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/quiero-musica-en-mi-idioma-ar.png",Quiero Música
 http://maracanazo.lat:8080/Jpg2210233/Rk8zS5x9kQ/420009
 #EXTINF:-1 tvg-id="" tvg-name="Canal 10 Córdoba" tvg-logo="" group-title="Argentina · Regionales",Canal 10 Córdoba
 http://superxlatino.com:8880/STeWmW3XhTWK/pF4Ec5heCDK7/359940
 #EXTINF:-1 tvg-id="" tvg-name="Canal 3 Rosario" tvg-logo="https://cdn.m3u.cl/logo/256_Canal_3_Rosario.png" group-title="Argentina · Regionales",Canal 3 Rosario
 https://59d52c5a5ce5e.streamlock.net:4443/canal3rosario/ngrp:canal3rosario_all/playlist.m3u8?PlaylistM3UCL
-#EXTINF:-1 group-title="TV · Ficción" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/a-and-e-ar.png",A&E
-http://maracanazo.lat:8080/Jpg2210233/Rk8zS5x9kQ/173378
-#EXTINF:-1 tvg-id="" tvg-name="AMC" tvg-logo="https://i.ibb.co/zNx6Jtc/amc.png" group-title="TV · Ficción",AMC
-https://velive.lat:443/tanogrijalva/MfBQu2PVwt/187212
-#EXTINF:-1 tvg-id="" tvg-name="AXN" tvg-logo="https://i.ibb.co/q0vvDfG/AXNSD.png" group-title="TV · Ficción",AXN
-https://velive.lat:443/tanogrijalva/MfBQu2PVwt/187192
-#EXTINF:-1 tvg-id="" tvg-name="Cinecanal" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfY_V6-B2g_kEqycv8FnYBzZZca7242M3uLw&usqp=CAU" group-title="TV · Ficción",Cinecanal
-http://superxlatino.com:8880/STeWmW3XhTWK/pF4Ec5heCDK7/414480
-#EXTINF:-1 group-title="TV · Ficción" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/world-latin-america/cinemax-lam.png",Cinemax
-http://maracanazo.lat:8080/Jpg2210233/Rk8zS5x9kQ/562443
+#EXTINF:-1 tvg-id="" tvg-name="A&E" tvg-logo="https://i.ibb.co/MVkp7T8/AE.png" group-title="TV · Ficción",A&E
+https://velive.lat:443/tanogrijalva/MfBQu2PVwt/187157
+#EXTINF:-1 tvg-id="" tvg-name="AMC" tvg-logo="https://i.ibb.co/x2kcFzf/amcsd.png" group-title="TV · Ficción",AMC
+https://velive.lat:443/tanogrijalva/MfBQu2PVwt/187213
+#EXTINF:-1 tvg-id="" tvg-name="AXN" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/axn-ar.png" group-title="TV · Ficción",AXN
+https://velive.lat:443/tanogrijalva/MfBQu2PVwt/446962
+#EXTINF:-1 tvg-id="" tvg-name="Cinecanal" tvg-logo="https://i.ibb.co/mFv795Y/cinecanal.png" group-title="TV · Ficción",Cinecanal
+https://velive.lat:443/tanogrijalva/MfBQu2PVwt/187188
+#EXTINF:-1 tvg-id="" tvg-name="Cinemax" tvg-logo="https://i.ibb.co/gJDJRtX/CINEMAX.png" group-title="TV · Ficción",Cinemax
+https://velive.lat:443/tanogrijalva/MfBQu2PVwt/187160
 #EXTINF:-1 group-title="TV · Ficción" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/comedy-central-ar.png",Comedy Central
 http://maracanazo.lat:8080/Jpg2210233/Rk8zS5x9kQ/437255
-#EXTINF:-1 tvg-id="" tvg-name="Europa Europa" tvg-logo="https://cdn.mitvstatic.com/channels/mx_europa-europa_m.png" group-title="Argentina · Canales identificados",Europa Europa
-http://23.153.217.158:8080/live/79882700/27072023/59593.m3u8
-#EXTINF:-1 tvg-id="" tvg-name="Film & Arts" tvg-logo="https://i.ibb.co/wwKZss5/FILM-ARTS.jpg" group-title="TV · Ficción",Film & Arts
-http://23.153.217.158:8080/live/79882700/27072023/245.m3u8
-#EXTINF:-1 group-title="TV · Ficción" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/world-latin-america/fx-hd-lam.png",FX
-http://maracanazo.lat:8080/Jpg2210233/Rk8zS5x9kQ/173423
-#EXTINF:-1 tvg-id="" tvg-name="Golden" tvg-logo="https://i.ibb.co/2t8jFkF/GOLDN.png" group-title="TV · Ficción",Golden
-https://velive.lat:443/tanogrijalva/MfBQu2PVwt/187215
-#EXTINF:-1 group-title="TV · Ficción" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/world-latin-america/golden-edge-lam.png",Golden Edge
-http://maracanazo.lat:8080/Jpg2210233/Rk8zS5x9kQ/214681
-#EXTINF:-1 tvg-id="" tvg-name="HBO" tvg-logo="https://i.ibb.co/KW4s754/HBOORIGINALSD.png" group-title="TV · Ficción",HBO
-https://velive.lat:443/tanogrijalva/MfBQu2PVwt/187177
+#EXTINF:-1 tvg-id="1515dtv.cl" tvg-name="Europa Europa" tvg-logo="https://i.postimg.cc/Vs7JKXGg/europaeuropa.png" group-title="Argentina · Canales identificados",Europa Europa
+http://23.153.217.158:8080/live/79882700/27072023/54432.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Film & Arts" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/world-latin-america/film-and-arts-lam.png" group-title="TV · Ficción",Film & Arts
+https://velive.lat:443/tanogrijalva/MfBQu2PVwt/316750
+#EXTINF:-1 tvg-id="217dtv.cl" tvg-name="FX" tvg-logo="https://i.ibb.co/hs5pPQB/FXHD.jpg" group-title="TV · Ficción",FX
+http://23.153.217.158:8080/live/79882700/27072023/124.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Golden" tvg-logo="https://i.ibb.co/hRRXsQ3/PREMIERSD.png" group-title="TV · Ficción",Golden
+https://velive.lat:443/tanogrijalva/MfBQu2PVwt/187222
+#EXTINF:-1 tvg-id="" tvg-name="Golden Edge" tvg-logo="http://209.126.82.213/logos/pe_golden-edge_l.png" group-title="TV · Ficción",Golden Edge
+http://23.153.217.158:8080/live/79882700/27072023/65218.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="HBO" tvg-logo="https://static.epg.best/us/HBOZone.us.png" group-title="TV · Ficción",HBO
+https://velive.lat:443/tanogrijalva/MfBQu2PVwt/420365
 #EXTINF:-1 tvg-id="" tvg-name="HBO 2" tvg-logo="https://static.epg.best/us/HBO2.us.png" group-title="TV · Ficción",HBO 2
 https://velive.lat:443/tanogrijalva/MfBQu2PVwt/420401
 #EXTINF:-1 group-title="TV · Ficción" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/world-latin-america/hbo-family-lam.png",HBO Family
 http://maracanazo.lat:8080/Jpg2210233/Rk8zS5x9kQ/437344
-#EXTINF:-1 group-title="TV · Ficción" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/world-latin-america/hbo-mundi-lam.png",HBO Mundi
-http://maracanazo.lat:8080/Jpg2210233/Rk8zS5x9kQ/190792
-#EXTINF:-1 tvg-id="526dtv.cl" tvg-name="HBO Plus" tvg-logo="https://i.ibb.co/42KnfJN/HBOPLUS.jpg" group-title="TV · Ficción",HBO Plus
-http://23.153.217.158:8080/live/79882700/27072023/144.m3u8
-#EXTINF:-1 group-title="TV · Ficción" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/world-latin-america/hbo-signature-lam.png",HBO Signature
-http://maracanazo.lat:8080/Jpg2210233/Rk8zS5x9kQ/173455
+#EXTINF:-1 tvg-id="540dtv.cl" tvg-name="HBO Mundi" tvg-logo="https://i.ibb.co/Hg50ZZ4/HBOMUNDI.jpg" group-title="TV · Ficción",HBO Mundi
+http://23.153.217.158:8080/live/79882700/27072023/142.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="HBO Plus" tvg-logo="https://i.ibb.co/8sQ0FS1/HBOPLU.png" group-title="TV · Ficción",HBO Plus
+https://velive.lat:443/tanogrijalva/MfBQu2PVwt/187170
+#EXTINF:-1 tvg-id="I365.80120.schedulesdirect.org" tvg-name="HBO Signature" tvg-logo="https://i.ibb.co/pKfmCx8/HBOSIGNATURE.jpg" group-title="TV · Ficción",HBO Signature
+http://23.153.217.158:8080/live/79882700/27072023/150.m3u8
 #EXTINF:-1 tvg-id="I366.34887.schedulesdirect.org" tvg-name="HBO Xtreme" tvg-logo="https://i.ibb.co/K2y2KxG/HBOXTREME.jpg" group-title="TV · Ficción",HBO Xtreme
 http://23.153.217.158:8080/live/79882700/27072023/158.m3u8
 #EXTINF:-1 group-title="Argentina · Canales identificados" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/lifetime-ar.png",Lifetime
 http://maracanazo.lat:8080/Jpg2210233/Rk8zS5x9kQ/437331
-#EXTINF:-1 group-title="TV · Ficción" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/paramount-network-hz-ar.png",Paramount Network
-http://maracanazo.lat:8080/Jpg2210233/Rk8zS5x9kQ/437332
+#EXTINF:-1 tvg-id="" tvg-name="Paramount Network" tvg-logo="https://i.ibb.co/XxkQ6w0/PARCH.png" group-title="TV · Ficción",Paramount Network
+http://23.153.217.158:8080/live/79882700/27072023/236537.m3u8
 #EXTINF:-1 group-title="TV · Ficción" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/world-latin-america/sony-channel-lam.png",Sony Channel
 http://maracanazo.lat:8080/Jpg2210233/Rk8zS5x9kQ/437419
-#EXTINF:-1 group-title="TV · Ficción" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/world-latin-america/space-lam.png",Space
-http://maracanazo.lat:8080/Jpg2210233/Rk8zS5x9kQ/173472
+#EXTINF:-1 tvg-id="" tvg-name="Space" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/world-latin-america/space-lam.png" group-title="TV · Ficción",Space
+https://amg00376-magellan-amg00376c14-rakuten-uk-1694.playouts.now.amagi.tv/playlist/amg00376-magellantv-spacesciencenowcauk-rakutenuk/playlist.m3u8
 #EXTINF:-1 group-title="TV · Ficción" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/world-latin-america/star-channel-lam.png",Star Channel
 http://maracanazo.lat:8080/Jpg2210233/Rk8zS5x9kQ/173488
-#EXTINF:-1 group-title="TV · Ficción" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/world-latin-america/studio-universal-lam.png",Studio Universal
-http://maracanazo.lat:8080/Jpg2210233/Rk8zS5x9kQ/173512
+#EXTINF:-1 tvg-id="" tvg-name="Studio Universal" tvg-logo="https://i.ibb.co/s1QDFQ9/STUDIOUNIVERSAL.jpg" group-title="TV · Ficción",Studio Universal
+http://23.153.217.158:8080/live/79882700/27072023/218.m3u8
 #EXTINF:-1 group-title="Argentina · Canales identificados" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/tcm-ar.png",TCM
 http://maracanazo.lat:8080/Jpg2210233/Rk8zS5x9kQ/437421
-#EXTINF:-1 tvg-id="Canal.TNT.Novelas.(Ecuador).ec" tvg-name="TNT" tvg-logo="https://i.postimg.cc/T32cTHp4/9ae23627-8347-46d9-9ae8-c0eb6ff41834.jpg" group-title="TV · Ficción",TNT
-https://velive.lat:443/tanogrijalva/MfBQu2PVwt/202699
-#EXTINF:-1 tvg-id="213dtv.cl" tvg-name="TNT Series" tvg-logo="http://puntoz.net/LOGOS/tntseriesp.png" group-title="TV · Ficción",TNT Series
-http://23.153.217.158:8080/live/79882700/27072023/54450.m3u8
-#EXTINF:-1 group-title="TV · Ficción" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/world-latin-america/universal-cinema-lam.png",Universal Cinema
-http://maracanazo.lat:8080/Jpg2210233/Rk8zS5x9kQ/187075
+#EXTINF:-1 tvg-id="" tvg-name="TNT" tvg-logo="https://i.ibb.co/CH1qxtt/TNTSD.png" group-title="TV · Ficción",TNT
+https://velive.lat:443/tanogrijalva/MfBQu2PVwt/187183
+#EXTINF:-1 tvg-id="213dtv.cl" tvg-name="TNT Series" tvg-logo="https://i.ibb.co/KqtK9ZQ/TNTSERIES.jpg" group-title="TV · Ficción",TNT Series
+http://23.153.217.158:8080/live/79882700/27072023/170.m3u8
+#EXTINF:-1 tvg-id="I3.12421.schedulesdirect.org" tvg-name="Universal Cinema" tvg-logo="http://209.126.82.213/logos/universal_cinema.png" group-title="TV · Ficción",Universal Cinema
+http://23.153.217.158:8080/live/79882700/27072023/65200.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="Universal TV" tvg-logo="http://209.126.82.213/logos/universal_channel.png" group-title="TV · Ficción",Universal TV
 http://23.153.217.158:8080/live/79882700/27072023/65197.m3u8
 #EXTINF:-1 group-title="TV · Ficción" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/world-latin-america/warner-channel-lam.png",Warner Channel
@@ -203,20 +203,20 @@ https://velive.lat:443/tanogrijalva/MfBQu2PVwt/272072
 https://velive.lat:443/tanogrijalva/MfBQu2PVwt/272071
 #EXTINF:-1 tvg-id="" tvg-name="ARG I T&C SPORTS op2" tvg-logo="https://generador.nubservices.com/logos/panel/272073-arg-i-tandc-sports-op2-mulnhd4h.png" group-title="Deportes",ARG I T&C SPORTS op2
 https://velive.lat:443/tanogrijalva/MfBQu2PVwt/272073
-#EXTINF:-1 tvg-id="" tvg-name="beIN Sports" tvg-logo="https://i.imgur.com/V562tpO.png" group-title="Deportes",beIN Sports
-https://velive.lat:443/tanogrijalva/MfBQu2PVwt/429000
+#EXTINF:-1 tvg-id="" tvg-name="beIN Sports" tvg-logo="https://mirror.streamhubtv.ca:443/images/CSU8cZzVTxjnSna03jIbA6rUNb3vVMeEU6oV31vP-Te3OlhUMF9RRFEfvEVlxOh6.png" group-title="Deportes",beIN Sports
+https://velive.lat:443/tanogrijalva/MfBQu2PVwt/420232
 #EXTINF:-1 group-title="Deportes",BR: ELEVEN SPORTS CANAL 7
 http://maracanazo.lat:8080/Jpg2210233/Rk8zS5x9kQ/563467
-#EXTINF:-1 tvg-id="" tvg-name="Claro Sports" tvg-logo="http://127.0.0.1/" group-title="Deportes",Claro Sports
-http://superxlatino.com:8880/STeWmW3XhTWK/pF4Ec5heCDK7/564218
-#EXTINF:-1 tvg-id="" tvg-name="DirecTV Sports" tvg-logo="https://i.postimg.cc/7Lb92ddX/directvsports.png" group-title="Deportes",DirecTV Sports
-http://23.153.217.158:8080/live/79882700/27072023/472.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Claro Sports" tvg-logo="https://generador.nubservices.com/logos/panel/317019-mx-claro-sports-mulnbfqm.png" group-title="Deportes",Claro Sports
+https://velive.lat:443/tanogrijalva/MfBQu2PVwt/317019
+#EXTINF:-1 tvg-id="" tvg-name="DirecTV Sports" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/0/0f/DirecTV_Sports_2_Latin_America_%282018%29.png" group-title="Deportes",DirecTV Sports
+http://23.153.217.158:8080/live/79882700/27072023/475.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="E$PN 3 HD." tvg-logo="http://127.0.0.1/" group-title="Deportes",E$PN 3 HD.
 https://velive.lat:443/tanogrijalva/MfBQu2PVwt/273608
 #EXTINF:-1 tvg-id="" tvg-name="E$PN PREMIUM HD." tvg-logo="http://127.0.0.1/" group-title="Deportes",E$PN PREMIUM HD.
 https://velive.lat:443/tanogrijalva/MfBQu2PVwt/273602
-#EXTINF:-1 tvg-id="" tvg-name="Eurosport 1" tvg-logo="https://www.broadbandtvnews.com/wp-content/uploads/2015/11/Eurosport-1-symbol.png" group-title="Deportes",Eurosport 1
-https://velive.lat:443/tanogrijalva/MfBQu2PVwt/317038
+#EXTINF:-1 tvg-id="" tvg-name="Eurosport 1" tvg-logo="" group-title="Argentina · Canales identificados",Eurosport 1
+https://velive.lat:443/tanogrijalva/MfBQu2PVwt/446844
 #EXTINF:-1 tvg-id="" tvg-name="F⚽X  $P0RTS 3 HD" tvg-logo="http://127.0.0.1/" group-title="Deportes",F⚽X  $P0RTS 3 HD
 https://velive.lat:443/tanogrijalva/MfBQu2PVwt/273616
 #EXTINF:-1 tvg-id="" tvg-name="F⚽X $P0RTS 1 HD" tvg-logo="http://127.0.0.1/" group-title="Deportes",F⚽X $P0RTS 1 HD
@@ -224,15 +224,13 @@ https://velive.lat:443/tanogrijalva/MfBQu2PVwt/273612
 #EXTINF:-1 tvg-id="" tvg-name="F⚽X $PORTS 2 HD" tvg-logo="http://127.0.0.1/" group-title="Deportes",F⚽X $PORTS 2 HD
 https://velive.lat:443/tanogrijalva/MfBQu2PVwt/273614
 #EXTINF:-1 tvg-id="" tvg-name="GolTV" tvg-logo="https://i.postimg.cc/zBpJHd9j/800px-GOLTV.png" group-title="Deportes",GolTV
-http://23.153.217.158:8080/live/79882700/27072023/489.m3u8
-#EXTINF:-1 group-title="Argentina · Canales identificados",MLB Network
-http://maracanazo.lat:8080/Jpg2210233/Rk8zS5x9kQ/288247
+http://23.153.217.158:8080/live/79882700/27072023/488.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="MLB Network" tvg-logo="http://stalkertvlatinoplay.com/LOGOS/MLB/MLBNETWORK.png" group-title="Argentina · Canales identificados",MLB Network
+https://velive.lat:443/tanogrijalva/MfBQu2PVwt/322395
 #EXTINF:-1 tvg-id="" tvg-name="Motorvision" tvg-logo="https://images.pluto.tv/channels/60e5ea9a9bb4200008376f76/colorLogoPNG.png" group-title="Argentina · Canales identificados",Motorvision
 https://stitcher.pluto.tv/stitch/hls/channel/60e5ea9a9bb4200008376f76/master.m3u8?deviceType=web&servertSideAds=false&deviceMake=safari&deviceVersion=1&deviceId=spencer&appVersion=1&deviceDNT=0&deviceModel=web&sid=5c994790-62bc-11ef-843f-be5cd951c95a
-#EXTINF:-1 tvg-id="" tvg-name="NBA TV" tvg-logo="https://yt3.ggpht.com/lwNmuM6cV_kH2dT408Q5HBdKCf7gKM2A7yh_cclROgG5urRy9qvfoSsUhkUZX94xH6rg9m4bAw=ns-nd" group-title="Deportes",NBA TV
-http://superxlatino.com:8880/STeWmW3XhTWK/pF4Ec5heCDK7/447469
-#EXTINF:-1 group-title="Argentina · Canales identificados",NHL Network
-http://maracanazo.lat:8080/Jpg2210233/Rk8zS5x9kQ/108862
+#EXTINF:-1 group-title="Deportes" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/nba-tv-ar.png",NBA TV
+http://maracanazo.lat:8080/Jpg2210233/Rk8zS5x9kQ/511663
 #EXTINF:-1 tvg-id="" tvg-name="Soccer 09/07 09:00am - Argentina vs Egypt: FIFA World Cup 2026" tvg-logo="" group-title="Deportes",Soccer 09/07 09:00am - Argentina vs Egypt: FIFA World Cup 2026
 https://velive.lat:443/tanogrijalva/MfBQu2PVwt/446712
 #EXTINF:-1 tvg-id="" tvg-name="Soccer 09/07 11:00am - Argentina vs Egypt: FIFA World Cup 2026" tvg-logo="" group-title="Deportes",Soccer 09/07 11:00am - Argentina vs Egypt: FIFA World Cup 2026
@@ -243,54 +241,48 @@ http://maracanazo.lat:8080/Jpg2210233/Rk8zS5x9kQ/195903
 https://dacastmmd.mmdlive.lldns.net/dacastmmd/1b6bbade53634f5a847b953c9adfd102/index.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="TYC SP⚽RTS HD" tvg-logo="http://127.0.0.1/" group-title="Deportes",TYC SP⚽RTS HD
 https://velive.lat:443/tanogrijalva/MfBQu2PVwt/273600
-#EXTINF:-1 tvg-id="" tvg-name="Win Sports" tvg-logo="https://vignette.wikia.nocookie.net/logopedia/images/8/8e/WinSportsPlusPremium.png" group-title="Deportes",Win Sports
-http://23.153.217.158:8080/live/79882700/27072023/360.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Win Sports" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/5/54/WinSports2022.png" group-title="Deportes",Win Sports
+http://23.153.217.158:8080/live/79882700/27072023/366.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="Cartoon Network" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/international/cartoon-network-hd-int.png" group-title="Infantiles",Cartoon Network
 https://velive.lat:443/tanogrijalva/MfBQu2PVwt/446981
-#EXTINF:-1 tvg-id="" tvg-name="Discovery Kids" tvg-logo="https://1.bp.blogspot.com/__2gkr01rYEc/SfprsAUsqgI/AAAAAAAAEEA/A-PhYB0PQMg/s400/DK-Logo-2009_cmyk_FINAL__3658502.jpg" group-title="Infantiles",Discovery Kids
-http://23.153.217.158:8080/live/79882700/27072023/59462.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Discovery Kids" tvg-logo="https://i.postimg.cc/P5srN2Lx/discovery-kids.png" group-title="Infantiles",Discovery Kids
+http://23.153.217.158:8080/live/79882700/27072023/378.m3u8
 #EXTINF:-1 tvg-id="Canal.Disney.Channel.(Ecuador).ec" tvg-name="Disney Channel" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/2014_Disney_Channel_logo.svg/1200px-2014_Disney_Channel_logo.svg.png" group-title="Argentina · Canales identificados",Disney Channel
 https://velive.lat:443/tanogrijalva/MfBQu2PVwt/138519
-#EXTINF:-1 group-title="Infantiles",Disney Junior
-http://maracanazo.lat:8080/Jpg2210233/Rk8zS5x9kQ/559513
-#EXTINF:-1 tvg-id="" tvg-name="Nickelodeon" tvg-logo="https://images.pluto.tv/channels/5f0d668b872e4400073acc68/colorLogoPNG_1750753617970.png" group-title="Infantiles",Nickelodeon
-https://velive.lat:443/tanogrijalva/MfBQu2PVwt/468537
-#EXTINF:-1 tvg-id="" tvg-name="Tooncast" tvg-logo="https://i.postimg.cc/C1jp3NKB/Tooncast-logo.png" group-title="Infantiles",Tooncast
-http://23.153.217.158:8080/live/79882700/27072023/397.m3u8
-#EXTINF:-1 group-title="Documentales" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/world-latin-america/animal-planet-lam.png",Animal Planet
-http://maracanazo.lat:8080/Jpg2210233/Rk8zS5x9kQ/562495
+#EXTINF:-1 tvg-id="" tvg-name="Disney Junior" tvg-logo="https://i.ibb.co/Gn6BRm7/PLAYDC.png" group-title="TV · Ficción",Disney Junior
+http://23.153.217.158:8080/live/79882700/27072023/236525.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Nickelodeon" tvg-logo="https://i.imgur.com/E84jnP8.png" group-title="Infantiles",Nickelodeon
+https://velive.lat:443/tanogrijalva/MfBQu2PVwt/468535
+#EXTINF:-1 tvg-id="" tvg-name="Tooncast" tvg-logo="https://generador.nubservices.com/logos/panel/1837-tooncast-mulndw0q.png" group-title="Infantiles",Tooncast
+https://velive.lat:443/tanogrijalva/MfBQu2PVwt/1837
+#EXTINF:-1 tvg-id="" tvg-name="Animal Planet" tvg-logo="https://i.imgur.com/7MbapXB.png" group-title="Documentales",Animal Planet
+https://velive.lat:443/tanogrijalva/MfBQu2PVwt/269978
 #EXTINF:-1 tvg-id="" tvg-name="Discovery Channel" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/discovery-channel-ar.png" group-title="Documentales",Discovery Channel
 https://velive.lat:443/tanogrijalva/MfBQu2PVwt/446913
-#EXTINF:-1 group-title="Documentales" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/discovery-science-ar.png",Discovery Science
-http://maracanazo.lat:8080/Jpg2210233/Rk8zS5x9kQ/181537
+#EXTINF:-1 tvg-id="" tvg-name="Discovery Science" tvg-logo="https://cdn.mitvstatic.com/channels/co_discovery-science_m.png" group-title="Documentales",Discovery Science
+http://23.153.217.158:8080/live/79882700/27072023/23650.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="History" tvg-logo="https://generador.nubservices.com/logos/canada/history-channel-op2.png" group-title="Documentales",History
 https://velive.lat:443/tanogrijalva/MfBQu2PVwt/476017
 #EXTINF:-1 group-title="Documentales" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/world-latin-america/national-geographic-wild-hd-hz-lam.png",National Geographic
 http://maracanazo.lat:8080/Jpg2210233/Rk8zS5x9kQ/384869
-#EXTINF:-1 tvg-id="" tvg-name="MTV" tvg-logo="https://images.pluto.tv/channels/654102ed770cf1000866c307/colorLogoPNG.png" group-title="Música",MTV
-https://velive.lat:443/tanogrijalva/MfBQu2PVwt/462484
+#EXTINF:-1 tvg-id="" tvg-name="MTV" tvg-logo="https://generador.nubservices.com/logos/panel/416606-us-mtv-mulmyfj0.png" group-title="Música",MTV
+https://velive.lat:443/tanogrijalva/MfBQu2PVwt/416606
 #EXTINF:-1 tvg-id="" tvg-name="Tropical Music TV (720p)" tvg-logo="https://i.imgur.com/h48pwLn.png" group-title="Música",Tropical Music TV (720p)
 http://68.235.37.11:1935/vallenato/vallenato/.m3u8
-#EXTINF:-1 tvg-id="" tvg-name="VH1" tvg-logo="https://images.pluto.tv/channels/5d71561df6f2e6d0b6493bf5/colorLogoPNG.png" group-title="Música",VH1
-https://stitcher.pluto.tv/stitch/hls/channel/5d71561df6f2e6d0b6493bf5/master.m3u8?deviceType=web&servertSideAds=false&deviceMake=safari&deviceVersion=1&deviceId=spencer&appVersion=1&deviceDNT=0&deviceModel=web&sid=66fdda05-62bc-11ef-b7b7-72aa874ccba6
+#EXTINF:-1 tvg-id="" tvg-name="VH1" tvg-logo="https://images.pluto.tv/channels/6447d08f2858cb0008b9957c/colorLogoPNG.png" group-title="Música",VH1
+https://stitcher.pluto.tv/stitch/hls/channel/6447d08f2858cb0008b9957c/master.m3u8?deviceType=web&servertSideAds=false&deviceMake=safari&deviceVersion=1&deviceId=spencer&appVersion=1&deviceDNT=0&deviceModel=web&sid=53bf93e2-62bc-11ef-ace9-d6fcb20d41fb
 #EXTINF:-1 tvg-id="" tvg-name="E! Entertainment" tvg-logo="" group-title="Argentina · Canales identificados",E! Entertainment
 https://velive.lat:443/tanogrijalva/MfBQu2PVwt/446929
 #EXTINF:-1 group-title="Argentina · Canales identificados" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/argentina/food-network-ar.png",Food Network
 http://maracanazo.lat:8080/Jpg2210233/Rk8zS5x9kQ/437263
-#EXTINF:-1 tvg-id="" tvg-name="11:30 - Arg - Aldosivi vs Sarmiento" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/b/b2/Superliga_Argentina_Logo.png" group-title="Eventos",11:30 - Arg - Aldosivi vs Sarmiento
-https://velive.lat:443/tanogrijalva/MfBQu2PVwt/479617
-#EXTINF:-1 tvg-id="" tvg-name="15:00 - Arg - Gimnasia y Esgrima La Plata vs. Atlético Tucumán" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/b/b2/Superliga_Argentina_Logo.png" group-title="Eventos",15:00 - Arg - Gimnasia y Esgrima La Plata vs. Atlético Tucumán
-https://velive.lat:443/tanogrijalva/MfBQu2PVwt/479632
-#EXTINF:-1 tvg-id="" tvg-name="16:30 - Arg - Instituto vs. Boca Juniors" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/b/b2/Superliga_Argentina_Logo.png" group-title="Eventos",16:30 - Arg - Instituto vs. Boca Juniors
-https://velive.lat:443/tanogrijalva/MfBQu2PVwt/479635
-#EXTINF:-1 tvg-id="" tvg-name="18:45 - Arg - Unión vs Defensa y Justicia" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/b/b2/Superliga_Argentina_Logo.png" group-title="Eventos",18:45 - Arg - Unión vs Defensa y Justicia
-https://velive.lat:443/tanogrijalva/MfBQu2PVwt/479652
-#EXTINF:-1 tvg-id="" tvg-name="Fight Network" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/TFN_logo.svg/2560px-TFN_logo.svg.png" group-title="Eventos",Fight Network
-https://velive.lat:443/tanogrijalva/MfBQu2PVwt/466750
+#EXTINF:-1 tvg-id="" tvg-name="Fight Network" tvg-logo="https://generador.nubservices.com/logos/panel/469073-ppv-fight-network-op2-muybp8n8.png" group-title="Eventos",Fight Network
+https://velive.lat:443/tanogrijalva/MfBQu2PVwt/469073
 #EXTINF:-1 tvg-id="" tvg-name="NFL Network" tvg-logo="https://i.imgur.com/rsSVCBR.png" group-title="Eventos",NFL Network
-https://velive.lat:443/tanogrijalva/MfBQu2PVwt/479673
-#EXTINF:-1 tvg-id="" tvg-name="UFC" tvg-logo="https://pngimg.com/d/ufc_PNG59.png" group-title="Eventos",UFC
-https://velive.lat:443/tanogrijalva/MfBQu2PVwt/469065
+https://velive.lat:443/tanogrijalva/MfBQu2PVwt/479919
+#EXTINF:-1 tvg-id="" tvg-name="NHL Network" tvg-logo="https://i.imgur.com/4vSU2dU.png" group-title="Eventos",NHL Network
+https://velive.lat:443/tanogrijalva/MfBQu2PVwt/479930
+#EXTINF:-1 tvg-id="" tvg-name="UFC" tvg-logo="https://generador.nubservices.com/logos/panel/469082-canal-eventos-ufc-foxsports-premiunmx-op3-muybpcaw.png" group-title="Eventos",UFC
+https://velive.lat:443/tanogrijalva/MfBQu2PVwt/469082
 #EXTINF:-1 tvg-id="" tvg-name="5R TV Santa Fe | AR" tvg-logo="https://cdn.m3u.cl/logo/221_5R_TV_Santa_Fe.png" group-title="Argentina · Canales identificados",5R TV Santa Fe | AR
 http://api.new.livestream.com/accounts/22636012/events/8242619/live.m3u8?PlaylistM3UCL
 #EXTINF:-1 tvg-id="" tvg-name="AR | LA NACION" tvg-logo="https://yt3.googleusercontent.com/ytc/AIdro_kqtZB_6WG36RuIrX7Npa_XgoeV-KK74HcQ7m9xWQcKI7E=s900-c-k-c0x00ffffff-no-rj" group-title="Argentina · Canales identificados",AR | LA NACION
@@ -309,8 +301,6 @@ http://23.153.217.158:8080/live/79882700/27072023/61551.m3u8
 http://superxlatino.com:8880/STeWmW3XhTWK/pF4Ec5heCDK7/490461
 #EXTINF:-1 tvg-id="" tvg-name="ARG | VER TV" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKUuk2eK30VLGHUUSRMHqdFVSmqoA9tcaZ4UZINGGp_Q&s" group-title="Argentina · Canales identificados",ARG | VER TV
 http://superxlatino.com:8880/STeWmW3XhTWK/pF4Ec5heCDK7/490465
-#EXTINF:-1 tvg-id="" tvg-name="ARG | Volver" tvg-logo="http://redworld.pro:8880/images/78805a221a988e79ef3f42d7c5bfd418.png" group-title="Argentina · Canales identificados",ARG | Volver
-http://superxlatino.com:8880/STeWmW3XhTWK/pF4Ec5heCDK7/490462
 #EXTINF:-1 group-title="Argentina · Canales identificados",ARG: Argentisima HD
 http://maracanazo.lat:8080/Jpg2210233/Rk8zS5x9kQ/165631
 #EXTINF:-1 tvg-id="" tvg-name="ARG: Canal 4 Posadas" tvg-logo="http://fanc.tmsimg.com/assets/s75990_ll_h3_ac.png" group-title="Argentina · Canales identificados",ARG: Canal 4 Posadas
@@ -349,6 +339,8 @@ https://velive.lat:443/tanogrijalva/MfBQu2PVwt/272048
 https://velive.lat:443/tanogrijalva/MfBQu2PVwt/272061
 #EXTINF:-1 tvg-id="" tvg-name="ARG| TRECE  FHD" tvg-logo="https://generador.nubservices.com/logos/panel/272045-arg-trece-fhd-mulnhlnl.png" group-title="Argentina · Canales identificados",ARG| TRECE  FHD
 https://velive.lat:443/tanogrijalva/MfBQu2PVwt/272045
+#EXTINF:-1 tvg-id="" tvg-name="ARG| VOLVER HD" tvg-logo="https://generador.nubservices.com/logos/panel/272049-arg-volver-hd-mulnhm9q.png" group-title="Argentina · Canales identificados",ARG| VOLVER HD
+https://velive.lat:443/tanogrijalva/MfBQu2PVwt/272049
 #EXTINF:-1 tvg-id="" tvg-name="ATV Argentina (540p)" tvg-logo="https://i.ibb.co/rMBVDmZ/atvargentina-x1.png" group-title="Argentina · Canales identificados",ATV Argentina (540p)
 https://stream.arcast.com.ar/atbargentina/atbargentina/playlist.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="AVC HD (720p)" tvg-logo="https://i.imgur.com/8CT4y1O.png" group-title="Argentina · Canales identificados",AVC HD (720p)
