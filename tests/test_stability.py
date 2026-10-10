@@ -99,9 +99,21 @@ class ProbeTests(unittest.TestCase):
         self.assertEqual(self.probe("/master")["state"], "pass")
 
     def test_fast_hd_does_not_stop_at_memory_sample_limit(self):
-        result = self.probe("/fast-ts")
+        # Deterministic clock: runner/network scheduling must not change whether
+        # the fixture represents a high-bitrate source during the whole window.
+        class FastStream:
+            status = 200
+            def read1(self, limit):
+                return TS
+        clock = iter(i * .0002 for i in range(10000))
+        probe = stability.Probe(window=.08, verify_media=True)
+        with patch.object(probe, '_open', return_value=contextlib.nullcontext(FastStream())), \
+                patch.object(stability.time, 'monotonic', side_effect=lambda: next(clock)), \
+                patch.object(probe, '_verify_sample', return_value=True) as verify:
+            result = probe.run('https://example.test/fast')
         self.assertEqual(result["state"], "pass")
         self.assertGreater(result["bytes"], stability.MAX_SAMPLE)
+        self.assertLessEqual(len(verify.call_args.args[0]), stability.MAX_SAMPLE)
 
     def test_vod_excluded_and_encryption_not_claimed_decoded(self):
         self.assertEqual(self.probe("/vod")["reason"], "vod")
