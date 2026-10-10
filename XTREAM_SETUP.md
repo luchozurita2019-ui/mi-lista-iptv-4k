@@ -36,13 +36,13 @@ ffprobe analiza **solo bytes locales mediante stdin**, con protocolos limitados 
 
 Cada muestra conserva hasta 512 KiB en memoria para TS/manifiesto; el TS puede consumir hasta 16 MiB durante la ventana de dos segundos y hasta 32 KiB por segmento HLS; hasta dos niveles de master. Socket timeout: cuatro segundos. Presupuesto de muestra nominal: dieciocho segundos (una lectura en curso puede finalizar después). Se observa como máximo cuatro segundos de espera entre consultas HLS; un target duration mayor puede impedir observar progreso y queda parcial. Presupuesto global para programar comprobaciones: dieciocho minutos, dejando terminar las muestras activas. El workflow tiene treinta minutos de límite total.
 
-Una URL medida como fallida se excluye, incluida la señal principal anterior. No se incorporan alternativas nunca medidas. Se acepta evidencia positiva de las últimas doce horas cuando el presupuesto impide volver a medirla; una falla actual prevalece sobre el historial. No se inventan streams. Por canal se publica una señal principal y hasta dos respaldos comprobados, priorizando servidores y cuentas diferentes. El informe muestra la cobertura y los canales sin evidencia reciente.
+Solo se publican señales con prueba completa `pass`, incluida identificación de video por ffprobe en GitHub Actions. Señales `partial`, `unknown` y `fail` no se publican aunque antes fueran principales. No se incorporan alternativas nunca medidas. Se acepta evidencia `pass` de las últimas doce horas cuando el presupuesto impide volver a medirla; una falla actual prevalece sobre el historial. No se inventan streams. Por canal se publica una señal principal y hasta dos respaldos comprobados, priorizando servidores y cuentas diferentes. El informe muestra la cobertura y los canales sin evidencia reciente.
 
 ## Publicación y recuperación
 
-Antes de escribir `dist/lista_clasica.m3u` se valida que haya entradas, URLs HTTP(S), nombres, ausencia de adultos/VOD y correspondencia entre entradas generadas y parseadas. También se exige conservar al menos el **80% de las identidades anteriores sin una falla reciente comprobada**. Es un umbral relativo de revisión, no una cantidad fija de canales; perder más de una quinta parte de ese conjunto obliga a revisar antes de publicar. Las señales anteriores que ya fallaron no obligan a publicar de nuevo una URL rota. Una importación fallida puede conservar la principal anterior con evidencia positiva todavía vigente.
+Antes de escribir `dist/lista_clasica.m3u` se valida que haya entradas, URLs HTTP(S), nombres, ausencia de adultos/VOD y correspondencia entre entradas generadas y parseadas. No se exige una cantidad mínima de canales heredados: si algunos ya no tienen ninguna señal comprobada, se eliminan para no conservar enlaces fallidos. Las señales anteriores nunca obligan a publicar de nuevo una URL rota. Una importación fallida solo permite conservar una principal anterior con `pass` reciente.
 
-Si todo lo medido falla o hay pérdida masiva, el proceso sale con error y no reemplaza la lista anterior. Los resultados parciales permiten continuidad, pero no se cuentan como muestras completas. La escritura del candidato es temporal y se reemplaza al finalizar validación.
+Si ninguna señal tiene video comprobado o no queda ninguna entrada válida, el proceso sale con error y no reemplaza la lista anterior. Una respuesta parcial no basta para integrar canales ni respaldos. La escritura del candidato es temporal y se reemplaza al finalizar validación.
 
 El workflow publica únicamente desde `main`. Confirma lista e historial juntos cuando la generación es válida. Ante rechazo, conserva únicamente las mediciones nuevas, si existen, y sigue mostrando una ejecución fallida. No fuerza un push ni sobrescribe trabajo concurrente; la concurrencia existente cancela generaciones anteriores y el push falla si la rama cambió.
 
@@ -75,7 +75,7 @@ STABILITY_FFPROBE=1 python3 scripts/xtream_to_m3u.py
 
 Instalá FFmpeg/ffprobe previamente. Sin `STABILITY_FFPROBE=1` se evalúa transporte y el diagnóstico indica que ffprobe está deshabilitado.
 
-Las pruebas automatizadas utilizan servidores locales y fixtures sintéticos, sin cuentas reales. Incluyen HTML/HTTP, MIME incorrecto, avance HLS, cifrado/VOD, headers, historial, cambios de fuente, pérdidas masivas, metadatos con comas y serialización de una misma cuenta.
+Las pruebas automatizadas utilizan servidores locales y fixtures sintéticos, sin cuentas reales. Incluyen HTML/HTTP, MIME incorrecto, avance HLS, cifrado/VOD, headers, historial, cambios de fuente, descarte de fallos y parciales, pérdida de canales permitida, metadatos con comas y serialización de una misma cuenta.
 
 Referencia técnica: [ffprobe](https://ffmpeg.org/ffprobe.html) y [RFC 8216 HLS](https://www.rfc-editor.org/rfc/rfc8216.html).
 

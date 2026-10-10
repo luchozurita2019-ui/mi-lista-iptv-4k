@@ -176,6 +176,15 @@ class SelectionTests(unittest.TestCase):
         sources = stability.choose_sources(options, results, self.history, "old")
         self.assertEqual([s["key"] for s in sources], ["one", "two", "three"])
 
+    def test_partial_unknown_and_failed_sources_never_become_backups(self):
+        options = [candidate("good"), candidate("partial", 2),
+                   candidate("unmeasured", 3), candidate("bad", 4)]
+        results = {"good": {"state": "pass"}, "partial": {"state": "partial"},
+                   "bad": {"state": "fail"}}
+        self.assertEqual([s["key"] for s in stability.choose_sources(
+            options, results, self.history)], ["good"])
+        self.assertEqual(stability.choose_sources(options[1:], results, self.history), [])
+
     def test_recent_history_allowed_expired_and_last_failure_excluded(self):
         for key, state in [("fresh", "pass"), ("stale", "pass"), ("bad", "fail")]:
             stability.observe(self.history, key, {"state": state})
@@ -275,6 +284,14 @@ class GeneratorTests(unittest.TestCase):
             self.assertEqual(baseline.read_text(), self.source)
             self.assertFalse(Path(directory, "dist/lista_clasica.m3u").exists())
 
+    def test_partial_only_never_produces_a_new_playlist(self):
+        with tempfile.TemporaryDirectory() as directory:
+            baseline = Path(directory, "lista_clasica.m3u")
+            baseline.write_text(self.source)
+            self.assertEqual(self.run_generator(self.source, {"state": "partial", "reason": "video_not_identified"}, directory), 1)
+            self.assertEqual(baseline.read_text(), self.source)
+            self.assertFalse(Path(directory, "dist/lista_clasica.m3u").exists())
+
     def test_empty_provider_does_not_overwrite_previous(self):
         with tempfile.TemporaryDirectory() as directory:
             baseline = Path(directory, "lista_clasica.m3u")
@@ -302,15 +319,17 @@ class GeneratorTests(unittest.TestCase):
         self.assertEqual(generator.metadata(changed)[0], "Canal, regional")
         self.assertEqual(generator.metadata(changed)[1]["tvg-name"], "Name, original")
 
-    def test_mass_loss_keeps_old_playlist_and_explains_rejection(self):
+    def test_mass_loss_is_allowed_when_remaining_channel_is_verified(self):
         with tempfile.TemporaryDirectory() as directory:
             baseline = self.source + '#EXTINF:-1,HBO\nhttps://example.test/live/2.ts\n'
             path = Path(directory, "lista_clasica.m3u")
             path.write_text(baseline)
-            self.assertEqual(self.run_generator(self.source, {"state": "pass", "latency": .1}, directory), 1)
-            self.assertEqual(path.read_text(), baseline)
+            self.assertEqual(self.run_generator(self.source, {"state": "pass", "latency": .1}, directory), 0)
+            generated = Path(directory, "dist/lista_clasica.m3u").read_text()
+            self.assertIn("Telefe", generated)
+            self.assertNotIn("HBO", generated)
             report = json.loads(Path(directory, "dist/diagnostico_estabilidad.json").read_text())
-            self.assertEqual(report["publicacion"], "massive_channel_loss")
+            self.assertEqual(report["publicacion"], "validada")
 
     def test_same_channel_three_sources_one_visible_entry(self):
         body = self.source + self.source.split('\n', 1)[1].replace('/1.ts', '/2.ts') + self.source.split('\n', 1)[1].replace('/1.ts', '/3.ts')

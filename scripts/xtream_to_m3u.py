@@ -14,7 +14,7 @@ import json
 from concurrent.futures import ThreadPoolExecutor, wait, FIRST_COMPLETED
 from collections import defaultdict, deque
 from stream_stability import (Probe, request_target, identity, load_history, observe,
-                              choose_sources, with_backups, evidence, probe_order, validate_retention, atomic_json)
+                              choose_sources, with_backups, evidence, probe_order, atomic_json)
 import urllib.parse
 import urllib.request
 import unicodedata
@@ -691,7 +691,7 @@ def main():
         name = entry_name(entry)
         url, headers = request_target(entry)
         key = identity(url, headers)
-        if (name, key) not in seen and evidence(key, {}, history)["state"] in ("pass", "partial"):
+        if (name, key) not in seen and evidence(key, {}, history)["state"] == "pass":
             grouped[name].append({"provider": 0, "entry": entry, "name": name,
                                   "has_logo": bool(metadata(entry)[1].get("tvg-logo")),
                                   "url": url, "headers": headers, "key": key})
@@ -757,6 +757,7 @@ def main():
         "canales_con_un_respaldo": backup_counts[1],
         "canales_sin_respaldo": backup_counts[0],
         "canales_sin_evidencia_reciente": without_media,
+        "politica_publicacion": "solo_pass_video_comprobado; nunca_partial_unknown_fail",
         "respaldo_maximo_por_canal": 2,
         "vigencia_evidencia_segundos": 43200,
         "metodo": "muestras TS continuas / segmentos y avance HLS + historial ponderado; no garantiza reproducción",
@@ -776,7 +777,8 @@ def main():
     Path("dist/diagnostico_estabilidad.json").write_text(
         json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
-    if results and not any(row["state"] in ("pass", "partial") for row in results.values()):
+    if results and not any(row["state"] == "pass" for row in results.values()):
+        # Never promote partial transport evidence to a published video feed.
         report["publicacion"] = "rechazada_sin_medios"
         atomic_json("dist/diagnostico_estabilidad.json", report)
         print("ERROR: ninguna muestra tiene evidencia de medios; se conserva la lista publicada.", file=sys.stderr)
@@ -790,11 +792,8 @@ def main():
         validate_playlist(final_entries)
         if len(final_entries) != len(winners):
             raise ValueError("entry_count_mismatch")
-        # The mass-loss guard protects unmeasured/healthy channels, without
-        # forcing a primary already known to have failed back into publication.
-        protected = {name for name, key in previous.items()
-                     if evidence(key, results, history)["state"] != "fail"}
-        validate_retention(protected, {entry_name(entry) for entry in final_entries})
+        # Do not re-add failed or unproven old channels to satisfy a quota.
+        # Empty, invalid or incorrectly parsed playlists are still rejected.
     except ValueError as exc:
         report["publicacion"] = str(exc)
         atomic_json("dist/diagnostico_estabilidad.json", report)
@@ -811,7 +810,7 @@ def main():
     print(f"Estabilidad: {len(results)} URLs probadas; {sum(1 for result in results.values() if result['state'] == 'pass')} mostraron continuidad o avance HLS en la muestra.")
     print("Selección por evidencia actual, fiabilidad histórica y margen de cambio; el logo solo desempata.")
     if len(candidates) > len(results):
-        print("Nota: alternativas sin medir no se incorporan; sólo se utilizan muestras actuales o evidencia de las últimas 12 horas.")
+        print("Nota: sólo se usan señales PASS, medidas ahora o con evidencia positiva de las últimas 12 horas.")
     print(f"Respaldos: {backup_counts[2]} canales con dos; {backup_counts[1]} con uno; {backup_counts[0]} sin otra señal comprobada.")
     print("IMPORTANTE: los Secrets protegen las entradas, pero el M3U público puede exponer credenciales en sus URLs.")
     print("Nota: la prueba breve no demuestra estabilidad durante horas ni compatibilidad con todos los reproductores.")

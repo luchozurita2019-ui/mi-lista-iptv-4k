@@ -331,7 +331,8 @@ def evidence(key, results, history, now=None):
 def choose_sources(options, results, history, previous_key=None, limit=3):
     """Keep measured media only, then diversify the alternate sources."""
     measured = {c["key"]: evidence(c["key"], results, history) for c in options}
-    available = [c for c in options if measured[c["key"]]["state"] in ("pass", "partial")
+    # Only a positive media/video check can publish a primary or backup.
+    available = [c for c in options if measured[c["key"]]["state"] == "pass"
                  and measured[c["key"]].get("reason") != "vod"]
     if not available:
         return []
