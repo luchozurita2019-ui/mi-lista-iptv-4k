@@ -14,7 +14,7 @@ import json
 from concurrent.futures import ThreadPoolExecutor, wait, FIRST_COMPLETED
 from collections import defaultdict, deque
 from stream_stability import (Probe, request_target, identity, load_history, observe,
-                              choose, probe_order, validate_retention, atomic_json)
+                              choose_sources, with_backups, evidence, probe_order, atomic_json)
 import urllib.parse
 import urllib.request
 import unicodedata
@@ -23,7 +23,7 @@ from pathlib import Path
 OUT = Path("dist/lista_clasica.m3u")
 TIMEOUT = 20
 PROBE_WORKERS = 4
-MAX_PROBES = 600
+MAX_PROBES = 1200
 MAX_BYTES = 80 * 1024 * 1024
 
 # M3U metadata is inconsistent across providers, so filtering uses group/title
@@ -253,6 +253,13 @@ CHANNEL_CATALOG = [
 ]
 
 def _fold_name(value: str) -> str:
+    # Some exports encode accented channel names twice.
+    if "Ã" in value or "Â" in value:
+        try:
+            value = value.encode("latin-1").decode("utf-8")
+        except (UnicodeEncodeError, UnicodeDecodeError):
+            pass
+    value = re.sub(r"^\s*(?:AR|ARG)\s*[|:.-]\s*", "", value, flags=re.I)
     value = unicodedata.normalize("NFKD", value.casefold())
     value = "".join(ch for ch in value if not unicodedata.combining(ch))
     value = value.replace("&", " and ")
@@ -264,9 +271,11 @@ def catalog_match(name: str, group: str = ""):
     folded = " " + _fold_name(name) + " "
     catalog = sorted(CHANNEL_CATALOG, key=lambda row: (row[0].startswith("Argentina ·"), max(len(_fold_name(a)) for a in row[2])), reverse=True)
     for category, canonical, aliases in catalog:
-        for alias in sorted(aliases, key=lambda a: len(_fold_name(a)), reverse=True):
+        for alias in sorted(set([canonical, *aliases]), key=lambda a: len(_fold_name(a)), reverse=True):
             needle = " " + _fold_name(alias) + " "
-            if needle.strip() and needle in folded:
+            # A backup must be the same channel. Substring matches incorrectly
+            # merge numbered channels and regional editions into generic feeds.
+            if needle.strip() and needle == folded:
                 # Avoid classifying TNT Sports as the movie channel TNT.
                 if canonical == "TNT" and " sports " in folded:
                     continue
@@ -667,24 +676,37 @@ def main():
     for candidate in candidates:
         candidate["url"], candidate["headers"] = request_target(candidate["entry"])
         candidate["key"] = identity(candidate["url"], candidate["headers"])
+        source = urllib.parse.urlsplit(dict(providers)[candidate["provider"]])
+        credentials = urllib.parse.parse_qs(source.query)
+        candidate["server"] = identity(source.netloc.lower())
+        candidate["account"] = identity(json.dumps([source.netloc.lower(), credentials.get("username"), credentials.get("password")]))
         # A URL with different required headers is a different transport identity.
         pair = (candidate["name"], candidate["key"])
         if pair not in seen:
             grouped[candidate["name"]].append(candidate)
             seen.add(pair)
+    # A failed provider import must not erase a previously measured channel.
+    # Retain its recent, positive primary as a historical-only candidate.
+    for entry in baseline:
+        name = entry_name(entry)
+        url, headers = request_target(entry)
+        key = identity(url, headers)
+        if (name, key) not in seen and evidence(key, {}, history)["state"] == "pass":
+            grouped[name].append({"provider": 0, "entry": entry, "name": name,
+                                  "has_logo": bool(metadata(entry)[1].get("tvg-logo")),
+                                  "url": url, "headers": headers, "key": key})
+            seen.add((name, key))
     selected = probe_order(grouped, history, previous)[:MAX_PROBES]
     # Serialize each account's checks so an authorized single-connection account
     # is never flooded by the selector. Only four provider jobs run concurrently.
     by_provider = defaultdict(list)
     for candidate in selected:
-        source = dict(providers)[candidate["provider"]]
-        parsed_source = urllib.parse.urlsplit(source)
-        credentials = urllib.parse.parse_qs(parsed_source.query)
-        account = identity(json.dumps([parsed_source.netloc, credentials.get("username"), credentials.get("password")]))
-        by_provider[account].append(candidate)
+        if candidate["provider"] == 0:
+            continue
+        by_provider[candidate["account"]].append(candidate)
     queues = {account: deque(batch) for account, batch in by_provider.items()}
     ready = deque(queues)
-    deadline = time.monotonic() + 15 * 60
+    deadline = time.monotonic() + 18 * 60
     results = {}
     with ThreadPoolExecutor(max_workers=PROBE_WORKERS) as pool:
         active = {}
@@ -711,16 +733,18 @@ def main():
         observe(history, key, result)
     winners = []
     winner_states = defaultdict(int)
+    backup_counts = defaultdict(int)
+    without_media = []
     for name, options in grouped.items():
-        # Never introduce a URL measured as failed, or HLS conclusively marked VOD.
-        options = [c for c in options if results.get(c["key"], {}).get("reason") != "vod"
-                   and (results.get(c["key"], {}).get("state") != "fail" or c["key"] == previous.get(name))]
-        if not options:
+        sources = choose_sources(options, results, history, previous.get(name))
+        if not sources:
+            without_media.append(metadata(options[0]["entry"])[0])
             continue
-        winner = choose(options, results, history, previous.get(name))
-        state = results.get(winner["key"], {}).get("state", "unknown")
+        winner = sources[0]
+        state = evidence(winner["key"], results, history)["state"]
         winner_states[state] += 1
-        winners.append((priority(winner["entry"]), winner["entry"]))
+        backup_counts[len(sources) - 1] += 1
+        winners.append((priority(winner["entry"]), with_backups(sources)))
     # Save measurements even when publication is refused. They contain no URLs.
     atomic_json(history_path, history)
     report = {
@@ -729,6 +753,13 @@ def main():
         "urls_probadas": len(results),
         "urls_con_datos": sum(1 for result in results.values() if result["state"] == "pass"),
         "ganadores_por_evidencia": dict(winner_states),
+        "canales_con_dos_respaldos": backup_counts[2],
+        "canales_con_un_respaldo": backup_counts[1],
+        "canales_sin_respaldo": backup_counts[0],
+        "canales_sin_evidencia_reciente": without_media,
+        "politica_publicacion": "solo_pass_video_comprobado; nunca_partial_unknown_fail",
+        "respaldo_maximo_por_canal": 2,
+        "vigencia_evidencia_segundos": 43200,
         "metodo": "muestras TS continuas / segmentos y avance HLS + historial ponderado; no garantiza reproducción",
         "ffprobe_habilitado": os.getenv("STABILITY_FFPROBE") == "1",
         "urls_parciales": sum(row["state"] == "partial" for row in results.values()),
@@ -736,7 +767,7 @@ def main():
         "urls_sin_probar": len(seen) - len(results),
         "historial_version": 1,
         "conexiones_por_proveedor": 1,
-        "presupuesto_global_segundos": 900,
+        "presupuesto_global_segundos": 1080,
         "publicacion": "pendiente",
         "limite_pruebas": MAX_PROBES,
         "logos_completados": logos_added,
@@ -746,7 +777,8 @@ def main():
     Path("dist/diagnostico_estabilidad.json").write_text(
         json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
-    if results and not any(row["state"] in ("pass", "partial") for row in results.values()):
+    if results and not any(row["state"] == "pass" for row in results.values()):
+        # Never promote partial transport evidence to a published video feed.
         report["publicacion"] = "rechazada_sin_medios"
         atomic_json("dist/diagnostico_estabilidad.json", report)
         print("ERROR: ninguna muestra tiene evidencia de medios; se conserva la lista publicada.", file=sys.stderr)
@@ -760,7 +792,8 @@ def main():
         validate_playlist(final_entries)
         if len(final_entries) != len(winners):
             raise ValueError("entry_count_mismatch")
-        validate_retention(set(previous), {entry_name(entry) for entry in final_entries})
+        # Do not re-add failed or unproven old channels to satisfy a quota.
+        # Empty, invalid or incorrectly parsed playlists are still rejected.
     except ValueError as exc:
         report["publicacion"] = str(exc)
         atomic_json("dist/diagnostico_estabilidad.json", report)
@@ -777,7 +810,8 @@ def main():
     print(f"Estabilidad: {len(results)} URLs probadas; {sum(1 for result in results.values() if result['state'] == 'pass')} mostraron continuidad o avance HLS en la muestra.")
     print("Selección por evidencia actual, fiabilidad histórica y margen de cambio; el logo solo desempata.")
     if len(candidates) > len(results):
-        print(f"Nota: hay alternativas sin medir por los límites de cantidad/tiempo; los canales restantes conservan una alternativa sin medir.")
+        print("Nota: sólo se usan señales PASS, medidas ahora o con evidencia positiva de las últimas 12 horas.")
+    print(f"Respaldos: {backup_counts[2]} canales con dos; {backup_counts[1]} con uno; {backup_counts[0]} sin otra señal comprobada.")
     print("IMPORTANTE: los Secrets protegen las entradas, pero el M3U público puede exponer credenciales en sus URLs.")
     print("Nota: la prueba breve no demuestra estabilidad durante horas ni compatibilidad con todos los reproductores.")
     return 0

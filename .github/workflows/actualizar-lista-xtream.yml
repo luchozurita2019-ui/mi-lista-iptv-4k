@@ -2,7 +2,7 @@ name: Generar Lista clásica M3U desde Xtream
 
 on:
   push:
-    branches: [main]
+    branches: [main, codex/channel-backups-20261010]
     paths:
       - "scripts/xtream_to_m3u.py"
       - "scripts/stream_stability.py"

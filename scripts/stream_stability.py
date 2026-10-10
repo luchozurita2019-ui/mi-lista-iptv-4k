@@ -18,6 +18,9 @@ from pathlib import Path
 VERSION = 1
 TTL = 30 * 86400
 MAX_SAMPLE = 512 * 1024
+MAX_TRAFFIC = 16 * 1024 * 1024
+EVIDENCE_TTL = 12 * 3600
+BACKUP_TAG = "#EXT-X-TVFULL-BACKUP:"
 
 
 def identity(url, headers=None):
@@ -148,24 +151,26 @@ class Probe:
                         return result
                     return self._hls(response.geturl(), manifest, headers or {}, end, result)
                 sample_start = time.monotonic()
-                chunks = [first]
+                sample = bytearray(first)
                 reads = 0
-                while time.monotonic() - sample_start < self.window and result["bytes"] < MAX_SAMPLE:
-                    chunk = response.read1(min(8192, MAX_SAMPLE - result["bytes"]))
+                # Memory and transport have separate bounds. A fast HD stream
+                # filling the sample buffer is not a stream ending prematurely.
+                while time.monotonic() < min(sample_start + self.window, end) and result["bytes"] < MAX_TRAFFIC:
+                    chunk = response.read1(min(8192, MAX_TRAFFIC - result["bytes"]))
                     if not chunk:
                         break
-                    chunks.append(chunk)
+                    sample.extend(chunk[:max(0, MAX_SAMPLE - len(sample))])
                     result["bytes"] += len(chunk)
                     reads += 1
                 result["duration"] = time.monotonic() - sample_start
-                kind = media_signature(b"".join(chunks))
+                kind = media_signature(sample)
                 result["kind"] = kind or "unknown"
                 if kind:
                     sustained = reads >= 2 and result["duration"] >= self.window * .8
                     result.update(state="pass" if sustained and kind == "ts" else "partial",
                                   reason="continuous_ts" if sustained and kind == "ts" else "short_media")
-                    if result["state"] == "pass" and self.verify_media:
-                        result["video_identified"] = self._verify_sample(b"".join(chunks))
+                    if self.verify_media:
+                        result["video_identified"] = self._verify_sample(bytes(sample))
                         if not result["video_identified"]:
                             result.update(state="partial", reason="video_not_identified")
                 else:
@@ -311,15 +316,67 @@ def choose(options, results, history, previous_key=None):
     return winner
 
 
+def evidence(key, results, history, now=None):
+    """A current failure always overrides a previous successful measurement."""
+    if key in results:
+        return results[key]
+    row = history["streams"].get(key, {})
+    age = (time.time() if now is None else now) - row.get("updated", 0)
+    observations = row.get("observations", [])
+    if observations and 0 <= age <= EVIDENCE_TTL:
+        return {**observations[-1], "historical": True}
+    return {"state": "unknown"}
+
+
+def choose_sources(options, results, history, previous_key=None, limit=3):
+    """Keep measured media only, then diversify the alternate sources."""
+    measured = {c["key"]: evidence(c["key"], results, history) for c in options}
+    # Only a positive media/video check can publish a primary or backup.
+    available = [c for c in options if measured[c["key"]]["state"] == "pass"
+                 and measured[c["key"]].get("reason") != "vod"]
+    if not available:
+        return []
+    selected = [choose(available, measured, history, previous_key)]
+    while len(selected) < limit:
+        remaining = [c for c in available if c["key"] not in {s["key"] for s in selected}]
+        if not remaining:
+            break
+        servers = {s.get("server", s["provider"]) for s in selected}
+        accounts = {s.get("account", s["provider"]) for s in selected}
+        diverse = [c for c in remaining if c.get("server", c["provider"]) not in servers]
+        if not diverse:
+            diverse = [c for c in remaining if c.get("account", c["provider"]) not in accounts]
+        selected.append(choose(diverse or remaining, measured, history))
+    return selected
+
+
+def with_backups(sources):
+    primary = sources[0]
+    entry = [line for line in primary["entry"][:-1] if not line.startswith(BACKUP_TAG)]
+    for backup in sources[1:]:
+        entry.append(BACKUP_TAG + json.dumps({"url": backup["url"], "headers": backup["headers"]},
+                                            ensure_ascii=False, separators=(",", ":")))
+    return entry + [primary["entry"][-1]]
+
+
 def probe_order(grouped, history, previous):
     # One candidate per channel before second alternatives; least recently measured
     # first makes coverage rotate when the budget cannot measure the whole catalog.
     rounds = []
     for name, options in grouped.items():
         ordered = sorted(options, key=lambda c: (
+            evidence(c["key"], {}, history)["state"] not in ("pass", "partial"),
             history["streams"].get(c["key"], {}).get("updated", 0),
             c["key"] != previous.get(name), c["provider"], c["key"]))
-        rounds.append(ordered)
+        # Probe different providers in early backup rounds, instead of using
+        # the entire budget on HD/SD variants of a single source.
+        diversified = []
+        while ordered:
+            used = {c.get("account", c["provider"]) for c in diversified}
+            candidate = next((c for c in ordered if c.get("account", c["provider"]) not in used), ordered[0])
+            diversified.append(candidate)
+            ordered.remove(candidate)
+        rounds.append(diversified)
     output = []
     for i in range(max((len(row) for row in rounds), default=0)):
         layer = [row[i] for row in rounds if len(row) > i]
