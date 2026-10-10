@@ -299,6 +299,35 @@ class GeneratorTests(unittest.TestCase):
             self.assertEqual(self.run_generator("#EXTM3U\n", {"state": "pass"}, directory), 1)
             self.assertEqual(baseline.read_text(), self.source)
 
+    def test_catalogo_flow_solo_senales_comprobables(self):
+        for name, category in (
+            ("Cartoonito HD", "Infantiles"),
+            ("Nick Jr. HD", "Infantiles"),
+            ("HBO Pop HD", "TV · Ficción"),
+            ("TNT Novelas HD", "TV · Ficción"),
+            ("Cine.ar HD", "TV · Ficción"),
+            ("History 2 HD", "Documentales"),
+            ("TeleJunín HD", "Argentina · Regionales"),
+            ("Flow Sports 2 HD", "Argentina · Deportes"),
+            ("Somos Rosario HD", "Argentina · Noticias"),
+        ):
+            entry = generator.parse_entries(
+                f'#EXTINF:-1 group-title="Argentina",{name}\nhttps://example.test/live/1.ts'
+            )[0]
+            self.assertTrue(generator.keep_entry(entry), name)
+            self.assertEqual(generator.category_for(entry), category, name)
+        self.assertNotEqual(generator.catalog_match("Flow Sports")[1],
+                            generator.catalog_match("Flow Sports 2")[1])
+        self.assertIsNone(generator.catalog_match("HBO Pop 9"))
+        entry = generator.parse_entries(
+            '#EXTINF:-1 group-title="Adultos",Cartoonito\nhttps://example.test/live/1.ts'
+        )[0]
+        self.assertFalse(generator.keep_entry(entry))
+        entry = generator.parse_entries(
+            '#EXTINF:-1 group-title="Argentina",HBO Pop\nhttps://example.test/movie/1.ts'
+        )[0]
+        self.assertFalse(generator.keep_entry(entry))
+
     def test_linear_fiction_category_compatible_with_client(self):
         entry = generator.parse_entries('#EXTINF:-1 group-title="Argentina",HBO HD\nhttps://example.test/live/u/p/1.ts')[0]
         self.assertEqual(generator.category_for(entry), "TV · Ficción")

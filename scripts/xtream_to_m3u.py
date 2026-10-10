@@ -19,6 +19,7 @@ import urllib.parse
 import urllib.request
 import unicodedata
 from pathlib import Path
+from flow_catalog import FLOW_CHANNELS
 
 OUT = Path("dist/lista_clasica.m3u")
 TIMEOUT = 20
@@ -252,6 +253,11 @@ CHANNEL_CATALOG = [
     ("Argentina · Regionales", "Canal 3 Rosario", ("canal 3 rosario",)),
 ]
 
+# Catálogo complementario: referencias de señales ofrecidas en Argentina.
+# No introduce URLs, solo habilita identificación de emisiones existentes
+# que luego deben superar las mismas pruebas de estabilidad que el resto.
+CHANNEL_CATALOG.extend(FLOW_CHANNELS)
+
 def _fold_name(value: str) -> str:
     # Some exports encode accented channel names twice.
     if "Ã" in value or "Â" in value:
@@ -269,7 +275,7 @@ def _fold_name(value: str) -> str:
 def catalog_match(name: str, group: str = ""):
     # Match a known channel by its actual name, not only by group-title.
     folded = " " + _fold_name(name) + " "
-    catalog = sorted(CHANNEL_CATALOG, key=lambda row: (row[0].startswith("Argentina ·"), max(len(_fold_name(a)) for a in row[2])), reverse=True)
+    catalog = sorted(CHANNEL_CATALOG, key=lambda row: (row[0].startswith("Argentina ·"), max(len(_fold_name(a)) for a in (row[1], *row[2]))), reverse=True)
     for category, canonical, aliases in catalog:
         for alias in sorted(set([canonical, *aliases]), key=lambda a: len(_fold_name(a)), reverse=True):
             needle = " " + _fold_name(alias) + " "
