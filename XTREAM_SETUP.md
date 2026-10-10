@@ -14,7 +14,7 @@ No cambian los nombres. Usá `XTREAM_1_URL` a `XTREAM_10_URL` para el enlace com
 
 1. Filtra adultos y rutas/catalogos VOD antes de comparar fuentes. Conserva el catálogo y metadatos existentes.
 2. Agrupa alternativas por la identidad lógica actual del canal y deduplica URL + headers. Studio Universal y Universal TV tienen identidades separadas.
-3. Distribuye hasta 600 comprobaciones: una alternativa por canal antes de segundas alternativas, priorizando las menos recientemente comprobadas. La cobertura rota entre ejecuciones.
+3. Distribuye hasta 1200 comprobaciones: una alternativa por canal antes de segundas alternativas, priorizando evidencia positiva reciente y alternando cuentas antes de variantes de la misma cuenta. Dentro de cada grupo la cobertura rota entre ejecuciones.
 4. Solo prueba una señal por cuenta a la vez, incluso cuando la misma cuenta aparece en dos números de proveedor. Hasta cuatro cuentas se comprueban simultáneamente, por turnos. Este límite se refiere a este proceso: no puede conocer otras conexiones abiertas en el televisor.
 5. Acumula hasta doce observaciones por URL + headers, con caducidad de treinta días. Favorece resultados recientes y usa suavizado para no tratar una sola observación como una certeza histórica.
 6. Elige primero por evidencia actual y después por fiabilidad histórica. La latencia pesa poco y el logo solo desempata. Conserva la fuente anterior cuando la diferencia entre fuentes del mismo nivel es pequeña; un fallo actual no vence a una alternativa comprobada.
@@ -34,13 +34,13 @@ En HLS se sigue una variante del master (la de menor ancho de banda declarado pa
 
 ffprobe analiza **solo bytes locales mediante stdin**, con protocolos limitados a `pipe`, un timeout de tres segundos y salida silenciosa. No recibe URLs ni hace solicitudes de red. Identificar codec/video no equivale a decodificar y visualizar todos los frames. fMP4 sin su inicialización puede quedar como parcial.
 
-Cada muestra admite hasta 512 KiB para TS/manifiesto y hasta 32 KiB por segmento HLS; hasta dos niveles de master. Socket timeout: cuatro segundos. Presupuesto de muestra nominal: dieciocho segundos (una lectura en curso puede finalizar después). Se observa como máximo cuatro segundos de espera entre consultas HLS; un target duration mayor puede impedir observar progreso y queda parcial. Presupuesto global para programar comprobaciones: quince minutos, dejando terminar las muestras activas. El workflow tiene treinta minutos de límite total.
+Cada muestra conserva hasta 512 KiB en memoria para TS/manifiesto; el TS puede consumir hasta 16 MiB durante la ventana de dos segundos y hasta 32 KiB por segmento HLS; hasta dos niveles de master. Socket timeout: cuatro segundos. Presupuesto de muestra nominal: dieciocho segundos (una lectura en curso puede finalizar después). Se observa como máximo cuatro segundos de espera entre consultas HLS; un target duration mayor puede impedir observar progreso y queda parcial. Presupuesto global para programar comprobaciones: dieciocho minutos, dejando terminar las muestras activas. El workflow tiene treinta minutos de límite total.
 
-Un fallo no introduce una nueva URL fallida. La URL anterior que todavía está en el catálogo puede mantenerse ante un fallo puntual, con estado `fail` explícito. Si no existe alternativa comprobada, una no medida puede conservarse como `unknown`. No se inventan streams.
+Una URL medida como fallida se excluye, incluida la señal principal anterior. No se incorporan alternativas nunca medidas. Se acepta evidencia positiva de las últimas doce horas cuando el presupuesto impide volver a medirla; una falla actual prevalece sobre el historial. No se inventan streams. Por canal se publica una señal principal y hasta dos respaldos comprobados, priorizando servidores y cuentas diferentes. El informe muestra la cobertura y los canales sin evidencia reciente.
 
 ## Publicación y recuperación
 
-Antes de escribir `dist/lista_clasica.m3u` se valida que haya entradas, URLs HTTP(S), nombres, ausencia de adultos/VOD y correspondencia entre entradas generadas y parseadas. También se exige conservar al menos el **80% de las identidades anteriores**. Es un umbral relativo de revisión, no una cantidad fija de canales; perder más de una quinta parte obliga a revisar el proveedor o el cambio de catálogo antes de publicar.
+Antes de escribir `dist/lista_clasica.m3u` se valida que haya entradas, URLs HTTP(S), nombres, ausencia de adultos/VOD y correspondencia entre entradas generadas y parseadas. También se exige conservar al menos el **80% de las identidades anteriores sin una falla reciente comprobada**. Es un umbral relativo de revisión, no una cantidad fija de canales; perder más de una quinta parte de ese conjunto obliga a revisar antes de publicar. Las señales anteriores que ya fallaron no obligan a publicar de nuevo una URL rota. Una importación fallida puede conservar la principal anterior con evidencia positiva todavía vigente.
 
 Si todo lo medido falla o hay pérdida masiva, el proceso sale con error y no reemplaza la lista anterior. Los resultados parciales permiten continuidad, pero no se cuentan como muestras completas. La escritura del candidato es temporal y se reemplaza al finalizar validación.
 
@@ -86,3 +86,17 @@ Se revisaron los cuatro archivos que componían main en el commit `a0cf9f6ebcb61
 La última falla examinada, run `37909404093`, rechazó una lista final vacía. Los commits posteriores corrigieron el separador usado en la validación; esta mejora agrega pruebas para que ese flujo no vuelva a pasar inadvertido.
 
 Pendientes: validación contra proveedores reales en Actions tras aprobar los cambios; pruebas desde la red/dispositivo del usuario; revisión de exposición pública de los enlaces; evolución de identidades/región e idioma. Ninguna muestra breve garantiza estabilidad durante horas ni compatibilidad con todo DRM o reproductor.
+
+## Respaldos automáticos en TV FULL PRO V55
+
+Cada respaldo aparece como un comentario antes de la URL principal, sin duplicar el canal en pantalla:
+
+```m3u
+#EXTINF:-1,Canal de ejemplo
+#EXT-X-TVFULL-BACKUP:{"url":"https://respaldo.example/live.ts","headers":{}}
+https://principal.example/live.ts
+```
+
+Los headers de cada fuente son independientes. El parser anterior ignora el comentario y reproduce la principal; para cambiar automáticamente entre las señales es necesaria la V55 (1.4.23+3055). La APK sólo cambia de fuente después de las recuperaciones nativas de Media3 y no transfiere permisos del principal al respaldo. Cada recorrido termina al agotar las fuentes; el botón Reintentar comienza otro.
+
+La comparación de nombres es exacta después de normalizar calidad, acentos y prefijos argentinos. No se usa una coincidencia genérica para juntar señales regionales o numeradas distintas. El diagnóstico distingue canales con dos, uno o ningún respaldo; puede haber menos de tres fuentes comprobadas disponibles.

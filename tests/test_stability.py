@@ -45,6 +45,11 @@ class Handler(BaseHTTPRequestHandler):
                     self.wfile.write(TS)
                     self.wfile.flush()
                     time.sleep(.025)
+            elif path == "/fast-ts":
+                for _ in range(8):
+                    self.wfile.write(TS * 32)
+                    self.wfile.flush()
+                    time.sleep(.025)
             elif path == "/headers":
                 self.wfile.write(TS if self.headers.get("User-Agent") == "Required-Agent" else b"<html>denied</html>")
             elif path.endswith(".ts"):
@@ -92,6 +97,11 @@ class ProbeTests(unittest.TestCase):
         self.assertEqual(self.probe("/live.m3u8")["state"], "pass")
         self.assertEqual(self.probe("/stalled")["state"], "partial")
         self.assertEqual(self.probe("/master")["state"], "pass")
+
+    def test_fast_hd_does_not_stop_at_memory_sample_limit(self):
+        result = self.probe("/fast-ts")
+        self.assertEqual(result["state"], "pass")
+        self.assertGreater(result["bytes"], stability.MAX_SAMPLE)
 
     def test_vod_excluded_and_encryption_not_claimed_decoded(self):
         self.assertEqual(self.probe("/vod")["reason"], "vod")
@@ -145,6 +155,35 @@ class SelectionTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 stability.validate_retention({"a", "b", "c"}, current)
         stability.validate_retention({"a", "b", "c"}, {"a", "b", "c", "d"})
+
+    def test_backups_diversify_and_never_keep_failed_incumbent(self):
+        options = [candidate("old"), candidate("one"), candidate("same"),
+                   candidate("two", 2), candidate("three", 3), candidate("unknown", 4)]
+        results = {c["key"]: {"state": "pass"} for c in options[:-1]}
+        results["old"] = {"state": "fail"}
+        sources = stability.choose_sources(options, results, self.history, "old")
+        self.assertEqual([s["key"] for s in sources], ["one", "two", "three"])
+
+    def test_recent_history_allowed_expired_and_last_failure_excluded(self):
+        for key, state in [("fresh", "pass"), ("stale", "pass"), ("bad", "fail")]:
+            stability.observe(self.history, key, {"state": state})
+        self.history["streams"]["stale"]["updated"] -= stability.EVIDENCE_TTL + 1
+        sources = stability.choose_sources([candidate(k) for k in ("fresh", "stale", "bad", "new")], {}, self.history)
+        self.assertEqual([s["key"] for s in sources], ["fresh"])
+        self.assertEqual(stability.choose_sources([candidate("fresh")], {"fresh": {"state": "fail"}}, self.history), [])
+
+    def test_probe_backup_round_prioritizes_other_account(self):
+        options = [candidate("a", 1), candidate("b", 1), candidate("c", 2)]
+        self.assertEqual([c["key"] for c in stability.probe_order({"channel": options}, self.history, {})], ["a", "c", "b"])
+
+    def test_backup_metadata_roundtrip_has_independent_headers(self):
+        sources = [dict(candidate("a"), url="https://one.test/live", headers={"cookie": "one"},
+                        entry=['#EXTINF:-1,Canal', '#EXTHTTP:{"Cookie":"one"}', 'https://one.test/live']),
+                   dict(candidate("b", 2), url="https://two.test/live", headers={"authorization": "two"})]
+        entry = stability.with_backups(sources)
+        self.assertEqual(stability.request_target(entry), ("https://one.test/live", {"cookie": "one"}))
+        backup = json.loads(next(line[len(stability.BACKUP_TAG):] for line in entry if line.startswith(stability.BACKUP_TAG)))
+        self.assertEqual(backup, {"url": "https://two.test/live", "headers": {"authorization": "two"}})
 
     def test_history_has_no_credentials_and_prunes_stale_records(self):
         key = stability.identity("https://example.test/live/user/password/1.ts", {"cookie": "private"})
@@ -260,6 +299,35 @@ class GeneratorTests(unittest.TestCase):
             self.assertEqual(path.read_text(), baseline)
             report = json.loads(Path(directory, "dist/diagnostico_estabilidad.json").read_text())
             self.assertEqual(report["publicacion"], "massive_channel_loss")
+
+    def test_same_channel_three_sources_one_visible_entry(self):
+        body = self.source + self.source.split('\n', 1)[1].replace('/1.ts', '/2.ts') + self.source.split('\n', 1)[1].replace('/1.ts', '/3.ts')
+        with tempfile.TemporaryDirectory() as directory:
+            self.assertEqual(self.run_generator(body, {"state": "pass"}, directory), 0)
+            entries = generator.parse_entries(Path(directory, "dist/lista_clasica.m3u").read_text())
+            self.assertEqual(len(entries), 1)
+            self.assertEqual(sum(line.startswith(stability.BACKUP_TAG) for line in entries[0]), 2)
+            report = json.loads(Path(directory, "dist/diagnostico_estabilidad.json").read_text())
+            self.assertEqual(report["canales_con_dos_respaldos"], 1)
+
+    def test_known_failed_primary_replaced_or_removed_even_if_incumbent(self):
+        body = self.source + '#EXTINF:-1 group-title="Argentina",HBO\nhttps://example.test/live/2.ts\n'
+        with tempfile.TemporaryDirectory() as directory, working_directory(directory), \
+                patch.object(generator, "env_provider", side_effect=lambda i: (1, "https://example.test/get.php?username=u&password=p") if i == 1 else None), \
+                patch.object(generator, "fetch_m3u", return_value=body), \
+                patch.object(generator, "fetch_logo_manifest", return_value=[]), \
+                patch.object(generator, "probe_stream", side_effect=lambda url, headers: {"state": "fail" if '/1.ts' in url else "pass"}), \
+                contextlib.redirect_stdout(__import__('io').StringIO()):
+            Path('lista_clasica.m3u').write_text(body)
+            self.assertEqual(generator.main(), 0)
+            entries = generator.parse_entries(Path('dist/lista_clasica.m3u').read_text())
+            self.assertEqual([generator.metadata(e)[0] for e in entries], ['HBO'])
+
+    def test_channel_identity_does_not_merge_local_or_numbered_feeds(self):
+        self.assertEqual(generator.catalog_match('AR | Crónica HD')[1], 'Crónica TV')
+        self.assertIsNone(generator.catalog_match('Telefe Tucumán'))
+        self.assertIsNone(generator.catalog_match('Canal 12 Posadas'))
+        self.assertIsNone(generator.catalog_match('HBO 9'))
 
     def test_same_account_never_probed_concurrently(self):
         active = 0
