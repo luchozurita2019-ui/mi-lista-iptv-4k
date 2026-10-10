@@ -312,7 +312,7 @@ class GeneratorTests(unittest.TestCase):
             ("Somos Rosario HD", "Argentina · Noticias"),
         ):
             entry = generator.parse_entries(
-                f'#EXTINF:-1 group-title="Argentina",{name}\\nhttps://example.test/live/1.ts'
+                f'#EXTINF:-1 group-title="Argentina",{name}\nhttps://example.test/live/1.ts'
             )[0]
             self.assertTrue(generator.keep_entry(entry), name)
             self.assertEqual(generator.category_for(entry), category, name)
@@ -320,11 +320,11 @@ class GeneratorTests(unittest.TestCase):
                             generator.catalog_match("Flow Sports 2")[1])
         self.assertIsNone(generator.catalog_match("HBO Pop 9"))
         entry = generator.parse_entries(
-            '#EXTINF:-1 group-title="Adultos",Cartoonito\\nhttps://example.test/live/1.ts'
+            '#EXTINF:-1 group-title="Adultos",Cartoonito\nhttps://example.test/live/1.ts'
         )[0]
         self.assertFalse(generator.keep_entry(entry))
         entry = generator.parse_entries(
-            '#EXTINF:-1 group-title="Argentina",HBO Pop\\nhttps://example.test/movie/1.ts'
+            '#EXTINF:-1 group-title="Argentina",HBO Pop\nhttps://example.test/movie/1.ts'
         )[0]
         self.assertFalse(generator.keep_entry(entry))
 
