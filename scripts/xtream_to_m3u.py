@@ -19,6 +19,7 @@ import urllib.parse
 import urllib.request
 import unicodedata
 from pathlib import Path
+from flow_catalog import FLOW_CHANNELS
 
 OUT = Path("dist/lista_clasica.m3u")
 TIMEOUT = 20
@@ -251,6 +252,11 @@ CHANNEL_CATALOG = [
     ("Argentina · Regionales", "Canal 7 Mendoza", ("canal 7 mendoza",)),
     ("Argentina · Regionales", "Canal 3 Rosario", ("canal 3 rosario",)),
 ]
+
+# Catálogo complementario: referencias de señales ofrecidas en Argentina.
+# No introduce URLs, solo habilita identificación de emisiones existentes
+# que luego deben superar las mismas pruebas de estabilidad que el resto.
+CHANNEL_CATALOG.extend(FLOW_CHANNELS)
 
 def _fold_name(value: str) -> str:
     # Some exports encode accented channel names twice.
